@@ -18,20 +18,20 @@ export function LoadingScreen({ onEnter }: LoadingScreenProps) {
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55 }}
-        className="relative z-10 mx-4 max-w-2xl rounded-[2rem] border border-white/10 bg-slate-950/70 p-8 text-center shadow-2xl shadow-black/50 backdrop-blur-xl"
+        className="relative z-10 mx-4 max-w-2xl rounded-[2rem] border border-white/10 bg-slate-950/70 p-5 text-center shadow-2xl shadow-black/50 backdrop-blur-xl sm:p-8"
       >
-        <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs uppercase tracking-[0.45em] text-cyan-100/80">
+        <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-[10px] uppercase tracking-[0.32em] text-cyan-100/80 sm:px-4 sm:text-xs sm:tracking-[0.45em]">
           <Sparkles className="h-4 w-4" />
           Launch sequence
         </div>
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{labIntro}</h1>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-300">
+        <h1 className="text-2xl font-semibold tracking-tight sm:text-4xl">{labIntro}</h1>
+        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">
           A cinematic portfolio experience inspired by the space-themed 3D reference, tuned to showcase your work with clarity and polish.
         </p>
         <button
           type="button"
           onClick={onEnter}
-          className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-6 py-3 text-sm font-medium text-slate-950 transition hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+          className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-cyan-200 focus:outline-none focus:ring-2 focus:ring-cyan-200 sm:mt-8 sm:px-6"
         >
           <Rocket className="h-4 w-4" />
           Enter Portfolio

@@ -57,7 +57,7 @@ export function Room({
 }: RoomProps) {
   return (
     <div className="absolute inset-0 h-full w-full overflow-hidden bg-slate-950">
-      <Canvas shadows dpr={[1, 1.5]}>
+      <Canvas shadows dpr={mobile ? [1, 1.15] : [1, 1.5]}>
         <Suspense fallback={null}>
           <Environment enabled={lightsOn} />
           <Camera mobile={mobile} focus={focus} />

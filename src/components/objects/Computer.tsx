@@ -262,23 +262,32 @@ export function Computer({
       {/* Stand */}
       <mesh castShadow receiveShadow position={[0, 0.18, 0.02]}>
         <boxGeometry args={[0.48, 0.06, 0.38]} />
-        <meshStandardMaterial color="#1e293b" roughness={0.4} metalness={0.8} />
+        <meshStandardMaterial color="#1e293b" roughness={0.35} metalness={0.85} />
       </mesh>
       <mesh castShadow receiveShadow position={[0, 0.34, -0.02]}>
         <boxGeometry args={[0.12, 0.54, 0.12]} />
-        <meshStandardMaterial color="#0f172a" roughness={0.4} metalness={0.8} />
+        <meshStandardMaterial color="#0f172a" roughness={0.35} metalness={0.82} />
       </mesh>
 
       {/* Tower */}
       <group position={[1.35, 0.57, -0.1]}>
         <mesh castShadow receiveShadow>
           <boxGeometry args={[0.48, 0.92, 0.82]} />
-          <meshStandardMaterial color="#0a0a0a" roughness={0.3} metalness={0.8} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.26} metalness={0.82} />
+        </mesh>
+
+        <mesh position={[0, 0.4, 0.39]} castShadow>
+          <boxGeometry args={[0.16, 0.1, 0.02]} />
+          <meshStandardMaterial color="#111827" roughness={0.4} />
+        </mesh>
+        <mesh position={[0, 0.22, 0.39]} castShadow>
+          <boxGeometry args={[0.16, 0.18, 0.02]} />
+          <meshStandardMaterial color="#111827" roughness={0.4} />
         </mesh>
 
         <mesh position={[0, -0.5, 0]} castShadow>
           <cylinderGeometry args={[0.24, 0.26, 0.08, 32]} />
-          <meshStandardMaterial color="#0f172a" emissive="#22c55e" emissiveIntensity={0.45} roughness={0.5} />
+          <meshStandardMaterial color="#0f172a" emissive="#22c55e" emissiveIntensity={0.32} roughness={0.45} />
         </mesh>
         <pointLight position={[0, -0.52, 0]} intensity={1.4} distance={1.4} color="#22c55e" />
 
@@ -384,13 +393,9 @@ export function Computer({
 
       {/* Mouse */}
       <group position={[0.55, 0.12, 0.52]} rotation={[0, -0.12, 0]}>
-        <mesh castShadow receiveShadow position={[0, -0.003, 0]}>
-          <cylinderGeometry args={[0.085, 0.1, 0.04, 20]} />
-          <meshStandardMaterial color="#0f172a" roughness={0.34} metalness={0.08} />
-        </mesh>
-        <mesh castShadow receiveShadow position={[0, 0.018, 0]} rotation={[Math.PI / 2, 0, 0]}>
-          <sphereGeometry args={[0.085, 20, 16]} />
-          <meshStandardMaterial color="#111827" roughness={0.3} metalness={0.08} />
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[0.16, 0.05, 0.26]} />
+          <meshStandardMaterial color="#0f172a" roughness={0.4} />
         </mesh>
       </group>
     </group>

@@ -44,6 +44,37 @@ const CAMERA_PRESETS: Record<SceneFocus, { position: [number, number, number]; t
   }
 };
 
+const MOBILE_CAMERA_PRESETS: Record<SceneFocus, { position: [number, number, number]; target: [number, number, number] }> = {
+  overview: {
+    position: [0, 3.0, 8.95],
+    target: [0, 1.52, 0]
+  },
+  resume: {
+    position: [-1.25, 2.3, 1.95],
+    target: [-1.65, 1.32, -3.42]
+  },
+  computer: {
+    position: [0.05, 2.15, 2.1],
+    target: [-0.1, 1.16, -3.25]
+  },
+  projects: {
+    position: [-0.2, 2.2, 0.3],
+    target: [4.15, 2.0, 0.0]
+  },
+  phone: {
+    position: [0.5, 2.15, 2.1],
+    target: [0.82, 1.26, -3.0]
+  },
+  contact: {
+    position: [-1.0, 2.1, 2.05],
+    target: [-1.42, 1.25, -3.0]
+  },
+  technologies: {
+    position: [-3.65, 2.0, 1.9],
+    target: [-3.35, 1.48, -2.92]
+  }
+};
+
 export function Camera({ mobile, focus = "overview" }: CameraProps) {
   const cameraRef = useRef<any>(null);
   const controlsRef = useRef<any>(null);
@@ -63,8 +94,9 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
     }
 
     if (focus === "overview") {
-      cameraRef.current?.position?.set(...CAMERA_PRESETS.overview.position);
-      controlsRef.current?.target?.set(...CAMERA_PRESETS.overview.target);
+      const preset = mobile ? MOBILE_CAMERA_PRESETS.overview : CAMERA_PRESETS.overview;
+      cameraRef.current?.position?.set(...preset.position);
+      controlsRef.current?.target?.set(...preset.target);
       controlsRef.current?.update?.();
     }
 
@@ -82,12 +114,13 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
     const isFreeOrbit = focus === "overview";
 
     if (!isFreeOrbit) {
-      let targetPos = CAMERA_PRESETS[focus].position;
-      let targetLook = CAMERA_PRESETS[focus].target;
+      const preset = mobile ? MOBILE_CAMERA_PRESETS[focus] : CAMERA_PRESETS[focus];
+      let targetPos = preset.position;
+      let targetLook = preset.target;
 
       if (focus === "projects" && projectsPhaseRef.current === 0) {
-        targetPos = [0, 2.0, 4.2];
-        targetLook = [0, 1.4, -2.0];
+        targetPos = mobile ? [0, 2.08, 4.55] : [0, 2.0, 4.2];
+        targetLook = mobile ? [0, 1.36, -2.15] : [0, 1.4, -2.0];
       }
 
       const targetPosition = new Vector3(...targetPos);
@@ -110,10 +143,10 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
 
   return (
     <>
-      <PerspectiveCamera ref={cameraRef} makeDefault position={CAMERA_PRESETS.overview.position} fov={39} />
+      <PerspectiveCamera ref={cameraRef} makeDefault position={(mobile ? MOBILE_CAMERA_PRESETS.overview : CAMERA_PRESETS.overview).position} fov={mobile ? 46 : 39} />
       <OrbitControls
         ref={controlsRef}
-        target={CAMERA_PRESETS.overview.target}
+        target={(mobile ? MOBILE_CAMERA_PRESETS.overview : CAMERA_PRESETS.overview).target}
         enableRotate
         enableZoom
         enablePan={false}
@@ -123,10 +156,10 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
         maxPolarAngle={Math.PI - 0.18}
         minAzimuthAngle={-Infinity}
         maxAzimuthAngle={Infinity}
-        minDistance={5.6}
-        maxDistance={12.8}
+        minDistance={mobile ? 4.8 : 5.6}
+        maxDistance={mobile ? 14.5 : 12.8}
         rotateSpeed={0.82}
-        zoomSpeed={0.95}
+        zoomSpeed={mobile ? 0.7 : 0.95}
       />
     </>
   );

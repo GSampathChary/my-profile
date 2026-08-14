@@ -25,6 +25,7 @@ import { portfolio } from "@/data/portfolio";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { socialLinks } from "@/lib/projectLinks";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import type { SceneFocus } from "@/components/3d/Camera";
 import type { Project } from "@/types/project";
 
@@ -128,7 +129,7 @@ function FullscreenFrame({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: motionScale, y: motionYOffset }}
       transition={{ duration: motionDuration, ease: "easeOut" }}
-      className="relative mx-auto flex h-[86vh] w-full max-w-6xl flex-col rounded-[30px] border border-white/10 bg-slate-950/90 p-5 shadow-[0_30px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+      className="relative mx-auto flex h-[92vh] w-full max-w-6xl flex-col rounded-[22px] border border-white/10 bg-slate-950/90 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:h-[88vh] sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5"
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -270,8 +271,8 @@ function ProjectsOverlay({
 
   return (
     <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose}>
-      <div className="grid h-full max-h-[78vh] gap-4 overflow-hidden lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30">
+      <div className="grid h-full max-h-[78vh] gap-3 overflow-hidden lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-3 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-300">All Projects</div>
           {projects.map((item) => {
             const active = item.id === project.id;
@@ -314,7 +315,7 @@ function ProjectsOverlay({
           })}
         </div>
 
-        <div className="flex flex-col gap-4 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-6 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30">
+        <div className="flex flex-col gap-4 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-6">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-400">Selected Project Overview</div>
           <a
             href={getProjectPublicHref(project)}
@@ -359,7 +360,7 @@ function TechnologiesOverlay({ onClose, onBookSelect }: { onClose: () => void; o
   return (
     <FullscreenFrame title="Known Technologies" eyebrow="Bookshelf zoom" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
       <div className="grid h-full gap-4 lg:grid-cols-[0.85fr_1.15fr]">
-        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-5">
+        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
           <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Select a book</div>
           <div className="mt-4 grid grid-cols-2 gap-3">
             {books.map((book) => (
@@ -374,7 +375,7 @@ function TechnologiesOverlay({ onClose, onBookSelect }: { onClose: () => void; o
             ))}
           </div>
         </div>
-        <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-5">
+        <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
           <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Brief view</div>
           <p className="text-sm leading-7 text-slate-300">
             This shelf is focused on the stack you actually want to show for an AI Engineer / Python role. Pick a book to highlight a skill area and related projects.
@@ -421,7 +422,7 @@ function ContactOverlay({ onClose }: { onClose: () => void }) {
     <FullscreenFrame title="Get In Touch" eyebrow="Visiting card" onClose={onClose} motionDuration={0.9} motionScale={0.975} motionYOffset={18}>
       <div className="grid h-full gap-4 lg:grid-cols-[0.95fr_1.05fr]">
         <form
-          className="space-y-3 rounded-[28px] border border-white/10 bg-slate-950/75 p-5"
+          className="space-y-3 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5"
           onSubmit={(event) => {
             event.preventDefault();
             window.location.href = mailtoHref;
@@ -440,7 +441,7 @@ function ContactOverlay({ onClose }: { onClose: () => void }) {
             </a>
           </div>
         </form>
-        <div className="space-y-3 rounded-[28px] border border-white/10 bg-white/[0.03] p-5">
+        <div className="space-y-3 rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
           <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Options</div>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
             <div className="font-semibold text-white">Email</div>
@@ -479,10 +480,10 @@ function PhoneOverlay({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 18, scale: 0.95 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative flex items-center justify-center p-4"
+      className="relative flex items-center justify-center p-2 sm:p-4"
     >
       {/* Realistic Android Smartphone Body */}
-      <div className="relative h-[560px] w-[280px] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20">
+      <div className="relative h-[560px] w-[280px] scale-[0.74] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:scale-100">
         {/* Top Punch-Hole Front Camera */}
         <div className="absolute top-3 left-1/2 z-30 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-slate-700 bg-black shadow-inner" />
 
@@ -619,6 +620,7 @@ export function PortfolioShell() {
   const [selectedBookId, setSelectedBookId] = useState<BookId | null>(null);
   const transitionTimerRef = useRef<number | null>(null);
   const projectsTimerRef = useRef<number | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
@@ -711,7 +713,7 @@ export function PortfolioShell() {
       <div className="absolute inset-0 h-full w-full">
         <Room
           lightsOn={lightsOn}
-          mobile={false}
+          mobile={isMobile}
           focus={cameraFocus}
           projectsVisible={projectsVisible}
           resumeVisible={overlayFocus !== "resume"}
@@ -732,34 +734,36 @@ export function PortfolioShell() {
       </div>
 
       {/* Floating Header */}
-      <div className="pointer-events-none fixed top-4 left-4 z-40 flex items-center gap-3">
+      <div className="pointer-events-none fixed top-3 left-3 z-40 flex items-center gap-3 sm:top-4 sm:left-4">
         <div className="pointer-events-auto inline-flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/80 px-4 py-2.5 backdrop-blur-xl shadow-lg">
           <div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 p-1.5 text-cyan-100">
             <Sparkles className="h-4 w-4" />
           </div>
           <div>
-            <div className="text-[9px] uppercase tracking-[0.4em] text-cyan-200/60">3D Interactive Room</div>
-            <div className="text-xs font-semibold">{portfolio.profile.name}</div>
+            <div className="text-[8px] uppercase tracking-[0.32em] text-cyan-200/60 sm:text-[9px] sm:tracking-[0.4em]">3D Interactive Room</div>
+            <div className="text-[11px] font-semibold sm:text-xs">{portfolio.profile.name}</div>
           </div>
         </div>
       </div>
 
       {/* Minimal Right Sidebar Navigation HUD matching reference video */}
-      <div className="fixed bottom-6 right-4 z-40 flex flex-col gap-2">
+      <div className={isMobile ? "fixed left-3 right-3 bottom-3 z-40 grid grid-cols-2 gap-2" : "fixed bottom-6 right-4 z-40 flex flex-col gap-2"}>
         <HUDButton label="About Me" icon={UserRound} active={cameraFocus === "resume"} onClick={() => openView("resume")} lightsOn={lightsOn} />
         <HUDButton label="Projects" icon={Monitor} active={cameraFocus === "projects"} onClick={() => openView("projects")} lightsOn={lightsOn} />
         <HUDButton label="Get In Touch" icon={Mail} active={cameraFocus === "contact"} onClick={() => openView("contact")} lightsOn={lightsOn} />
         <HUDButton label="Technologies" icon={SquareTerminal} active={cameraFocus === "technologies"} onClick={() => openView("technologies")} lightsOn={lightsOn} />
-        <HUDButton label="Mobile" icon={Phone} active={cameraFocus === "phone"} onClick={() => openView("phone")} lightsOn={lightsOn} />
+        <div className={isMobile ? "col-span-2" : ""}>
+          <HUDButton label="Mobile" icon={Phone} active={cameraFocus === "phone"} onClick={() => openView("phone")} lightsOn={lightsOn} />
+        </div>
       </div>
 
       {/* Floating Bottom Close View / Back to Room Button */}
       {cameraFocus !== "overview" ? (
-        <div className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
+        <div className="fixed bottom-3 left-1/2 z-50 -translate-x-1/2 sm:bottom-6">
           <button
             type="button"
             onClick={closeView}
-            className={`flex items-center gap-2 rounded-full border px-6 py-2.5 text-xs font-bold shadow-2xl backdrop-blur-xl transition transform hover:scale-105 ${
+            className={`flex items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-bold shadow-2xl backdrop-blur-xl transition transform hover:scale-105 sm:px-6 sm:py-2.5 sm:text-xs ${
               lightsOn
                 ? "border-amber-800/40 bg-amber-950/80 text-amber-100 hover:bg-amber-900"
                 : "border-cyan-500/40 bg-slate-900/90 text-cyan-300 hover:bg-slate-800"

@@ -4,16 +4,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Gannoju Sampath Chary | AI & Full Stack Developer",
+    default: "Gannoju Sampath Chary | AI Engineer",
     template: "%s | Gannoju Sampath Chary"
   },
   description:
-    "Space-themed portfolio for Gannoju Sampath Chary, featuring AI, mobile, and backend projects with a polished recruiter-friendly presentation.",
+    "Interactive AI engineer portfolio for Gannoju Sampath Chary, showcasing applied machine learning, computer vision, Python backend work, Flutter apps, and flagship projects.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "Gannoju Sampath Chary | AI & Full Stack Developer",
-    description:
-      "Space-themed portfolio with featured projects, skills, achievements, and contact details.",
+    title: "Gannoju Sampath Chary | AI Engineer",
+    description: "Portfolio with featured projects, skills, achievements, and contact details.",
     type: "website"
   },
   robots: {
