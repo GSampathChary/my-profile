@@ -23,6 +23,7 @@ import {
 import { Room } from "@/components/3d/Room";
 import { portfolio } from "@/data/portfolio";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { socialLinks } from "@/lib/projectLinks";
 import type { SceneFocus } from "@/components/3d/Camera";
 import type { Project } from "@/types/project";
@@ -63,22 +64,28 @@ const bookInfo: Record<BookId, { title: string; points: string[]; projects: stri
 };
 
 function ProjectScreens({ project }: { project: Project }) {
-  const shots = (project.screenshots?.length ? project.screenshots : ["Preview 1", "Preview 2", "Preview 3"]).slice(0, 3);
+  const shots = project.screenshots?.length ? project.screenshots.slice(0, 3) : null;
   return (
     <div className="grid gap-2">
       <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Screens</div>
-      <div className="grid grid-cols-3 gap-2">
-        {shots.map((shot) => (
-          <div
-            key={shot}
-            className="aspect-[4/3] rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.22),rgba(168,85,247,0.15))] p-1"
-          >
-            <div className="flex h-full items-end rounded-xl bg-slate-950/90 px-2 py-1 text-[10px] text-slate-100">
-              {shot}
-            </div>
-          </div>
-        ))}
-      </div>
+      {shots ? (
+        <div className="grid grid-cols-3 gap-2">
+          {shots.map((shot, index) => {
+            const screenshot = normalizeScreenshot(shot, `Preview ${index + 1}`);
+            return (
+              <figure
+                key={screenshot.src}
+                className="overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(34,211,238,0.22),rgba(168,85,247,0.15))] p-1"
+              >
+                <img src={screenshot.src} alt={screenshot.alt} className="h-full w-full rounded-xl object-cover" loading="lazy" />
+                <figcaption className="px-2 py-1 text-[10px] text-slate-100">{screenshot.label}</figcaption>
+              </figure>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-xs text-slate-300">Screenshots will appear here.</div>
+      )}
     </div>
   );
 }

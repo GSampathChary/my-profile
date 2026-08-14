@@ -24,7 +24,32 @@ export const projects: Project[] = [
       "Multilingual UI"
     ],
     highlights: ["Google Play: RAISE IIRR"],
-    screenshots: ["Field Diagnosis", "Stress Summary", "History View"],
+    screenshots: [
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-14-PM.jpeg",
+        label: "Field diagnosis"
+      },
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-14-PM-1.jpeg",
+        label: "Stress summary"
+      },
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-15-PM.jpeg",
+        label: "History view"
+      },
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-15-PM-1.jpeg",
+        label: "Scientist review"
+      },
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-15-PM-2.jpeg",
+        label: "Admin workflow"
+      },
+      {
+        src: "/project-screenshots/raise/WhatsApp-Image-2026-08-14-at-8-49-28-PM.jpeg",
+        label: "Play Store listing"
+      }
+    ],
     links: {
       ...placeholderLinks,
       playStore: "https://play.google.com/store/apps/details?id=com.iirr.smart_paddy",
@@ -43,7 +68,28 @@ export const projects: Project[] = [
     solution: "A focused assistant experience centered on rice-related advice, guidance, and reference answers presented as the original app view inside the portfolio.",
     technologies: ["Next.js", "TypeScript", "React", "OpenAI-ready architecture"],
     features: ["Conversational assistance", "Domain knowledge base", "Guided answer flow"],
-    screenshots: ["Chat Home", "Prompt Flow", "Knowledge Base"],
+    screenshots: [
+      {
+        src: "/project-screenshots/ricegpt/Screenshot-20260814-093947.png",
+        label: "Chat home"
+      },
+      {
+        src: "/project-screenshots/ricegpt/Screenshot-20260814-094031.png",
+        label: "Prompt flow"
+      },
+      {
+        src: "/project-screenshots/ricegpt/Screenshot-20260814-094149.png",
+        label: "Knowledge base"
+      },
+      {
+        src: "/project-screenshots/ricegpt/Screenshot-20260814-094233.png",
+        label: "Result view"
+      },
+      {
+        src: "/project-screenshots/ricegpt/Screenshot-20260814-094243.png",
+        label: "Mobile layout"
+      }
+    ],
     links: {
       ...placeholderLinks,
       live: "https://quiet-sun-da4e.gsampathchary454.workers.dev/",
@@ -62,7 +108,20 @@ export const projects: Project[] = [
     solution: "A workflow for analyzing text and suggesting improvements in a recruiter-friendly format, with screenshots preserved for the full experience.",
     technologies: ["Next.js", "TypeScript", "React", "AI workflow design"],
     features: ["Resume analysis", "Section recommendations", "Recruiter-ready output"],
-    screenshots: ["Upload", "Score Report", "Rewrite Tips"],
+    screenshots: [
+      {
+        src: "/project-screenshots/resumeai/Screenshot-2026-08-14-204028.png",
+        label: "Upload"
+      },
+      {
+        src: "/project-screenshots/resumeai/Screenshot-2026-08-14-204103.png",
+        label: "Score report"
+      },
+      {
+        src: "/project-screenshots/resumeai/Screenshot-2026-08-14-204159.png",
+        label: "Rewrite tips"
+      }
+    ],
     links: {
       ...placeholderLinks,
       live: "https://resume-ai-pro-beryl.vercel.app/",
@@ -81,7 +140,20 @@ export const projects: Project[] = [
     solution: "An assistant that organizes question sets, answer templates, revision workflows, and the original experience shown on the portfolio site.",
     technologies: ["React", "TypeScript", "AI prompting", "Knowledge base"],
     features: ["Question practice", "Answer guidance", "Revision workflow"],
-    screenshots: ["Practice Mode", "Answer Review", "Feedback Panel"],
+    screenshots: [
+      {
+        src: "/project-screenshots/interview-copilot/Screenshot-2026-08-14-203856.png",
+        label: "Practice mode"
+      },
+      {
+        src: "/project-screenshots/interview-copilot/Screenshot-2026-08-14-203932.png",
+        label: "Answer review"
+      },
+      {
+        src: "/project-screenshots/interview-copilot/Screenshot-2026-08-14-204002.png",
+        label: "Feedback panel"
+      }
+    ],
     links: {
       ...placeholderLinks,
       live: "https://interview-copilot-ai-ten.vercel.app/",
@@ -100,7 +172,20 @@ export const projects: Project[] = [
     solution: "A guided insight flow that surfaces patterns, dashboard summaries, and report exports while keeping the original app experience visible.",
     technologies: ["Python", "Next.js", "TypeScript", "Data visualization"],
     features: ["Dataset summaries", "Pattern discovery", "Insight exports"],
-    screenshots: ["Dataset Upload", "EDA Summary", "Report Export"],
+    screenshots: [
+      {
+        src: "/project-screenshots/datainsight/Screenshot-2026-08-14-203612.png",
+        label: "Dataset upload"
+      },
+      {
+        src: "/project-screenshots/datainsight/Screenshot-2026-08-14-203727.png",
+        label: "EDA summary"
+      },
+      {
+        src: "/project-screenshots/datainsight/Screenshot-2026-08-14-203822.png",
+        label: "Report export"
+      }
+    ],
     links: {
       ...placeholderLinks,
       live: "https://data-insight-ai-dywd.vercel.app/",
@@ -119,7 +204,20 @@ export const projects: Project[] = [
     solution: "A structured workflow for automating preprocessing, model training, comparison, evaluation, and the original app experience on the portfolio.",
     technologies: ["Python", "FastAPI", "Scikit-learn", "Next.js", "Gemini-ready design"],
     features: ["Dataset upload", "Preprocessing", "Model training", "Model comparison", "Model evaluation"],
-    screenshots: ["Train Flow", "Model Compare", "Evaluation"],
+    screenshots: [
+      {
+        src: "/project-screenshots/automl-studio/Screenshot-2026-08-14-204226.png",
+        label: "Train flow"
+      },
+      {
+        src: "/project-screenshots/automl-studio/Screenshot-2026-08-14-204301.png",
+        label: "Model compare"
+      },
+      {
+        src: "/project-screenshots/automl-studio/Screenshot-2026-08-14-204339.png",
+        label: "Evaluation"
+      }
+    ],
     links: {
       ...placeholderLinks,
       live: "https://auto-ml-studio-lilac.vercel.app/",

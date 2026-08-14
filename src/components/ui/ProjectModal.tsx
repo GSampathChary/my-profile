@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import type { Project } from "@/types/project";
 import { cn } from "@/lib/utils";
+import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
 
 type ProjectModalProps = {
@@ -121,12 +122,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {project.screenshots?.length ? (
               <section className="rounded-2xl border border-white/10 bg-white/5 p-4">
                 <h4 className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-200/70">Screenshots</h4>
-                <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-3">
-                  {project.screenshots.slice(0, 3).map((shot) => (
-                    <div key={shot} className="rounded-2xl border border-white/10 bg-slate-900/70 p-3 text-xs text-slate-200">
-                      {shot}
-                    </div>
-                  ))}
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {project.screenshots.map((shot, index) => {
+                  const screenshot = normalizeScreenshot(shot, `Screenshot ${index + 1}`);
+                  return (
+                    <figure key={screenshot.src} className="overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70">
+                      <img src={screenshot.src} alt={screenshot.alt} className="h-32 w-full object-cover" loading="lazy" />
+                        <figcaption className="px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-slate-300">
+                          {screenshot.label}
+                      </figcaption>
+                    </figure>
+                  );
+                })}
                 </div>
               </section>
             ) : null}

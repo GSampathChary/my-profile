@@ -2,6 +2,7 @@
 
 import { portfolio } from "@/data/portfolio";
 import { socialLinks } from "@/lib/projectLinks";
+import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
 
 export function ProjectRoom() {
@@ -27,6 +28,16 @@ export function ProjectRoom() {
                 rel={getProjectPublicHref(project).startsWith("http") ? "noreferrer" : undefined}
                 className="rounded-3xl border border-white/10 bg-slate-950/70 p-5 text-left transition hover:bg-slate-900/80"
               >
+                {project.screenshots?.length ? (
+                  <figure className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80">
+                    <img
+                      src={normalizeScreenshot(project.screenshots[0], `${project.name} preview`).src}
+                      alt={normalizeScreenshot(project.screenshots[0], `${project.name} preview`).alt}
+                      className="h-36 w-full object-cover"
+                      loading="lazy"
+                    />
+                  </figure>
+                ) : null}
                 <div className="text-lg font-semibold text-white">{project.name}</div>
                 <p className="mt-2 text-sm text-cyan-100/70">{project.tagline}</p>
                 <p className="mt-4 text-sm leading-6 text-slate-300">{project.description}</p>

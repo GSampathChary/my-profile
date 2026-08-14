@@ -50,113 +50,150 @@ export function Computer({
     ctx.save();
     ctx.clearRect(0, 0, width, height);
 
-    const bg = ctx.createLinearGradient(0, 0, 0, height);
+    const bg = ctx.createLinearGradient(0, 0, width, height);
     bg.addColorStop(0, "#020617");
-    bg.addColorStop(0.45, "#0f172a");
+    bg.addColorStop(0.38, "#3b0764");
+    bg.addColorStop(0.7, "#0f172a");
     bg.addColorStop(1, "#020617");
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, width, height);
 
-    const glow = ctx.createRadialGradient(width * 0.5, height * 0.15, 30, width * 0.5, height * 0.15, 420);
-    glow.addColorStop(0, "rgba(56, 189, 248, 0.18)");
-    glow.addColorStop(1, "rgba(56, 189, 248, 0)");
+    const glow = ctx.createRadialGradient(width * 0.52, height * 0.22, 20, width * 0.52, height * 0.22, 560);
+    glow.addColorStop(0, "rgba(251, 191, 36, 0.46)");
+    glow.addColorStop(0.25, "rgba(248, 113, 113, 0.26)");
+    glow.addColorStop(0.55, "rgba(59, 130, 246, 0.18)");
+    glow.addColorStop(1, "rgba(59, 130, 246, 0)");
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, width, height);
 
-    // Desktop wallpaper panes
-    ctx.fillStyle = "rgba(15, 23, 42, 0.72)";
-    ctx.fillRect(56, 64, 1088, 592);
-    ctx.fillStyle = "rgba(255,255,255,0.03)";
-    ctx.fillRect(56, 64, 1088, 52);
-    ctx.fillStyle = "rgba(248, 250, 252, 0.96)";
-    ctx.fillRect(74, 80, 24, 20);
-    ctx.fillRect(108, 80, 24, 20);
-
-    // Left app rail
-    ctx.fillStyle = "rgba(8, 15, 35, 0.9)";
-    ctx.fillRect(90, 140, 138, 484);
-    ctx.fillStyle = "rgba(56, 189, 248, 0.9)";
-    for (let i = 0; i < 5; i += 1) {
-      ctx.fillRect(120, 176 + i * 78, 78, 42);
-      ctx.fillStyle = i % 2 === 0 ? "rgba(167, 139, 250, 0.9)" : "rgba(45, 212, 191, 0.9)";
-      ctx.fillRect(104, 176 + i * 78 + 4, 10, 34);
-      ctx.fillStyle = "rgba(56, 189, 248, 0.9)";
+    // Fast action streaks
+    for (let i = 0; i < 18; i += 1) {
+      const y = 120 + i * 28 + Math.sin(t * 3.6 + i * 0.45) * 16;
+      const len = 240 + Math.max(Math.sin(t * 2 + i) * 120, 0);
+      const alpha = 0.04 + Math.max(Math.sin(t * 4.5 + i * 0.3), 0) * 0.18;
+      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(60 + i * 8, y);
+      ctx.lineTo(60 + i * 8 + len, y - 120);
+      ctx.stroke();
     }
 
-    // Main preview card
-    const cardX = 258;
-    const cardY = 140;
-    const cardW = 612;
-    const cardH = 364;
-    const card = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
-    card.addColorStop(0, "#0f172a");
-    card.addColorStop(1, "#111827");
-    ctx.fillStyle = card;
-    ctx.fillRect(cardX, cardY, cardW, cardH);
-    ctx.strokeStyle = "rgba(148, 163, 184, 0.18)";
+    const frameX = 62;
+    const frameY = 58;
+    const frameW = 1076;
+    const frameH = 576;
+    const frame = ctx.createLinearGradient(frameX, frameY, frameX + frameW, frameY + frameH);
+    frame.addColorStop(0, "rgba(2, 6, 23, 0.92)");
+    frame.addColorStop(0.5, "rgba(17, 24, 39, 0.96)");
+    frame.addColorStop(1, "rgba(7, 12, 25, 0.92)");
+    ctx.fillStyle = frame;
+    ctx.fillRect(frameX, frameY, frameW, frameH);
+    ctx.strokeStyle = "rgba(255,255,255,0.12)";
     ctx.lineWidth = 2;
-    ctx.strokeRect(cardX, cardY, cardW, cardH);
+    ctx.strokeRect(frameX, frameY, frameW, frameH);
 
-    const hero = ctx.createLinearGradient(cardX, cardY, cardX + cardW, cardY + cardH);
-    hero.addColorStop(0, "rgba(34, 211, 238, 0.34)");
-    hero.addColorStop(0.55, "rgba(99, 102, 241, 0.12)");
-    hero.addColorStop(1, "rgba(251, 191, 36, 0.12)");
-    ctx.fillStyle = hero;
-    ctx.fillRect(cardX + 22, cardY + 22, 280, 300);
+    // Hero action scene
+    const sceneX = frameX + 48;
+    const sceneY = frameY + 40;
+    const sceneW = 980;
+    const sceneH = 390;
+    const scene = ctx.createLinearGradient(sceneX, sceneY, sceneX + sceneW, sceneY + sceneH);
+    scene.addColorStop(0, "#0b1021");
+    scene.addColorStop(0.45, "#1d4ed8");
+    scene.addColorStop(1, "#f59e0b");
+    ctx.fillStyle = scene;
+    ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
 
-    // Focal workspace preview
-    ctx.fillStyle = "rgba(2, 6, 23, 0.82)";
-    ctx.fillRect(cardX + 320, cardY + 24, 268, 170);
-    ctx.fillStyle = "rgba(255,255,255,0.08)";
-    ctx.fillRect(cardX + 336, cardY + 38, 80, 10);
-    ctx.fillRect(cardX + 336, cardY + 60, 164, 10);
-    ctx.fillRect(cardX + 336, cardY + 84, 124, 10);
-    ctx.fillRect(cardX + 336, cardY + 108, 196, 10);
+    const explosion = ctx.createRadialGradient(sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 18, sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 260);
+    explosion.addColorStop(0, "rgba(255,255,255,0.96)");
+    explosion.addColorStop(0.2, "rgba(252, 211, 77, 0.94)");
+    explosion.addColorStop(0.42, "rgba(251, 146, 60, 0.72)");
+    explosion.addColorStop(1, "rgba(251, 146, 60, 0)");
+    ctx.fillStyle = explosion;
+    ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
 
-    ctx.fillStyle = "rgba(56, 189, 248, 0.24)";
-    ctx.fillRect(cardX + 332, cardY + 134, 212, 44);
-    ctx.fillStyle = "rgba(167, 139, 250, 0.24)";
-    ctx.fillRect(cardX + 332, cardY + 186, 212, 44);
-
-    // Project cards grid, no readable labels
-    const tileY = cardY + 220;
-    for (let row = 0; row < 2; row += 1) {
-      for (let col = 0; col < 3; col += 1) {
-        const x = cardX + 334 + col * 82;
-        const y = tileY + row * 58;
-        const tileGlow = ctx.createLinearGradient(x, y, x + 72, y + 48);
-        tileGlow.addColorStop(0, row === 0 ? "rgba(45, 212, 191, 0.42)" : "rgba(96, 165, 250, 0.42)");
-        tileGlow.addColorStop(1, "rgba(15, 23, 42, 0.88)");
-        ctx.fillStyle = tileGlow;
-        ctx.fillRect(x, y, 72, 48);
-        ctx.fillStyle = "rgba(255,255,255,0.14)";
-        ctx.fillRect(x + 10, y + 10, 26 + col * 3, 5);
-        ctx.fillRect(x + 10, y + 22, 38 + col * 4, 5);
-      }
-    }
-
-    // Bottom dock
-    ctx.fillStyle = "rgba(2, 6, 23, 0.92)";
-    ctx.fillRect(0, height - 84, width, 84);
-    ctx.fillStyle = "rgba(255,255,255,0.06)";
-    ctx.fillRect(176, height - 64, 848, 24);
-    for (let i = 0; i < 7; i += 1) {
-      const pulse = 0.16 + Math.max(Math.sin(t * 2 + i * 0.7), 0) * 0.32;
-      ctx.fillStyle = `rgba(${i % 3 === 0 ? 34 : i % 3 === 1 ? 56 : 167}, ${i % 3 === 0 ? 211 : i % 3 === 1 ? 189 : 139}, ${i % 3 === 0 ? 238 : i % 3 === 1 ? 248 : 250}, ${pulse})`;
-      ctx.fillRect(210 + i * 96, height - 52, 44, 28);
-    }
-
-    // Small cursor
-    ctx.fillStyle = "rgba(248, 250, 252, 0.8)";
+    // Speedline trail
+    ctx.strokeStyle = "rgba(255,255,255,0.55)";
+    ctx.lineWidth = 6;
     ctx.beginPath();
-    ctx.moveTo(width * 0.79, height * 0.38);
-    ctx.lineTo(width * 0.81, height * 0.44);
-    ctx.lineTo(width * 0.77, height * 0.42);
+    ctx.moveTo(sceneX + 40, sceneY + sceneH - 40);
+    ctx.lineTo(sceneX + 210, sceneY + 250);
+    ctx.lineTo(sceneX + 410, sceneY + 190);
+    ctx.stroke();
+
+    // Hero vehicle silhouette
+    ctx.fillStyle = "rgba(15, 23, 42, 0.92)";
+    ctx.beginPath();
+    ctx.moveTo(sceneX + 120, sceneY + sceneH - 70);
+    ctx.lineTo(sceneX + 210, sceneY + sceneH - 120);
+    ctx.lineTo(sceneX + 340, sceneY + sceneH - 118);
+    ctx.lineTo(sceneX + 420, sceneY + sceneH - 72);
+    ctx.lineTo(sceneX + 350, sceneY + sceneH - 38);
+    ctx.lineTo(sceneX + 150, sceneY + sceneH - 40);
     ctx.closePath();
     ctx.fill();
 
+    ctx.fillStyle = "rgba(255,255,255,0.82)";
+    ctx.fillRect(sceneX + 230, sceneY + sceneH - 106, 18, 10);
+    ctx.fillRect(sceneX + 275, sceneY + sceneH - 106, 18, 10);
+
+    // Action hero / villain silhouettes
+    ctx.fillStyle = "rgba(2, 6, 23, 0.95)";
+    ctx.beginPath();
+    ctx.arc(sceneX + sceneW * 0.72, sceneY + sceneH * 0.48, 34, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(sceneX + sceneW * 0.71, sceneY + sceneH * 0.48, 20, 78);
+    ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
+    ctx.fillRect(sceneX + sceneW * 0.14, sceneY + sceneH * 0.45, 28, 120);
+
+    // HUD overlays
+    ctx.fillStyle = "rgba(2, 6, 23, 0.64)";
+    ctx.fillRect(frameX + 22, frameY + 20, 230, 74);
+    ctx.fillStyle = "rgba(248, 250, 252, 0.96)";
+    ctx.font = "bold 24px sans-serif";
+    ctx.fillText("ACTION REEL", frameX + 40, frameY + 50);
+    ctx.font = "600 14px sans-serif";
+    ctx.fillStyle = "rgba(191, 219, 254, 0.95)";
+    ctx.fillText("Ultra bright cinematic playback", frameX + 40, frameY + 74);
+
+    ctx.fillStyle = "rgba(255,255,255,0.22)";
+    ctx.fillRect(frameX + 862, frameY + 20, 190, 74);
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(frameX + 900, frameY + 57, 16, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#0f172a";
+    ctx.beginPath();
+    ctx.moveTo(frameX + 895, frameY + 49);
+    ctx.lineTo(frameX + 895, frameY + 65);
+    ctx.lineTo(frameX + 909, frameY + 57);
+    ctx.closePath();
+    ctx.fill();
+
+    // Bottom action timeline
+    ctx.fillStyle = "rgba(2, 6, 23, 0.94)";
+    ctx.fillRect(frameX, frameY + frameH - 84, frameW, 84);
+    ctx.fillStyle = "rgba(255,255,255,0.08)";
+    ctx.fillRect(frameX + 54, frameY + frameH - 56, frameW - 108, 10);
+    const sweep = (Math.sin(t * 2.8) + 1) * 0.5;
+    ctx.fillStyle = "rgba(248, 250, 252, 0.9)";
+    ctx.fillRect(frameX + 54, frameY + frameH - 56, (frameW - 108) * sweep, 10);
+    for (let i = 0; i < 6; i += 1) {
+      ctx.fillStyle = i % 2 === 0 ? "rgba(251, 191, 36, 0.88)" : "rgba(59, 130, 246, 0.88)";
+      ctx.fillRect(frameX + 66 + i * 170, frameY + frameH - 42, 58, 18);
+    }
+
+    // Bright pulse near the action center
+    const pulse = ctx.createRadialGradient(sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 6, sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 120);
+    pulse.addColorStop(0, "rgba(255,255,255,0.9)");
+    pulse.addColorStop(0.3, "rgba(255,255,255,0.42)");
+    pulse.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = pulse;
+    ctx.fillRect(sceneX + sceneW * 0.48, sceneY + sceneH * 0.3, 180, 180);
+
     if (!roomPowered) {
-      ctx.fillStyle = "rgba(8, 15, 35, 0.18)";
+      ctx.fillStyle = "rgba(8, 15, 35, 0.08)";
       ctx.fillRect(0, 0, width, height);
     }
 
@@ -176,7 +213,7 @@ export function Computer({
     }
 
     if (screenMatRef.current) {
-      const intensity = powered ? 0.7 + Math.sin(t * 2.8) * 0.12 : 0.16;
+      const intensity = powered ? 1.15 + Math.sin(t * 2.8) * 0.16 : 0.18;
       screenMatRef.current.emissiveIntensity = intensity;
     }
 

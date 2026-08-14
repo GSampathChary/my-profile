@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { socialLinks } from "@/lib/projectLinks";
+import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import type { Project } from "@/types/project";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
 
@@ -65,12 +66,16 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </Panel>
           {project.screenshots?.length ? (
             <Panel title="Screenshots">
-              <div className="grid gap-2 sm:grid-cols-3">
-                {project.screenshots.slice(0, 3).map((shot) => (
-                  <div key={shot} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-xs text-slate-200">
-                    {shot}
-                  </div>
-                ))}
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {project.screenshots.map((shot, index) => {
+                  const screenshot = normalizeScreenshot(shot, `Screenshot ${index + 1}`);
+                  return (
+                    <figure key={screenshot.src} className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70">
+                      <img src={screenshot.src} alt={screenshot.alt} className="h-40 w-full object-cover" loading="lazy" />
+                      <figcaption className="px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-slate-400">{screenshot.label}</figcaption>
+                    </figure>
+                  );
+                })}
               </div>
             </Panel>
           ) : null}

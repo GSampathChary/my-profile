@@ -7,6 +7,12 @@ export interface ProjectLinks {
   playStore?: string | null;
 }
 
+export interface ProjectScreenshot {
+  src: string;
+  label?: string;
+  alt?: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -20,6 +26,6 @@ export interface Project {
   features: string[];
   highlights?: string[];
   links: ProjectLinks;
-  screenshots?: string[];
+  screenshots?: Array<string | ProjectScreenshot>;
   callout?: string;
 }
