@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+coverage
+.DS_Store
+*.log
+.env.local
+.env
+/.vercel
+tmp/
+scripts/__pycache__/
+tmp_resume_text.txt
