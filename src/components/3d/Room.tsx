@@ -132,6 +132,7 @@ export function Room({
               visible={projectsVisible}
               onClose={onCloseProjects}
               onSelectProject={onSelectProject}
+              mobile={mobile}
             />
           </group>
         </Suspense>

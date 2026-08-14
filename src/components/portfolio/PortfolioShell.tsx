@@ -259,19 +259,21 @@ function ProjectsOverlay({
   project,
   onClose,
   onSelectProject,
-  projects
+  projects,
+  mobile
 }: {
   project: Project;
   onClose: () => void;
   onSelectProject: (projectId: string) => void;
   projects: Project[];
+  mobile: boolean;
 }) {
   const launchHref = getProjectExperienceHref(project);
   const launchLabel = getProjectExperienceLabel(project);
 
   return (
     <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose}>
-      <div className="grid h-full max-h-[78vh] gap-3 overflow-hidden lg:grid-cols-[0.85fr_1.15fr]">
+      <div className={`grid h-full gap-3 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
         <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-3 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-300">All Projects</div>
           {projects.map((item) => {
@@ -290,7 +292,7 @@ function ProjectsOverlay({
                   }
                 }}
                 className={[
-                  "w-full rounded-2xl border px-3.5 py-3 text-left transition",
+                  "w-full rounded-2xl border px-3 py-2.5 text-left transition sm:px-3.5 sm:py-3",
                   active ? "border-cyan-400 bg-cyan-500/15 shadow-md shadow-cyan-500/10" : "border-white/10 bg-white/[0.03] hover:bg-white/10"
                 ].join(" ")}
               >
@@ -300,14 +302,14 @@ function ProjectsOverlay({
                     target={publicHref.startsWith("http") ? "_blank" : undefined}
                     rel={publicHref.startsWith("http") ? "noreferrer" : undefined}
                     onClick={(event) => event.stopPropagation()}
-                    className="text-sm font-semibold text-white transition hover:text-cyan-200"
+                    className="text-[13px] font-semibold text-white transition hover:text-cyan-200 sm:text-sm"
                   >
                     {item.name}
                   </a>
-                  <div className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-300">{item.category}</div>
+                  <div className="text-[9px] font-bold uppercase tracking-[0.22em] text-cyan-300 sm:text-[10px] sm:tracking-[0.3em]">{item.category}</div>
                 </div>
-                <div className="mt-1 text-xs leading-5 text-slate-300">{item.tagline}</div>
-                <div className="mt-3 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.25em] text-cyan-50">
+                <div className="mt-1 text-[11px] leading-5 text-slate-300 sm:text-xs">{item.tagline}</div>
+                <div className="mt-3 inline-flex rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-cyan-50 sm:text-[10px] sm:tracking-[0.25em]">
                   {getProjectPublicLabel(item)}
                 </div>
               </div>
@@ -315,29 +317,29 @@ function ProjectsOverlay({
           })}
         </div>
 
-        <div className="flex flex-col gap-4 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-6">
+        <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:gap-4 sm:p-6">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-400">Selected Project Overview</div>
           <a
             href={getProjectPublicHref(project)}
             target={getProjectPublicHref(project).startsWith("http") ? "_blank" : undefined}
             rel={getProjectPublicHref(project).startsWith("http") ? "noreferrer" : undefined}
-            className="inline-block text-3xl font-bold text-white transition hover:text-cyan-200"
+            className="inline-block text-2xl font-bold text-white transition hover:text-cyan-200 sm:text-3xl"
           >
             {project.name}
           </a>
-          <p className="text-sm leading-7 text-slate-300">{project.description}</p>
-          <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/20 p-4">
+          <p className="text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">{project.description}</p>
+          <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/20 p-3 sm:p-4">
             <div className="text-xs uppercase tracking-[0.35em] font-bold text-cyan-300">Problem & Solution</div>
-            <p className="mt-2 text-sm leading-7 text-slate-300">{project.problem}</p>
-            <p className="mt-3 text-sm leading-7 text-slate-300">{project.solution}</p>
+            <p className="mt-2 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">{project.problem}</p>
+            <p className="mt-3 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">{project.solution}</p>
           </div>
           <ProjectScreens project={project} />
-          <div className="flex flex-wrap gap-2 pt-2">
-            <Link href={launchHref as any} className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300 shadow-lg shadow-cyan-500/25">
+          <div className="flex flex-col gap-2 pt-2 sm:flex-row sm:flex-wrap">
+            <Link href={launchHref as any} className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300 shadow-lg shadow-cyan-500/25 sm:px-5">
               <Monitor className="h-4 w-4" />
               {launchLabel}
             </Link>
-            <Link href={project.uiPath as any} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10">
+            <Link href={project.uiPath as any} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 sm:px-5">
               Project Story
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -355,20 +357,20 @@ function ProjectsOverlay({
   );
 }
 
-function TechnologiesOverlay({ onClose, onBookSelect }: { onClose: () => void; onBookSelect: (book: BookId) => void }) {
+function TechnologiesOverlay({ onClose, onBookSelect, mobile }: { onClose: () => void; onBookSelect: (book: BookId) => void; mobile: boolean }) {
   const books: BookId[] = ["python", "fastapi", "tensorflow", "flutter", "springboot", "postgres"];
   return (
     <FullscreenFrame title="Known Technologies" eyebrow="Bookshelf zoom" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
-      <div className="grid h-full gap-4 lg:grid-cols-[0.85fr_1.15fr]">
+      <div className={`grid h-full gap-4 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
         <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
           <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Select a book</div>
-          <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
             {books.map((book) => (
               <button
                 key={book}
                 type="button"
                 onClick={() => onBookSelect(book)}
-                className="rounded-2xl border border-white/10 bg-slate-950/75 px-4 py-5 text-left text-sm text-slate-100 transition hover:bg-white/10"
+                className="rounded-2xl border border-white/10 bg-slate-950/75 px-4 py-4 text-left text-sm text-slate-100 transition hover:bg-white/10 sm:py-5"
               >
                 {bookInfo[book].title}
               </button>
@@ -377,12 +379,12 @@ function TechnologiesOverlay({ onClose, onBookSelect }: { onClose: () => void; o
         </div>
         <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
           <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Brief view</div>
-          <p className="text-sm leading-7 text-slate-300">
+          <p className="text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
             This shelf is focused on the stack you actually want to show for an AI Engineer / Python role. Pick a book to highlight a skill area and related projects.
           </p>
           <div className="grid gap-3">
             {books.map((book) => (
-              <div key={book} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+              <div key={book} className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 sm:p-4">
                 <div className="text-sm font-medium text-white">{bookInfo[book].title}</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {bookInfo[book].points.slice(0, 3).map((point) => (
@@ -781,6 +783,7 @@ export function PortfolioShell() {
             <TechnologiesOverlay
               onClose={closeView}
               onBookSelect={(book) => setSelectedBookId(book)}
+              mobile={isMobile}
             />
           </div>
         ) : null}
