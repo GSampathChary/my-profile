@@ -13,8 +13,15 @@ export function ResumeRoom({ resumeAvailable = false }: ResumeRoomProps) {
     <section className="space-y-6">
       <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-xl">
         <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">Resume Room</div>
-        <h1 className="mt-3 text-3xl font-semibold text-white">Professional Summary</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">{portfolio.profile.introduction}</p>
+        <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-center">
+          <div className="relative h-28 w-28 overflow-hidden rounded-[28px] border border-white/10 bg-slate-900 shadow-2xl shadow-black/30">
+            <img src="/images/sampath.png" alt={portfolio.profile.name} className="h-full w-full object-cover object-center" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-semibold text-white">Professional Summary</h1>
+            <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">{portfolio.profile.introduction}</p>
+          </div>
+        </div>
         <div className="mt-4 flex flex-wrap gap-3">
           <a href="/" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100">
             Portfolio

@@ -134,8 +134,15 @@ export function ResumeBook({
               {/* Left Page (Biography) */}
               <div className={`border-r pr-4 ${lightsOn ? "border-amber-900/20" : "border-cyan-500/20"}`}>
                 <div className={`text-[10px] uppercase tracking-[0.35em] font-bold ${lightsOn ? "text-amber-800" : "text-cyan-400"}`}>Biography</div>
-                <h3 className={`mt-1.5 text-xl font-serif font-bold ${lightsOn ? "text-slate-900" : "text-white"}`}>{portfolio.profile.name}</h3>
-                <p className={`mt-1 text-xs font-semibold ${lightsOn ? "text-amber-800" : "text-cyan-300"}`}>{portfolio.profile.headline}</p>
+                <div className="mt-3 flex items-start gap-3">
+                  <div className={`relative h-20 w-16 overflow-hidden rounded-2xl border-4 ${lightsOn ? "border-amber-900/20" : "border-cyan-500/20"} bg-slate-100 shadow-lg`}>
+                    <img src="/images/sampath.png" alt={portfolio.profile.name} className="h-full w-full object-cover object-center" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className={`text-xl font-serif font-bold ${lightsOn ? "text-slate-900" : "text-white"}`}>{portfolio.profile.name}</h3>
+                    <p className={`mt-1 text-xs font-semibold ${lightsOn ? "text-amber-800" : "text-cyan-300"}`}>{portfolio.profile.headline}</p>
+                  </div>
+                </div>
                 <hr className={`my-3 ${lightsOn ? "border-amber-900/20" : "border-cyan-500/20"}`} />
                 <p className={`text-xs font-serif leading-5 ${lightsOn ? "text-slate-800" : "text-slate-300"}`}>{portfolio.profile.introduction}</p>
               </div>

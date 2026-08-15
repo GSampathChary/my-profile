@@ -156,8 +156,15 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
           {/* Left Page */}
           <div className="border-r border-amber-900/10 p-6 text-slate-900 md:p-8">
             <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-amber-800">Page 1 • Biography</div>
-            <h3 className="mt-3 text-3xl font-serif font-bold text-slate-900">{portfolio.profile.name}</h3>
-            <p className="mt-2 text-xs font-medium uppercase tracking-wider text-amber-800">{portfolio.profile.headline}</p>
+            <div className="mt-4 flex items-start gap-4">
+              <div className="relative h-24 w-20 overflow-hidden rounded-2xl border-4 border-amber-900/20 bg-slate-100 shadow-lg">
+                <img src="/images/sampath.png" alt={portfolio.profile.name} className="h-full w-full object-cover object-center" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-3xl font-serif font-bold text-slate-900">{portfolio.profile.name}</h3>
+                <p className="mt-2 text-xs font-medium uppercase tracking-wider text-amber-800">{portfolio.profile.headline}</p>
+              </div>
+            </div>
             <hr className="my-4 border-amber-900/20" />
             <div className="space-y-3">
               <h4 className="text-sm font-serif font-bold uppercase tracking-wider text-slate-800">About Me</h4>
