@@ -3,7 +3,6 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
 import { Ceiling } from "./Ceiling";
 import { Camera, type SceneFocus } from "./Camera";
 import { Environment } from "./Environment";
@@ -20,7 +19,6 @@ import { Phone } from "@/components/objects/Phone";
 import { ResumeBook } from "@/components/objects/ResumeBook";
 import { VisitingCard } from "@/components/objects/VisitingCard";
 import type { Project } from "@/types/project";
-import { TextureLoader, SRGBColorSpace } from "three";
 
 type RoomProps = {
   lightsOn: boolean;
@@ -57,9 +55,6 @@ export function Room({
   onSelectProject,
   onBookSelect
 }: RoomProps) {
-  const portraitTexture = useLoader(TextureLoader, "/images/sampath.png");
-  portraitTexture.colorSpace = SRGBColorSpace;
-
   return (
     <div className="absolute inset-0 h-full w-full overflow-hidden bg-slate-950">
       <Canvas shadows dpr={mobile ? [1, 1.15] : [1, 1.5]}>
@@ -92,20 +87,6 @@ export function Room({
             <Text position={[0, 3.56, -4.34]} fontSize={0.095} color="#94a3b8" anchorX="center" anchorY="middle">
               gsampathchary.dev
             </Text>
-            <group position={[2.16, 4.0, -4.31]}>
-              <mesh castShadow receiveShadow position={[0, 0, -0.01]}>
-                <boxGeometry args={[0.92, 1.16, 0.05]} />
-                <meshStandardMaterial color="#221f1a" roughness={0.65} metalness={0.1} />
-              </mesh>
-              <mesh castShadow receiveShadow position={[0, 0, 0.012]}>
-                <boxGeometry args={[0.84, 1.08, 0.02]} />
-                <meshStandardMaterial color="#0f172a" roughness={0.5} />
-              </mesh>
-              <mesh position={[0, 0, 0.03]}>
-                <planeGeometry args={[0.76, 0.96]} />
-                <meshBasicMaterial map={portraitTexture} toneMapped={false} />
-              </mesh>
-            </group>
             <pointLight position={[0.2, 4.08, -4.05]} intensity={lightsOn ? 1.7 : 2.4} color="#ff4fd8" distance={8} />
             <pointLight position={[-0.95, 4.05, -4.05]} intensity={lightsOn ? 1.1 : 1.8} color="#ef4444" distance={8} />
             <pointLight position={[0.35, 1.25, 0.75]} intensity={lightsOn ? 0.95 : 1.95} color="#38bdf8" distance={8} />
