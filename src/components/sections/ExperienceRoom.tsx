@@ -1,4 +1,5 @@
 import { portfolio } from "@/data/portfolio";
+import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 export function ExperienceRoom() {
   const { experience } = portfolio;
@@ -18,9 +19,7 @@ export function ExperienceRoom() {
           <div className="mt-6 text-sm font-medium uppercase tracking-[0.3em] text-cyan-200/60">Technologies</div>
           <div className="mt-3 flex flex-wrap gap-2">
             {experience.technologies.map((item) => (
-              <span key={item} className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200">
-                {item}
-              </span>
+              <TechnologyBadge key={item} technology={item} size="sm" className="border-white/10 bg-white/5 text-slate-200" />
             ))}
           </div>
         </div>

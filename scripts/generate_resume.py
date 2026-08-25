@@ -17,8 +17,8 @@ profile = {
     "name": "Gannoju Sampath Chary",
     "headline": "Python AI Engineer | Data Scientist | Computer Vision | FastAPI | TensorFlow | PostgreSQL",
     "summary": (
-        "Python AI Engineer with 1.8+ years of hands-on experience building machine learning, computer vision, mobile, web, and backend systems. "
-        "Experienced across Python, SQL, TensorFlow, PyTorch, OpenCV, FastAPI, Spring Boot, PostgreSQL, TFLite, and ONNX Runtime, with practical ownership across "
+        "Python AI Engineer with 1.10+ years of hands-on experience building machine learning, computer vision, mobile, web, and backend systems. "
+        "Experienced across Python, TypeScript, SQL, TensorFlow, PyTorch, OpenCV, FastAPI, Spring Boot, PostgreSQL, TensorFlow Lite, and ONNX Runtime, with practical ownership across "
         "data preparation, exploratory analysis, feature engineering, model training, evaluation, deployment, and production support."
     ),
     "location": "Hyderabad, Telangana, India",
@@ -59,6 +59,16 @@ projects = [
         ),
     },
     {
+        "name": "VistaraAI",
+        "tagline": "AI-powered PVC interior design assistant",
+        "ui": "/projects/vistara-ai",
+        "stack": "Next.js | TypeScript | React | FastAPI | Python | LangChain | LangGraph | PostgreSQL",
+        "description": (
+            "Production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors. "
+            "Combines grounded knowledge retrieval, assistant workflows, computer vision insights, geo-targeted SEO, and lead capture support."
+        ),
+    },
+    {
         "name": "RiceGPT AI",
         "tagline": "Agricultural AI assistant concept",
         "ui": "/projects/ricegpt",
@@ -73,7 +83,7 @@ projects = [
         "ui": "/projects/resumeai",
         "live": "https://resume-ai-pro-beryl.vercel.app/",
         "backend": "https://resumeai-pro-5yon.onrender.com",
-        "stack": "Next.js | TypeScript | React",
+        "stack": "Next.js | TypeScript | React | Tailwind CSS | FastAPI",
         "description": "AI-assisted resume analysis and refinement concept focused on recruiter-friendly guidance and practical deployment.",
     },
     {
@@ -82,7 +92,7 @@ projects = [
         "ui": "/projects/interview-copilot",
         "live": "https://interview-copilot-ai-ten.vercel.app/",
         "backend": "https://interview-copilot-ai-mjgj.onrender.com",
-        "stack": "React | TypeScript | AI prompting",
+        "stack": "React | TypeScript | Prompt Engineering",
         "description": "Interview preparation companion for technical question practice, answer structuring, and confidence building.",
     },
     {
@@ -91,7 +101,7 @@ projects = [
         "ui": "/projects/datainsight",
         "live": "https://data-insight-ai-dywd.vercel.app/",
         "backend": "https://datainsight-ai-18xr.onrender.com",
-        "stack": "Python | Next.js | TypeScript",
+        "stack": "Python | Next.js | TypeScript | Data Visualization",
         "description": "AI-assisted exploratory data analysis concept for pattern discovery, summary reporting, and decision support.",
     },
     {
@@ -100,7 +110,7 @@ projects = [
         "ui": "/projects/automl-studio",
         "live": "https://auto-ml-studio-lilac.vercel.app/",
         "backend": "https://automl-studio-1lw6.onrender.com",
-        "stack": "Python | FastAPI | Scikit-learn | Next.js",
+        "stack": "Python | FastAPI | Scikit-learn | Next.js | Gemini",
         "description": "End-to-end automated machine learning concept for dataset upload, preprocessing, training, comparison, and evaluation.",
     },
 ]

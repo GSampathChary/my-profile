@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { portfolio } from "@/data/portfolio";
 import { socialLinks } from "@/lib/projectLinks";
+import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 export function ProfessionalRoom() {
   return (
@@ -34,9 +35,7 @@ export function ProfessionalRoom() {
               .flatMap(([, values]) => values)
               .slice(0, 18)
               .map((item) => (
-                <span key={item} className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200">
-                  {item}
-                </span>
+                <TechnologyBadge key={item} technology={item} size="sm" className="border-white/10 bg-white/5 text-slate-200" />
               ))}
           </div>
         </Card>

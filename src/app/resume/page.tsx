@@ -21,7 +21,7 @@ export default function ResumePage() {
             <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">Resume Portrait</div>
             <h1 className="mt-2 text-3xl font-semibold text-white">Gannoju Sampath Chary</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
-              AI Engineer with experience in Python, Flutter, React.js, Spring Boot, FastAPI, TensorFlow, and production deployment.
+              AI Engineer with 1.10+ years of experience in Python, TypeScript, Flutter, React.js, Spring Boot, FastAPI, TensorFlow, and production deployment.
             </p>
           </div>
         </div>

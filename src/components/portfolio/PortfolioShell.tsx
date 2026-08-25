@@ -25,6 +25,7 @@ import { portfolio } from "@/data/portfolio";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { socialLinks } from "@/lib/projectLinks";
+import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import type { SceneFocus } from "@/components/3d/Camera";
 import type { Project } from "@/types/project";
@@ -111,6 +112,7 @@ function FullscreenFrame({
   eyebrow,
   children,
   onClose,
+  glass = true,
   motionDuration = 0.75,
   motionScale = 0.985,
   motionYOffset = 12
@@ -119,6 +121,7 @@ function FullscreenFrame({
   eyebrow: string;
   children: ReactNode;
   onClose: () => void;
+  glass?: boolean;
   motionDuration?: number;
   motionScale?: number;
   motionYOffset?: number;
@@ -129,7 +132,7 @@ function FullscreenFrame({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: motionScale, y: motionYOffset }}
       transition={{ duration: motionDuration, ease: "easeOut" }}
-      className="relative mx-auto flex h-[92vh] w-full max-w-6xl flex-col rounded-[22px] border border-white/10 bg-slate-950/90 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:h-[88vh] sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5"
+      className={`relative mx-auto flex h-[92vh] w-full max-w-6xl flex-col rounded-[22px] border border-white/10 bg-slate-950/95 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] ${glass ? "backdrop-blur-xl" : "backdrop-blur-none"} sm:h-[88vh] sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5`}
     >
       <div className="flex items-start justify-between gap-4">
         <div>
@@ -206,7 +209,7 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
 
 function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void; lightsOn?: boolean }) {
   const shellBorder = lightsOn ? "border-cyan-400/20" : "border-amber-500/25";
-  const shellBg = lightsOn ? "bg-slate-950/96" : "bg-[#0b0f19]/96";
+  const shellBg = lightsOn ? "bg-slate-950/95" : "bg-[#0b0f19]/95";
   const headerBg = lightsOn ? "bg-slate-950/90" : "bg-[#111827]/90";
   const frameBg = lightsOn ? "bg-slate-900" : "bg-[#17120b]";
   const pdfBorder = lightsOn ? "border-white/10" : "border-amber-400/15";
@@ -279,7 +282,7 @@ function ProjectsOverlay({
   const launchLabel = getProjectExperienceLabel(project);
 
   return (
-    <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose}>
+    <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose} glass={false}>
       <div className={`grid h-full gap-3 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
         <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-3 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-300">All Projects</div>
@@ -353,9 +356,7 @@ function ProjectsOverlay({
           </div>
           <div className="flex flex-wrap gap-2 pt-1">
             {project.technologies.slice(0, 8).map((technology) => (
-              <span key={technology} className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-200">
-                {technology}
-              </span>
+              <TechnologyBadge key={technology} technology={technology} size="sm" className="border-cyan-400/20 bg-cyan-400/10 text-cyan-100" />
             ))}
           </div>
         </div>
@@ -786,7 +787,7 @@ export function PortfolioShell() {
 
       <AnimatePresence mode="wait">
         {overlayFocus === "technologies" ? (
-          <div key="technologies" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/30 px-3 py-4 backdrop-blur-sm">
+          <div key="technologies" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/45 px-3 py-4">
             <TechnologiesOverlay
               onClose={closeView}
               onBookSelect={(book) => setSelectedBookId(book)}

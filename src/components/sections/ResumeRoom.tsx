@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { portfolio } from "@/data/portfolio";
 import { socialLinks } from "@/lib/projectLinks";
 import { getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 type ResumeRoomProps = {
   resumeAvailable?: boolean;
@@ -42,9 +43,7 @@ export function ResumeRoom({ resumeAvailable = false }: ResumeRoomProps) {
               <div className="text-xs uppercase tracking-[0.3em] text-cyan-200/60">{label}</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {items.map((item) => (
-                  <span key={item} className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200">
-                    {item}
-                  </span>
+                  <TechnologyBadge key={item} technology={item} size="sm" className="border-white/10 bg-white/5 text-slate-200" />
                 ))}
               </div>
             </div>

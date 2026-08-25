@@ -6,7 +6,7 @@ export const experience: ExperienceEntry = {
   duration: "December 2024 - Present",
   location: "Hyderabad, Telangana, India",
   summary:
-    "Develop AI-powered mobile, web, and backend applications for agricultural research, with work spanning data pipelines, model integration, production deployments, and cross-functional validation.",
+    "Develop AI-powered mobile, web, and backend applications for agricultural research, with work spanning data pipelines, model integration, production deployments, and cross-functional validation. 1.10+ years of hands-on experience across AI engineering and full-stack delivery.",
   responsibilities: [
     "Develop and maintain AI-powered mobile, web, and backend applications for agricultural research.",
     "Build production mobile applications using Flutter and web applications using React.js.",
@@ -23,6 +23,7 @@ export const experience: ExperienceEntry = {
   ],
   technologies: [
     "Python",
+    "TypeScript",
     "Java",
     "JavaScript",
     "SQL",

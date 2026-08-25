@@ -1,9 +1,9 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 import { socialLinks } from "@/lib/projectLinks";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import type { Project } from "@/types/project";
 import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 type ProjectDetailProps = {
   project: Project;
@@ -48,15 +48,13 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           </Panel>
         </div>
         <div className="space-y-6">
-          <Panel title="Technologies">
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((technology) => (
-                <span key={technology} className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200">
-                  {technology}
-                </span>
-              ))}
-            </div>
-          </Panel>
+        <Panel title="Technologies">
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map((technology) => (
+              <TechnologyBadge key={technology} technology={technology} size="sm" className="border-white/10 bg-white/5 text-slate-200" />
+            ))}
+          </div>
+        </Panel>
           <Panel title="Features">
             <ul className="space-y-2">
               {project.features.map((feature) => (

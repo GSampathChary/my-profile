@@ -10,6 +10,7 @@ type ProjectPageProps = {
 export function generateStaticParams() {
   return [
     { projectId: "raise" },
+    { projectId: "vistara-ai" },
     { projectId: "ricegpt" },
     { projectId: "resumeai" },
     { projectId: "interview-copilot" },

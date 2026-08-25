@@ -57,6 +57,42 @@ export const projects: Project[] = [
     }
   },
   {
+    id: "vistara-ai",
+    name: "VistaraAI",
+    category: "personal",
+    uiPath: "/projects/vistara-ai",
+    tagline: "AI-powered PVC interior design assistant",
+    description:
+      "A production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors, combining conversational guidance, knowledge retrieval, room analysis, and lead capture workflows.",
+    problem:
+      "PVC interior customers need guided recommendations, transparent pricing support, and a reliable assistant that can handle product questions and qualification workflows.",
+    solution:
+      "A Next.js and FastAPI application that blends a grounded knowledge base, AI assistant flows, computer vision insights, geo-targeted SEO, and deployment-ready infrastructure for sales and support teams.",
+    technologies: ["Next.js", "TypeScript", "React", "FastAPI", "Python", "LangChain", "LangGraph", "OpenAI", "Gemini", "PostgreSQL", "Docker"],
+    features: ["PVC product guidance", "RAG knowledge base", "Lead capture workflows", "Computer vision room analysis", "Geo-targeted SEO", "Dockerized deployment"],
+    screenshots: [
+      {
+        src: "/project-screenshots/vistara-ai/bedroom-1.jfif",
+        label: "Bedroom design"
+      },
+      {
+        src: "/project-screenshots/vistara-ai/kitchen-1.jfif",
+        label: "Kitchen design"
+      },
+      {
+        src: "/project-screenshots/vistara-ai/tv-1.jfif",
+        label: "TV unit design"
+      }
+    ],
+    links: {
+      ...placeholderLinks,
+      live: null,
+      backend: null,
+      architecture: null,
+      caseStudy: null
+    }
+  },
+  {
     id: "ricegpt",
     name: "RiceGPT AI",
     category: "personal",
@@ -66,7 +102,7 @@ export const projects: Project[] = [
       "A focused rice-agriculture assistant concept designed to answer domain questions with structured guidance, context-aware responses, and a clean app-style experience inside the portfolio.",
     problem: "Agricultural support knowledge is often scattered across many documents and workflows.",
     solution: "A focused assistant experience centered on rice-related advice, guidance, and reference answers presented as the original app view inside the portfolio.",
-    technologies: ["Next.js", "TypeScript", "React", "OpenAI-ready architecture"],
+    technologies: ["Next.js", "TypeScript", "React", "OpenAI", "Knowledge Base"],
     features: ["Conversational assistance", "Domain knowledge base", "Guided answer flow"],
     screenshots: [
       {
@@ -106,7 +142,7 @@ export const projects: Project[] = [
       "A resume analysis and refinement web app concept that helps candidates improve structure, clarity, role alignment, and recruiter readiness.",
     problem: "Many resumes need clear, role-specific tuning before sharing with recruiters.",
     solution: "A workflow for analyzing text and suggesting improvements in a recruiter-friendly format, with screenshots preserved for the full experience.",
-    technologies: ["Next.js", "TypeScript", "React", "AI workflow design"],
+    technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS", "FastAPI"],
     features: ["Resume analysis", "Section recommendations", "Recruiter-ready output"],
     screenshots: [
       {
@@ -138,7 +174,7 @@ export const projects: Project[] = [
       "An interview preparation web app concept that supports technical question practice, answer structuring, and confidence building for engineering interviews.",
     problem: "Candidates need structured practice for common and role-specific interview patterns.",
     solution: "An assistant that organizes question sets, answer templates, revision workflows, and the original experience shown on the portfolio site.",
-    technologies: ["React", "TypeScript", "AI prompting", "Knowledge base"],
+    technologies: ["React", "TypeScript", "Prompt Engineering", "Knowledge Base"],
     features: ["Question practice", "Answer guidance", "Revision workflow"],
     screenshots: [
       {
@@ -170,7 +206,7 @@ export const projects: Project[] = [
       "A data-analysis web app concept for exploratory analysis, pattern detection, and concise report generation from uploaded datasets.",
     problem: "Non-technical users and fast-moving teams need quick insight generation from raw data.",
     solution: "A guided insight flow that surfaces patterns, dashboard summaries, and report exports while keeping the original app experience visible.",
-    technologies: ["Python", "Next.js", "TypeScript", "Data visualization"],
+    technologies: ["Python", "Next.js", "TypeScript", "Data Visualization"],
     features: ["Dataset summaries", "Pattern discovery", "Insight exports"],
     screenshots: [
       {
@@ -202,7 +238,7 @@ export const projects: Project[] = [
       "An end-to-end automated machine learning web app concept for dataset upload, preprocessing, training, model comparison, and evaluation.",
     problem: "Training and comparing models manually takes time and makes experimentation harder to scale.",
     solution: "A structured workflow for automating preprocessing, model training, comparison, evaluation, and the original app experience on the portfolio.",
-    technologies: ["Python", "FastAPI", "Scikit-learn", "Next.js", "Gemini-ready design"],
+    technologies: ["Python", "FastAPI", "Scikit-learn", "Next.js", "Gemini"],
     features: ["Dataset upload", "Preprocessing", "Model training", "Model comparison", "Model evaluation"],
     screenshots: [
       {

@@ -1,19 +1,21 @@
 export const skills = {
-  languages: ["Python", "Dart", "Java", "JavaScript", "SQL"],
+  languages: ["Python", "TypeScript", "JavaScript", "Java", "Dart", "SQL"],
   aiMl: [
     "TensorFlow",
+    "TensorFlow Lite",
     "Keras",
     "Scikit-learn",
     "PyTorch",
-    "Computer Vision",
-    "NLP",
-    "Generative AI",
-    "TFLite",
+    "OpenCV",
+    "LangChain",
+    "LangGraph",
+    "Gemini",
+    "OpenAI",
     "ONNX Runtime",
-    "OpenCV"
+    "Computer Vision"
   ],
-  backend: ["FastAPI", "Spring Boot", "REST APIs", "Microservices"],
-  frontend: ["Flutter", "Next.js", "React", "HTML5", "CSS3", "Bootstrap"],
+  backend: ["FastAPI", "Spring Boot", "REST APIs", "Microservices", "Docker"],
+  frontend: ["Flutter", "Next.js", "React", "Tailwind CSS", "HTML5", "CSS3"],
   database: ["PostgreSQL", "SQLite", "MySQL", "Firebase"],
-  tools: ["Git", "GitHub", "Docker", "Postman", "Google Colab", "Google Play Console"]
+  tools: ["Git", "GitHub", "Postman", "Google Colab", "Google Play Console", "Docker Compose"]
 };
