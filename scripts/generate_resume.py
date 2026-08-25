@@ -62,6 +62,8 @@ projects = [
         "name": "VistaraAI",
         "tagline": "AI-powered PVC interior design assistant",
         "ui": "/projects/vistara-ai",
+        "live": "https://vistara-ai-pvc-interior-studio-xi.vercel.app/",
+        "backend": "https://vistaraai-pvc-interior-studio.onrender.com",
         "stack": "Next.js | TypeScript | React | FastAPI | Python | LangChain | LangGraph | PostgreSQL",
         "description": (
             "Production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors. "

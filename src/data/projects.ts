@@ -86,8 +86,8 @@ export const projects: Project[] = [
     ],
     links: {
       ...placeholderLinks,
-      live: null,
-      backend: null,
+      live: "https://vistara-ai-pvc-interior-studio-xi.vercel.app/",
+      backend: "https://vistaraai-pvc-interior-studio.onrender.com",
       architecture: null,
       caseStudy: null
     }

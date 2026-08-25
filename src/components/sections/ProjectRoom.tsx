@@ -3,7 +3,14 @@
 import { portfolio } from "@/data/portfolio";
 import { socialLinks } from "@/lib/projectLinks";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
-import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import {
+  getProjectBackendHref,
+  getProjectBackendLabel,
+  getProjectExperienceHref,
+  getProjectExperienceLabel,
+  getProjectPublicHref,
+  getProjectPublicLabel
+} from "@/lib/projectExperience";
 
 export function ProjectRoom() {
   return (
@@ -55,6 +62,14 @@ export function ProjectRoom() {
                   <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-2 text-xs text-cyan-50">
                     {getProjectExperienceLabel(project)}
                   </span>
+                  <a
+                    href={getProjectBackendHref(project)}
+                    target={getProjectBackendHref(project).startsWith("http") ? "_blank" : undefined}
+                    rel={getProjectBackendHref(project).startsWith("http") ? "noreferrer" : undefined}
+                    className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-xs text-emerald-50 transition hover:bg-emerald-300/20"
+                  >
+                    {getProjectBackendLabel(project)}
+                  </a>
                 </div>
               </a>
             ))}

@@ -32,6 +32,14 @@ export function getProjectExperienceLabel(project: Project) {
   return "Open App View";
 }
 
+export function getProjectBackendHref(project: Project) {
+  return project.links.backend ?? getProjectPublicHref(project);
+}
+
+export function getProjectBackendLabel(project: Project) {
+  return project.links.backend ? "Backend API" : "Open App View";
+}
+
 export function getProjectDetailLabel(project: Project) {
   return project.category === "professional" ? "Project Story" : "Portfolio Detail";
 }

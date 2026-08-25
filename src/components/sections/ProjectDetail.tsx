@@ -2,7 +2,14 @@ import type { ReactNode } from "react";
 import { socialLinks } from "@/lib/projectLinks";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import type { Project } from "@/types/project";
-import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import {
+  getProjectBackendHref,
+  getProjectBackendLabel,
+  getProjectExperienceHref,
+  getProjectExperienceLabel,
+  getProjectPublicHref,
+  getProjectPublicLabel
+} from "@/lib/projectExperience";
 import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 type ProjectDetailProps = {
@@ -94,6 +101,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
           Project Story
         </Action>
         <Action href={getProjectExperienceHref(project)}>{getProjectExperienceLabel(project)}</Action>
+        <Action href={getProjectBackendHref(project)}>{getProjectBackendLabel(project)}</Action>
         <Action href={project.links.live}>Live Demo</Action>
         <Action href={project.links.github}>GitHub</Action>
         <Action href={project.links.architecture}>Architecture</Action>

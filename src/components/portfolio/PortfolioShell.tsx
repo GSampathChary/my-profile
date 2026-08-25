@@ -22,7 +22,14 @@ import {
 } from "lucide-react";
 import { Room } from "@/components/3d/Room";
 import { portfolio } from "@/data/portfolio";
-import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import {
+  getProjectBackendHref,
+  getProjectBackendLabel,
+  getProjectExperienceHref,
+  getProjectExperienceLabel,
+  getProjectPublicHref,
+  getProjectPublicLabel
+} from "@/lib/projectExperience";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { socialLinks } from "@/lib/projectLinks";
 import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
@@ -348,6 +355,10 @@ function ProjectsOverlay({
             <Link href={launchHref as any} className="inline-flex items-center justify-center gap-2 rounded-full bg-cyan-400 px-4 py-2.5 text-sm font-bold text-slate-950 transition hover:bg-cyan-300 shadow-lg shadow-cyan-500/25 sm:px-5">
               <Monitor className="h-4 w-4" />
               {launchLabel}
+            </Link>
+            <Link href={getProjectBackendHref(project) as any} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 sm:px-5">
+              <ExternalLink className="h-4 w-4" />
+              {getProjectBackendLabel(project)}
             </Link>
             <Link href={project.uiPath as any} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition hover:bg-white/10 sm:px-5">
               Project Story

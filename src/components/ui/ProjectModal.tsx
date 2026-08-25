@@ -4,7 +4,14 @@ import type { ReactNode } from "react";
 import type { Project } from "@/types/project";
 import { cn } from "@/lib/utils";
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
-import { getProjectExperienceHref, getProjectExperienceLabel, getProjectPublicHref, getProjectPublicLabel } from "@/lib/projectExperience";
+import {
+  getProjectBackendHref,
+  getProjectBackendLabel,
+  getProjectExperienceHref,
+  getProjectExperienceLabel,
+  getProjectPublicHref,
+  getProjectPublicLabel
+} from "@/lib/projectExperience";
 import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 type ProjectModalProps = {
@@ -142,6 +149,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
           <ActionLink href={project.uiPath}>Project Story</ActionLink>
           <ActionLink href={getProjectExperienceHref(project)}>{getProjectExperienceLabel(project)}</ActionLink>
+          <ActionLink href={getProjectBackendHref(project)}>{getProjectBackendLabel(project)}</ActionLink>
           <ActionLink href={project.links.live}>Live Demo</ActionLink>
           <ActionLink href={project.links.github}>GitHub</ActionLink>
           <ActionLink href={project.links.architecture}>Architecture</ActionLink>
