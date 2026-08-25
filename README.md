@@ -7,7 +7,7 @@ Interactive 3D portfolio for Gannoju Sampath Chary, built to present an AI engin
 - Name: Gannoju Sampath Chary
 - Location: Hyderabad, Telangana, India
 - Title: AI Engineer | Applied ML | Python Backend | Flutter | FastAPI | Spring Boot
-- Experience: 1.8+ years building AI-powered mobile, web, and backend applications
+- Experience: 1.10+ years building AI-powered mobile, web, and backend applications
 - Current Role: Young Professional - I, ICAR - Indian Institute of Rice Research (IIRR), Hyderabad
 - Focus Areas: AI / ML, computer vision, backend engineering, mobile AI applications, production deployment
 - Contact: gsampathchary454@gmail.com
@@ -17,6 +17,7 @@ Interactive 3D portfolio for Gannoju Sampath Chary, built to present an AI engin
 
 - An AI engineer identity with a strong applied machine learning story
 - Professional work on RAISE, the rice crop stress evaluation application
+- Professional work on VistaraAI, the PVC interior AI assistant and full-stack platform
 - Personal portfolio projects such as RiceGPT AI, ResumeAI Pro, Interview Copilot, DataInsight AI, and AutoML Studio
 - A recruiter-friendly way to view experience, projects, and contact details
 - Structured content that can also power a GitHub profile README
@@ -28,6 +29,16 @@ Interactive 3D portfolio for Gannoju Sampath Chary, built to present an AI engin
 AI-powered agricultural application developed at ICAR - Indian Institute of Rice Research for rice crop stress evaluation.
 
 Technologies: Flutter, Python, FastAPI, Spring Boot, TensorFlow, TensorFlow Lite, PostgreSQL
+
+### VistaraAI - PVC Interior Design Assistant
+
+AI-powered full-stack platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors.
+
+Technologies: Next.js, TypeScript, React, FastAPI, Python, LangChain, LangGraph, PostgreSQL, Docker
+
+Frontend: https://vistara-ai-pvc-interior-studio-xi.vercel.app/
+
+Backend: https://vistaraai-pvc-interior-studio.onrender.com
 
 ### RiceGPT AI
 
