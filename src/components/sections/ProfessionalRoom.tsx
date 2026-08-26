@@ -8,11 +8,11 @@ export function ProfessionalRoom() {
   return (
     <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="space-y-6">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-xl">
+        <div className="rounded-[22px] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur-xl sm:rounded-3xl sm:p-6">
           <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">Professional Mode</div>
-          <h1 className="mt-3 text-3xl font-semibold text-white">{portfolio.profile.name}</h1>
-          <p className="mt-3 text-sm leading-6 text-slate-300">{portfolio.profile.headline}</p>
-          <p className="mt-4 text-sm leading-6 text-slate-400">{portfolio.profile.introduction}</p>
+          <h1 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">{portfolio.profile.name}</h1>
+          <p className="mt-3 text-sm leading-6 text-slate-300 sm:text-base">{portfolio.profile.headline}</p>
+          <p className="mt-4 text-sm leading-6 text-slate-400 sm:text-base">{portfolio.profile.introduction}</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           <Card title="Experience">
@@ -62,7 +62,7 @@ export function ProfessionalRoom() {
 
 function Card({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <article className="rounded-3xl border border-white/10 bg-slate-950/70 p-6">
+    <article className="rounded-[22px] border border-white/10 bg-slate-950/70 p-4 sm:rounded-3xl sm:p-6">
       <h2 className="text-lg font-semibold text-white">{title}</h2>
       <div className="mt-4">{children}</div>
     </article>

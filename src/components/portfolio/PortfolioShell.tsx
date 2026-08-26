@@ -139,15 +139,15 @@ function FullscreenFrame({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: motionScale, y: motionYOffset }}
       transition={{ duration: motionDuration, ease: "easeOut" }}
-      className={`relative mx-auto flex h-[92vh] w-full max-w-6xl flex-col rounded-[22px] border border-white/10 bg-slate-950/95 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] ${glass ? "backdrop-blur-xl" : "backdrop-blur-none"} sm:h-[88vh] sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5`}
+      className={`relative mx-auto flex h-[calc(100vh-0.75rem)] w-[calc(100vw-0.75rem)] max-w-6xl min-h-0 flex-col rounded-[20px] border border-white/10 bg-slate-950/95 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] ${glass ? "backdrop-blur-xl" : "backdrop-blur-none"} sm:h-[88vh] sm:w-full sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5`}
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div>
           <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">{eyebrow}</div>
-          <h2 className="mt-2 text-2xl font-semibold text-white">{title}</h2>
+          <h2 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{title}</h2>
         </div>
       </div>
-      <div className="mt-5 flex-1 overflow-hidden">{children}</div>
+      <div className="mt-4 min-h-0 flex-1 overflow-y-auto pr-1 sm:mt-5 sm:overflow-hidden sm:pr-0">{children}</div>
       <BottomClose onClose={onClose} />
     </motion.div>
   );
@@ -156,7 +156,7 @@ function FullscreenFrame({
 function ResumeOverlay({ onClose }: { onClose: () => void }) {
   return (
     <FullscreenFrame title="About Me - Resume Book" eyebrow="Physical Book Spread" onClose={onClose}>
-      <div className="relative mx-auto flex h-full max-w-5xl overflow-hidden rounded-[20px] border-4 border-[#78350f] bg-[#451a03] p-3 shadow-2xl">
+      <div className="relative mx-auto flex h-full max-w-5xl overflow-hidden rounded-[18px] border-4 border-[#78350f] bg-[#451a03] p-2.5 shadow-2xl sm:rounded-[20px] sm:p-3">
         {/* Book Spine Center Crease Line */}
         <div className="pointer-events-none absolute inset-y-0 left-1/2 z-20 w-8 -translate-x-1/2 bg-gradient-to-r from-black/30 via-black/50 to-black/30" />
         {/* Gold Ribbon Page Bookmark */}
@@ -164,15 +164,15 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
 
         <div className="grid h-full w-full grid-cols-1 overflow-y-auto rounded-[14px] bg-[#fef3c7] md:grid-cols-2">
           {/* Left Page */}
-          <div className="border-r border-amber-900/10 p-6 text-slate-900 md:p-8">
+          <div className="border-r border-amber-900/10 p-4 text-slate-900 sm:p-6 md:p-8">
             <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-amber-800">Page 1 • Biography</div>
             <div className="mt-4 flex items-start gap-4">
-              <div className="relative h-24 w-20 overflow-hidden rounded-2xl border-4 border-amber-900/20 bg-slate-100 shadow-lg">
+              <div className="relative h-20 w-16 overflow-hidden rounded-2xl border-4 border-amber-900/20 bg-slate-100 shadow-lg sm:h-24 sm:w-20">
                 <img src="/images/sampath.png" alt={portfolio.profile.name} className="h-full w-full object-cover object-center" />
               </div>
               <div className="min-w-0">
-                <h3 className="text-3xl font-serif font-bold text-slate-900">{portfolio.profile.name}</h3>
-                <p className="mt-2 text-xs font-medium uppercase tracking-wider text-amber-800">{portfolio.profile.headline}</p>
+                <h3 className="text-2xl font-serif font-bold text-slate-900 sm:text-3xl">{portfolio.profile.name}</h3>
+                <p className="mt-2 text-[10px] font-medium uppercase tracking-wider text-amber-800 sm:text-xs">{portfolio.profile.headline}</p>
               </div>
             </div>
             <hr className="my-4 border-amber-900/20" />
@@ -191,7 +191,7 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* Right Page */}
-          <div className="p-6 text-slate-900 md:p-8">
+          <div className="p-4 text-slate-900 sm:p-6 md:p-8">
             <div className="text-[10px] uppercase tracking-[0.4em] font-bold text-amber-800">Page 2 • Technical Experience</div>
             <div className="mt-3 space-y-4">
               <h4 className="text-sm font-serif font-bold uppercase tracking-wider text-slate-800">Key Expertise</h4>
@@ -231,13 +231,13 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
       transition={{ duration: 1.0, ease: "easeOut" }}
       className={`fixed inset-0 z-[80] px-3 py-3 backdrop-blur-md ${lightsOn ? "bg-black/75" : "bg-black/82"}`}
     >
-      <div className={`flex h-full w-full flex-col overflow-hidden rounded-[28px] border shadow-[0_30px_120px_rgba(0,0,0,0.75)] ${shellBorder} ${shellBg}`}>
-        <div className={`flex items-center justify-between gap-3 border-b px-5 py-4 ${headerBg} ${shellBorder}`}>
+      <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.75)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
+        <div className={`flex flex-col items-start justify-between gap-3 border-b px-4 py-4 sm:flex-row sm:items-center sm:px-5 ${headerBg} ${shellBorder}`}>
           <div>
             <div className={`text-[10px] uppercase tracking-[0.45em] ${accentText}`}>About Me</div>
-            <h2 className="mt-1 text-2xl font-semibold text-white">Resume Viewer</h2>
+            <h2 className="mt-1 text-xl font-semibold text-white sm:text-2xl">Resume Viewer</h2>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
             <a
               href="/resume/resume.pdf"
               download
@@ -261,7 +261,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
           </div>
         </div>
         <div className={`flex-1 p-3 ${frameBg}`}>
-          <div className={`h-full overflow-hidden rounded-[22px] border bg-white shadow-2xl ${pdfBorder}`}>
+          <div className={`h-full overflow-hidden rounded-[18px] border bg-white shadow-2xl sm:rounded-[22px] ${pdfBorder}`}>
             <object data="/resume/resume.pdf#view=Fit" type="application/pdf" className="h-full w-full">
               <iframe src="/resume/resume.pdf#view=Fit" title="Resume PDF" className="h-full w-full" />
             </object>
@@ -401,7 +401,7 @@ function TechnologiesOverlay({
 
   return (
     <FullscreenFrame title="Known Technologies" eyebrow="Official stack browser" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
-      <div className={`grid h-full gap-4 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
+      <div className={`grid h-full gap-4 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[72vh]" : "max-h-[78vh] overflow-hidden"}`}>
         <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
           <div>
             <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Focus tracks</div>
@@ -583,7 +583,7 @@ function PhoneOverlay({ onClose }: { onClose: () => void }) {
       className="relative flex items-center justify-center p-2 sm:p-4"
     >
       {/* Realistic Android Smartphone Body */}
-      <div className="relative h-[560px] w-[280px] scale-[0.74] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:scale-100">
+      <div className="relative h-[560px] w-[min(280px,88vw)] scale-[0.78] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:w-[280px] sm:scale-100">
         {/* Top Punch-Hole Front Camera */}
         <div className="absolute top-3 left-1/2 z-30 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-slate-700 bg-black shadow-inner" />
 
@@ -847,7 +847,7 @@ export function PortfolioShell() {
       </div>
 
       {/* Minimal Right Sidebar Navigation HUD matching reference video */}
-      <div className={isMobile ? "fixed left-3 right-3 bottom-3 z-40 grid grid-cols-2 gap-2" : "fixed bottom-6 right-4 z-40 flex flex-col gap-2"}>
+      <div className={isMobile ? "fixed left-2 right-2 bottom-2 z-40 grid grid-cols-2 gap-2 sm:left-3 sm:right-3 sm:bottom-3" : "fixed bottom-6 right-4 z-40 flex flex-col gap-2"}>
         <HUDButton label="About Me" icon={UserRound} active={cameraFocus === "resume"} onClick={() => openView("resume")} lightsOn={lightsOn} />
         <HUDButton label="Projects" icon={Monitor} active={cameraFocus === "projects"} onClick={() => openView("projects")} lightsOn={lightsOn} />
         <HUDButton label="Get In Touch" icon={Mail} active={cameraFocus === "contact"} onClick={() => openView("contact")} lightsOn={lightsOn} />
@@ -859,7 +859,7 @@ export function PortfolioShell() {
 
       {/* Floating Bottom Close View / Back to Room Button */}
       {cameraFocus !== "overview" ? (
-        <div className="fixed bottom-3 left-1/2 z-50 -translate-x-1/2 sm:bottom-6">
+        <div className="fixed bottom-2 left-1/2 z-50 -translate-x-1/2 sm:bottom-6">
           <button
             type="button"
             onClick={closeView}

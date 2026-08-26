@@ -19,13 +19,13 @@ type ProjectDetailProps = {
 export function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <section className="space-y-6">
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-xl">
+      <div className="rounded-[22px] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur-xl sm:rounded-3xl sm:p-6">
         <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">{project.category} project</div>
         <a
           href={getProjectPublicHref(project)}
           target={getProjectPublicHref(project).startsWith("http") ? "_blank" : undefined}
           rel={getProjectPublicHref(project).startsWith("http") ? "noreferrer" : undefined}
-          className="mt-3 inline-block text-3xl font-semibold text-white transition hover:text-cyan-200"
+          className="mt-3 inline-block text-2xl font-semibold text-white transition hover:text-cyan-200 sm:text-3xl"
         >
           {project.name}
         </a>
@@ -39,7 +39,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             {getProjectPublicLabel(project)}
           </a>
         </div>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300">{project.tagline}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">{project.tagline}</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -76,7 +76,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                   const screenshot = normalizeScreenshot(shot, `Screenshot ${index + 1}`);
                   return (
                     <figure key={screenshot.src} className="overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70">
-                      <img src={screenshot.src} alt={screenshot.alt} className="h-40 w-full object-cover" loading="lazy" />
+                      <img src={screenshot.src} alt={screenshot.alt} className="h-32 w-full object-cover sm:h-40" loading="lazy" />
                       <figcaption className="px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-slate-400">{screenshot.label}</figcaption>
                     </figure>
                   );
@@ -96,7 +96,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
         <Action href={project.uiPath} primary>
           Project Story
         </Action>
@@ -115,16 +115,16 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
 function Panel({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <article className="rounded-3xl border border-white/10 bg-slate-950/70 p-5">
+    <article className="rounded-[22px] border border-white/10 bg-slate-950/70 p-4 sm:rounded-3xl sm:p-5">
       <h2 className="text-sm font-medium uppercase tracking-[0.3em] text-cyan-200/70">{title}</h2>
-      <div className="mt-4 text-sm leading-6 text-slate-300">{children}</div>
+      <div className="mt-4 text-sm leading-6 text-slate-300 sm:text-sm">{children}</div>
     </article>
   );
 }
 
 function Action({ href, children, primary = false }: { href?: string | null; children: ReactNode; primary?: boolean }) {
   if (!href) {
-    return <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-400">TODO</span>;
+    return <span className="inline-flex w-full justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-400 sm:w-auto">TODO</span>;
   }
 
   return (
@@ -134,8 +134,8 @@ function Action({ href, children, primary = false }: { href?: string | null; chi
       rel={href.startsWith("http") ? "noreferrer" : undefined}
       className={
         primary
-          ? "rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200"
-          : "rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100 transition hover:bg-white/10"
+        ? "inline-flex w-full justify-center rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200 sm:w-auto"
+          : "inline-flex w-full justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100 transition hover:bg-white/10 sm:w-auto"
       }
     >
       {children}

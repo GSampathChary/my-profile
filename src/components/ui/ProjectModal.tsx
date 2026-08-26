@@ -29,7 +29,7 @@ function ActionLink({
   className?: string;
 }) {
   if (!href) {
-    return <span className={cn("rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-400", className)}>TODO</span>;
+    return <span className={cn("inline-flex w-full justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-400 sm:w-auto", className)}>TODO</span>;
   }
 
   return (
@@ -37,7 +37,7 @@ function ActionLink({
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noreferrer" : undefined}
-      className={cn("rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100 transition hover:bg-white/10", className)}
+      className={cn("inline-flex w-full justify-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100 transition hover:bg-white/10 sm:w-auto", className)}
     >
       {children}
     </a>
@@ -48,9 +48,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/85 px-3 py-6 sm:px-4 sm:py-10">
-      <div className="max-h-[88vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-white/10 bg-slate-950/95 p-4 text-slate-100 shadow-2xl shadow-black/60 sm:rounded-3xl sm:p-6">
-        <div className="flex items-start justify-between gap-3 sm:gap-4">
+    <div className="fixed inset-0 z-[70] flex items-start justify-center bg-black/85 px-2 py-2 sm:items-center sm:px-4 sm:py-10">
+      <div className="max-h-[calc(100vh-1rem)] w-full max-w-3xl overflow-y-auto rounded-[22px] border border-white/10 bg-slate-950/95 p-4 text-slate-100 shadow-2xl shadow-black/60 sm:max-h-[88vh] sm:rounded-3xl sm:p-6">
+        <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:gap-4">
           <div>
             <div className="text-[10px] uppercase tracking-[0.35em] text-cyan-200/60 sm:text-xs">{project.category}</div>
             <a
@@ -76,7 +76,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200 transition hover:bg-white/10 sm:px-4 sm:py-2 sm:text-sm"
+            className="w-full shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200 transition hover:bg-white/10 sm:w-auto sm:px-4 sm:py-2 sm:text-sm"
           >
             Close ✕
           </button>
@@ -146,7 +146,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
+        <div className="mt-5 flex flex-col gap-2 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-3">
           <ActionLink href={project.uiPath}>Project Story</ActionLink>
           <ActionLink href={getProjectExperienceHref(project)}>{getProjectExperienceLabel(project)}</ActionLink>
           <ActionLink href={getProjectBackendHref(project)}>{getProjectBackendLabel(project)}</ActionLink>

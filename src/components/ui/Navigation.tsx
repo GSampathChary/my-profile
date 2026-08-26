@@ -19,7 +19,7 @@ export function Navigation({ mode, onModeChange }: NavigationProps) {
         <div className="text-[10px] uppercase tracking-[0.3em] text-cyan-200/60 sm:text-xs sm:tracking-[0.45em]">AI Engineer Lab</div>
         <h2 className="mt-1 text-lg font-semibold text-white sm:mt-2 sm:text-xl">Gannoju Sampath Chary</h2>
       </div>
-      <nav className="flex flex-wrap gap-2">
+      <nav className="flex flex-wrap gap-2 sm:gap-2.5">
         {appRoutes.map((route) => {
           const active = pathname === route.href;
           return (
@@ -27,7 +27,7 @@ export function Navigation({ mode, onModeChange }: NavigationProps) {
               key={route.href}
               href={route.href}
               className={cn(
-                "rounded-full border px-3 py-2 text-xs transition sm:px-4 sm:text-sm",
+                "flex-1 rounded-full border px-3 py-2 text-center text-xs transition sm:flex-none sm:px-4 sm:text-sm",
                 active
                   ? "border-cyan-300/30 bg-cyan-300/15 text-cyan-50"
                   : "border-white/10 bg-white/5 text-slate-200 hover:bg-white/10"
@@ -38,7 +38,7 @@ export function Navigation({ mode, onModeChange }: NavigationProps) {
           );
         })}
       </nav>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap">
         <button
           type="button"
           onClick={() => onModeChange("explore")}

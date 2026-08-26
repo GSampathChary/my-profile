@@ -16,9 +16,9 @@ export function ProjectRoom() {
   return (
     <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
       <div className="space-y-4">
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-xl">
+        <div className="rounded-[22px] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur-xl sm:rounded-3xl sm:p-6">
           <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">Project Lab</div>
-          <h1 className="mt-3 text-3xl font-semibold text-white">Personal AI Projects</h1>
+          <h1 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">Personal AI Projects</h1>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
             These concepts show the product-thinking side of the portfolio. Each one is structured with the same
             discipline used in production work.
@@ -33,19 +33,19 @@ export function ProjectRoom() {
                 href={getProjectPublicHref(project)}
                 target={getProjectPublicHref(project).startsWith("http") ? "_blank" : undefined}
                 rel={getProjectPublicHref(project).startsWith("http") ? "noreferrer" : undefined}
-                className="rounded-3xl border border-white/10 bg-slate-950/70 p-5 text-left transition hover:bg-slate-900/80"
+                className="rounded-[22px] border border-white/10 bg-slate-950/70 p-4 text-left transition hover:bg-slate-900/80 sm:rounded-3xl sm:p-5"
               >
                 {project.screenshots?.length ? (
                   <figure className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/80">
                     <img
                       src={normalizeScreenshot(project.screenshots[0], `${project.name} preview`).src}
                       alt={normalizeScreenshot(project.screenshots[0], `${project.name} preview`).alt}
-                      className="h-36 w-full object-cover"
+                      className="h-32 w-full object-cover sm:h-36"
                       loading="lazy"
                     />
                   </figure>
                 ) : null}
-                <div className="text-lg font-semibold text-white">{project.name}</div>
+                <div className="text-base font-semibold text-white sm:text-lg">{project.name}</div>
                 <p className="mt-2 text-sm text-cyan-100/70">{project.tagline}</p>
                 <p className="mt-4 text-sm leading-6 text-slate-300">{project.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
@@ -88,18 +88,18 @@ export function ProjectRoom() {
             <div className="mt-4">
               <a
                 href={getProjectExperienceHref(portfolio.projects.find((project) => project.id === "raise") ?? portfolio.projects[0])}
-                className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200 sm:w-auto"
               >
                 Open RAISE App
               </a>
             </div>
           </div>
-          <div className="mt-4 flex flex-wrap gap-3 text-sm">
+          <div className="mt-4 flex flex-col gap-3 text-sm sm:flex-row sm:flex-wrap">
             <a
               href={socialLinks.linkedIn}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-100"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-center text-slate-100"
             >
               LinkedIn
             </a>
@@ -107,7 +107,7 @@ export function ProjectRoom() {
               href={socialLinks.github}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-slate-100"
+              className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-center text-slate-100"
             >
               GitHub
             </a>
