@@ -10,7 +10,7 @@ export function getProjectPublicLabel(project: Project) {
   }
 
   if (project.links.live) {
-    return "Live Project";
+    return "Live Demo";
   }
 
   return "Project";
@@ -26,7 +26,7 @@ export function getProjectExperienceLabel(project: Project) {
   }
 
   if (project.links.live) {
-    return "Open Website";
+    return "Open Live Demo";
   }
 
   return "Open App View";

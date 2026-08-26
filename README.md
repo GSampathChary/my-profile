@@ -82,21 +82,17 @@ Technologies: Python, FastAPI, scikit-learn, machine learning
 
 ## Tech Stack
 
-- Python
-- Dart
-- Java
-- JavaScript
-- SQL
-- Flutter
-- React
-- Next.js
-- Spring Boot
-- FastAPI
-- TensorFlow
-- PyTorch
-- PostgreSQL
-- Docker
-- Git
+- Languages: Python, TypeScript, JavaScript, Dart, Java, SQL
+- Frontend: Next.js, React, Flutter, Tailwind CSS, HTML5, CSS3
+- Backend: FastAPI, Spring Boot, REST APIs, Microservices
+- AI / ML: TensorFlow, TensorFlow Lite, Keras, PyTorch, Scikit-learn, OpenCV, LangChain, LangGraph, Gemini, OpenAI, ONNX Runtime, Computer Vision
+- Data: PostgreSQL, SQLite, MySQL, Firebase
+- Tools: Docker, Git, GitHub, Postman, Google Colab, Google Play Console, Docker Compose
+
+## Technology Browser
+
+- The in-app Technologies button now opens an official stack browser with brand logos where available and direct links to the official technology pages.
+- VistaraAI is surfaced as the featured top project in the portfolio and includes both live demo and backend links.
 
 ## Project Structure
 

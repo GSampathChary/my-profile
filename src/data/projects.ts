@@ -3,6 +3,42 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "vistara-ai",
+    name: "VistaraAI",
+    category: "personal",
+    uiPath: "/projects/vistara-ai",
+    tagline: "AI-powered PVC interior design assistant",
+    description:
+      "A production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors, combining conversational guidance, knowledge retrieval, room analysis, and lead capture workflows.",
+    problem:
+      "PVC interior customers need guided recommendations, transparent pricing support, and a reliable assistant that can handle product questions and qualification workflows.",
+    solution:
+      "A Next.js and FastAPI application that blends a grounded knowledge base, AI assistant flows, computer vision insights, geo-targeted SEO, and deployment-ready infrastructure for sales and support teams.",
+    technologies: ["Next.js", "TypeScript", "React", "FastAPI", "Python", "LangChain", "LangGraph", "OpenAI", "Gemini", "PostgreSQL", "Docker"],
+    features: ["PVC product guidance", "RAG knowledge base", "Lead capture workflows", "Computer vision room analysis", "Geo-targeted SEO", "Dockerized deployment"],
+    screenshots: [
+      {
+        src: "/project-screenshots/vistara-ai/bedroom-1.jfif",
+        label: "Bedroom design"
+      },
+      {
+        src: "/project-screenshots/vistara-ai/kitchen-1.jfif",
+        label: "Kitchen design"
+      },
+      {
+        src: "/project-screenshots/vistara-ai/tv-1.jfif",
+        label: "TV unit design"
+      }
+    ],
+    links: {
+      ...placeholderLinks,
+      live: "https://vistara-ai-pvc-interior-studio-xi.vercel.app/",
+      backend: "https://vistaraai-pvc-interior-studio.onrender.com",
+      architecture: null,
+      caseStudy: null
+    }
+  },
+  {
     id: "raise",
     name: "RAISE",
     category: "professional",
@@ -53,42 +89,6 @@ export const projects: Project[] = [
     links: {
       ...placeholderLinks,
       playStore: "https://play.google.com/store/apps/details?id=com.iirr.smart_paddy",
-      caseStudy: null
-    }
-  },
-  {
-    id: "vistara-ai",
-    name: "VistaraAI",
-    category: "personal",
-    uiPath: "/projects/vistara-ai",
-    tagline: "AI-powered PVC interior design assistant",
-    description:
-      "A production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors, combining conversational guidance, knowledge retrieval, room analysis, and lead capture workflows.",
-    problem:
-      "PVC interior customers need guided recommendations, transparent pricing support, and a reliable assistant that can handle product questions and qualification workflows.",
-    solution:
-      "A Next.js and FastAPI application that blends a grounded knowledge base, AI assistant flows, computer vision insights, geo-targeted SEO, and deployment-ready infrastructure for sales and support teams.",
-    technologies: ["Next.js", "TypeScript", "React", "FastAPI", "Python", "LangChain", "LangGraph", "OpenAI", "Gemini", "PostgreSQL", "Docker"],
-    features: ["PVC product guidance", "RAG knowledge base", "Lead capture workflows", "Computer vision room analysis", "Geo-targeted SEO", "Dockerized deployment"],
-    screenshots: [
-      {
-        src: "/project-screenshots/vistara-ai/bedroom-1.jfif",
-        label: "Bedroom design"
-      },
-      {
-        src: "/project-screenshots/vistara-ai/kitchen-1.jfif",
-        label: "Kitchen design"
-      },
-      {
-        src: "/project-screenshots/vistara-ai/tv-1.jfif",
-        label: "TV unit design"
-      }
-    ],
-    links: {
-      ...placeholderLinks,
-      live: "https://vistara-ai-pvc-interior-studio-xi.vercel.app/",
-      backend: "https://vistaraai-pvc-interior-studio.onrender.com",
-      architecture: null,
       caseStudy: null
     }
   },

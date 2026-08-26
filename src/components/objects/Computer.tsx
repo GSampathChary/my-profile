@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
@@ -14,18 +14,22 @@ type ComputerProps = {
 export function Computer({
   onClick,
   powered = true,
+  active = false,
   position = [-0.2, 1.28, 0.05]
 }: ComputerProps) {
+  const { gl } = useThree();
   const screenMatRef = useRef<MeshStandardMaterial>(null);
   const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const screenTextureRef = useRef<CanvasTexture | null>(null);
   const [screenTexture, setScreenTexture] = useState<CanvasTexture | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const fanRefs = useRef<Array<MeshStandardMaterial | null>>([]);
+  const screenFocused = active || isHovered;
 
   useEffect(() => {
     const canvas = document.createElement("canvas");
-    canvas.width = 1200;
-    canvas.height = 720;
+    canvas.width = 1600;
+    canvas.height = 960;
     screenCanvasRef.current = canvas;
 
     const texture = new CanvasTexture(canvas);
@@ -33,6 +37,7 @@ export function Computer({
     texture.minFilter = LinearFilter;
     texture.magFilter = LinearFilter;
     texture.generateMipmaps = false;
+    texture.anisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
     screenTextureRef.current = texture;
     setScreenTexture(texture);
 
@@ -66,19 +71,6 @@ export function Computer({
     ctx.fillStyle = glow;
     ctx.fillRect(0, 0, width, height);
 
-    // Fast action streaks
-    for (let i = 0; i < 18; i += 1) {
-      const y = 120 + i * 28 + Math.sin(t * 3.6 + i * 0.45) * 16;
-      const len = 240 + Math.max(Math.sin(t * 2 + i) * 120, 0);
-      const alpha = 0.04 + Math.max(Math.sin(t * 4.5 + i * 0.3), 0) * 0.18;
-      ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(60 + i * 8, y);
-      ctx.lineTo(60 + i * 8 + len, y - 120);
-      ctx.stroke();
-    }
-
     const frameX = 62;
     const frameY = 58;
     const frameW = 1076;
@@ -93,104 +85,192 @@ export function Computer({
     ctx.lineWidth = 2;
     ctx.strokeRect(frameX, frameY, frameW, frameH);
 
-    // Hero action scene
-    const sceneX = frameX + 48;
-    const sceneY = frameY + 40;
-    const sceneW = 980;
-    const sceneH = 390;
-    const scene = ctx.createLinearGradient(sceneX, sceneY, sceneX + sceneW, sceneY + sceneH);
-    scene.addColorStop(0, "#0b1021");
-    scene.addColorStop(0.45, "#1d4ed8");
-    scene.addColorStop(1, "#f59e0b");
-    ctx.fillStyle = scene;
-    ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
+    if (screenFocused) {
+      const panelX = frameX + 32;
+      const panelY = frameY + 30;
+      const panelW = frameW - 64;
+      const panelH = frameH - 60;
 
-    const explosion = ctx.createRadialGradient(sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 18, sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 260);
-    explosion.addColorStop(0, "rgba(255,255,255,0.96)");
-    explosion.addColorStop(0.2, "rgba(252, 211, 77, 0.94)");
-    explosion.addColorStop(0.42, "rgba(251, 146, 60, 0.72)");
-    explosion.addColorStop(1, "rgba(251, 146, 60, 0)");
-    ctx.fillStyle = explosion;
-    ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
+      const panel = ctx.createLinearGradient(panelX, panelY, panelX + panelW, panelY + panelH);
+      panel.addColorStop(0, "rgba(3, 7, 18, 0.95)");
+      panel.addColorStop(0.5, "rgba(15, 23, 42, 0.96)");
+      panel.addColorStop(1, "rgba(4, 11, 30, 0.94)");
+      ctx.fillStyle = panel;
+      ctx.fillRect(panelX, panelY, panelW, panelH);
+      ctx.strokeStyle = "rgba(125, 211, 252, 0.24)";
+      ctx.lineWidth = 2;
+      ctx.strokeRect(panelX, panelY, panelW, panelH);
 
-    // Speedline trail
-    ctx.strokeStyle = "rgba(255,255,255,0.55)";
-    ctx.lineWidth = 6;
-    ctx.beginPath();
-    ctx.moveTo(sceneX + 40, sceneY + sceneH - 40);
-    ctx.lineTo(sceneX + 210, sceneY + 250);
-    ctx.lineTo(sceneX + 410, sceneY + 190);
-    ctx.stroke();
+      const accent = ctx.createLinearGradient(panelX, panelY, panelX + 360, panelY);
+      accent.addColorStop(0, "#22d3ee");
+      accent.addColorStop(0.5, "#38bdf8");
+      accent.addColorStop(1, "#fbbf24");
+      ctx.fillStyle = accent;
+      ctx.fillRect(panelX, panelY, 360, 8);
 
-    // Hero vehicle silhouette
-    ctx.fillStyle = "rgba(15, 23, 42, 0.92)";
-    ctx.beginPath();
-    ctx.moveTo(sceneX + 120, sceneY + sceneH - 70);
-    ctx.lineTo(sceneX + 210, sceneY + sceneH - 120);
-    ctx.lineTo(sceneX + 340, sceneY + sceneH - 118);
-    ctx.lineTo(sceneX + 420, sceneY + sceneH - 72);
-    ctx.lineTo(sceneX + 350, sceneY + sceneH - 38);
-    ctx.lineTo(sceneX + 150, sceneY + sceneH - 40);
-    ctx.closePath();
-    ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.08)";
+      ctx.fillRect(panelX + 34, panelY + 34, 300, 110);
+      ctx.fillRect(panelX + 34, panelY + 158, 300, 110);
 
-    ctx.fillStyle = "rgba(255,255,255,0.82)";
-    ctx.fillRect(sceneX + 230, sceneY + sceneH - 106, 18, 10);
-    ctx.fillRect(sceneX + 275, sceneY + sceneH - 106, 18, 10);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "700 28px sans-serif";
+      ctx.fillText("VISTARA AI", panelX + 52, panelY + 74);
+      ctx.font = "600 16px sans-serif";
+      ctx.fillStyle = "rgba(186, 230, 253, 0.95)";
+      ctx.fillText("PVC interior design assistant", panelX + 52, panelY + 104);
+      ctx.fillStyle = "rgba(224, 242, 254, 0.92)";
+      ctx.font = "500 14px sans-serif";
+      ctx.fillText("Hover and click stay crisp while the monitor is active.", panelX + 52, panelY + 130);
 
-    // Action hero / villain silhouettes
-    ctx.fillStyle = "rgba(2, 6, 23, 0.95)";
-    ctx.beginPath();
-    ctx.arc(sceneX + sceneW * 0.72, sceneY + sceneH * 0.48, 34, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillRect(sceneX + sceneW * 0.71, sceneY + sceneH * 0.48, 20, 78);
-    ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
-    ctx.fillRect(sceneX + sceneW * 0.14, sceneY + sceneH * 0.45, 28, 120);
+      ctx.fillStyle = "rgba(255,255,255,0.07)";
+      ctx.fillRect(panelX + 374, panelY + 34, panelW - 408, 234);
+      ctx.strokeStyle = "rgba(255,255,255,0.1)";
+      ctx.strokeRect(panelX + 374, panelY + 34, panelW - 408, 234);
 
-    // HUD overlays
-    ctx.fillStyle = "rgba(2, 6, 23, 0.64)";
-    ctx.fillRect(frameX + 22, frameY + 20, 230, 74);
-    ctx.fillStyle = "rgba(248, 250, 252, 0.96)";
-    ctx.font = "bold 24px sans-serif";
-    ctx.fillText("ACTION REEL", frameX + 40, frameY + 50);
-    ctx.font = "600 14px sans-serif";
-    ctx.fillStyle = "rgba(191, 219, 254, 0.95)";
-    ctx.fillText("Ultra bright cinematic playback", frameX + 40, frameY + 74);
+      ctx.fillStyle = "rgba(255,255,255,0.92)";
+      ctx.font = "700 18px sans-serif";
+      ctx.fillText("Live Demo", panelX + 398, panelY + 74);
+      ctx.font = "500 13px sans-serif";
+      ctx.fillStyle = "rgba(203, 213, 225, 0.95)";
+      ctx.fillText("Frontend", panelX + 398, panelY + 110);
+      ctx.fillStyle = "#38bdf8";
+      ctx.fillText("https://vistara-ai-pvc-interior-studio-xi.vercel.app/", panelX + 398, panelY + 134);
 
-    ctx.fillStyle = "rgba(255,255,255,0.22)";
-    ctx.fillRect(frameX + 862, frameY + 20, 190, 74);
-    ctx.fillStyle = "#ffffff";
-    ctx.beginPath();
-    ctx.arc(frameX + 900, frameY + 57, 16, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "#0f172a";
-    ctx.beginPath();
-    ctx.moveTo(frameX + 895, frameY + 49);
-    ctx.lineTo(frameX + 895, frameY + 65);
-    ctx.lineTo(frameX + 909, frameY + 57);
-    ctx.closePath();
-    ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.92)";
+      ctx.font = "700 18px sans-serif";
+      ctx.fillText("Backend API", panelX + 398, panelY + 176);
+      ctx.font = "500 13px sans-serif";
+      ctx.fillStyle = "rgba(203, 213, 225, 0.95)";
+      ctx.fillText("Render", panelX + 398, panelY + 212);
+      ctx.fillStyle = "#34d399";
+      ctx.fillText("https://vistaraai-pvc-interior-studio.onrender.com", panelX + 398, panelY + 236);
 
-    // Bottom action timeline
-    ctx.fillStyle = "rgba(2, 6, 23, 0.94)";
-    ctx.fillRect(frameX, frameY + frameH - 84, frameW, 84);
-    ctx.fillStyle = "rgba(255,255,255,0.08)";
-    ctx.fillRect(frameX + 54, frameY + frameH - 56, frameW - 108, 10);
-    const sweep = (Math.sin(t * 2.8) + 1) * 0.5;
-    ctx.fillStyle = "rgba(248, 250, 252, 0.9)";
-    ctx.fillRect(frameX + 54, frameY + frameH - 56, (frameW - 108) * sweep, 10);
-    for (let i = 0; i < 6; i += 1) {
-      ctx.fillStyle = i % 2 === 0 ? "rgba(251, 191, 36, 0.88)" : "rgba(59, 130, 246, 0.88)";
-      ctx.fillRect(frameX + 66 + i * 170, frameY + frameH - 42, 58, 18);
+      ctx.fillStyle = "rgba(255,255,255,0.08)";
+      ctx.fillRect(panelX + 34, panelY + 292, panelW - 68, 148);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "700 20px sans-serif";
+      ctx.fillText("Featured project", panelX + 54, panelY + 328);
+      ctx.font = "500 14px sans-serif";
+      ctx.fillStyle = "rgba(191, 219, 254, 0.92)";
+      ctx.fillText("Open VistaraAI first, then switch to the other projects from the portfolio.", panelX + 54, panelY + 356);
+      ctx.fillStyle = "rgba(56, 189, 248, 0.18)";
+      ctx.fillRect(panelX + 54, panelY + 382, 220, 42);
+      ctx.fillStyle = "#e0f2fe";
+      ctx.font = "600 13px sans-serif";
+      ctx.fillText("Sharp monitor view enabled", panelX + 70, panelY + 409);
+    } else {
+      // Fast action streaks
+      for (let i = 0; i < 18; i += 1) {
+        const y = 120 + i * 28 + Math.sin(t * 3.6 + i * 0.45) * 16;
+        const len = 240 + Math.max(Math.sin(t * 2 + i) * 120, 0);
+        const alpha = 0.04 + Math.max(Math.sin(t * 4.5 + i * 0.3), 0) * 0.18;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(60 + i * 8, y);
+        ctx.lineTo(60 + i * 8 + len, y - 120);
+        ctx.stroke();
+      }
+
+      // Hero action scene
+      const sceneX = frameX + 48;
+      const sceneY = frameY + 40;
+      const sceneW = 980;
+      const sceneH = 390;
+      const scene = ctx.createLinearGradient(sceneX, sceneY, sceneX + sceneW, sceneY + sceneH);
+      scene.addColorStop(0, "#0b1021");
+      scene.addColorStop(0.45, "#1d4ed8");
+      scene.addColorStop(1, "#f59e0b");
+      ctx.fillStyle = scene;
+      ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
+
+      const explosion = ctx.createRadialGradient(sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 18, sceneX + sceneW * 0.58, sceneY + sceneH * 0.38, 260);
+      explosion.addColorStop(0, "rgba(255,255,255,0.96)");
+      explosion.addColorStop(0.2, "rgba(252, 211, 77, 0.94)");
+      explosion.addColorStop(0.42, "rgba(251, 146, 60, 0.72)");
+      explosion.addColorStop(1, "rgba(251, 146, 60, 0)");
+      ctx.fillStyle = explosion;
+      ctx.fillRect(sceneX, sceneY, sceneW, sceneH);
+
+      // Speedline trail
+      ctx.strokeStyle = "rgba(255,255,255,0.55)";
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      ctx.moveTo(sceneX + 40, sceneY + sceneH - 40);
+      ctx.lineTo(sceneX + 210, sceneY + 250);
+      ctx.lineTo(sceneX + 410, sceneY + 190);
+      ctx.stroke();
+
+      // Hero vehicle silhouette
+      ctx.fillStyle = "rgba(15, 23, 42, 0.92)";
+      ctx.beginPath();
+      ctx.moveTo(sceneX + 120, sceneY + sceneH - 70);
+      ctx.lineTo(sceneX + 210, sceneY + sceneH - 120);
+      ctx.lineTo(sceneX + 340, sceneY + sceneH - 118);
+      ctx.lineTo(sceneX + 420, sceneY + sceneH - 72);
+      ctx.lineTo(sceneX + 350, sceneY + sceneH - 38);
+      ctx.lineTo(sceneX + 150, sceneY + sceneH - 40);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.fillStyle = "rgba(255,255,255,0.82)";
+      ctx.fillRect(sceneX + 230, sceneY + sceneH - 106, 18, 10);
+      ctx.fillRect(sceneX + 275, sceneY + sceneH - 106, 18, 10);
+
+      // Action hero / villain silhouettes
+      ctx.fillStyle = "rgba(2, 6, 23, 0.95)";
+      ctx.beginPath();
+      ctx.arc(sceneX + sceneW * 0.72, sceneY + sceneH * 0.48, 34, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillRect(sceneX + sceneW * 0.71, sceneY + sceneH * 0.48, 20, 78);
+      ctx.fillStyle = "rgba(15, 23, 42, 0.9)";
+      ctx.fillRect(sceneX + sceneW * 0.14, sceneY + sceneH * 0.45, 28, 120);
+
+      // HUD overlays
+      ctx.fillStyle = "rgba(2, 6, 23, 0.64)";
+      ctx.fillRect(frameX + 22, frameY + 20, 230, 74);
+      ctx.fillStyle = "rgba(248, 250, 252, 0.96)";
+      ctx.font = "bold 24px sans-serif";
+      ctx.fillText("ACTION REEL", frameX + 40, frameY + 50);
+      ctx.font = "600 14px sans-serif";
+      ctx.fillStyle = "rgba(191, 219, 254, 0.95)";
+      ctx.fillText("Ultra bright cinematic playback", frameX + 40, frameY + 74);
+
+      ctx.fillStyle = "rgba(255,255,255,0.22)";
+      ctx.fillRect(frameX + 862, frameY + 20, 190, 74);
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(frameX + 900, frameY + 57, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#0f172a";
+      ctx.beginPath();
+      ctx.moveTo(frameX + 895, frameY + 49);
+      ctx.lineTo(frameX + 895, frameY + 65);
+      ctx.lineTo(frameX + 909, frameY + 57);
+      ctx.closePath();
+      ctx.fill();
+
+      // Bottom action timeline
+      ctx.fillStyle = "rgba(2, 6, 23, 0.94)";
+      ctx.fillRect(frameX, frameY + frameH - 84, frameW, 84);
+      ctx.fillStyle = "rgba(255,255,255,0.08)";
+      ctx.fillRect(frameX + 54, frameY + frameH - 56, frameW - 108, 10);
+      const sweep = (Math.sin(t * 2.8) + 1) * 0.5;
+      ctx.fillStyle = "rgba(248, 250, 252, 0.9)";
+      ctx.fillRect(frameX + 54, frameY + frameH - 56, (frameW - 108) * sweep, 10);
+      for (let i = 0; i < 6; i += 1) {
+        ctx.fillStyle = i % 2 === 0 ? "rgba(251, 191, 36, 0.88)" : "rgba(59, 130, 246, 0.88)";
+        ctx.fillRect(frameX + 66 + i * 170, frameY + frameH - 42, 58, 18);
+      }
+
+      // Bright pulse near the action center
+      const pulse = ctx.createRadialGradient(sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 6, sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 120);
+      pulse.addColorStop(0, "rgba(255,255,255,0.9)");
+      pulse.addColorStop(0.3, "rgba(255,255,255,0.42)");
+      pulse.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = pulse;
+      ctx.fillRect(sceneX + sceneW * 0.48, sceneY + sceneH * 0.3, 180, 180);
     }
-
-    // Bright pulse near the action center
-    const pulse = ctx.createRadialGradient(sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 6, sceneX + sceneW * 0.56, sceneY + sceneH * 0.44, 120);
-    pulse.addColorStop(0, "rgba(255,255,255,0.9)");
-    pulse.addColorStop(0.3, "rgba(255,255,255,0.42)");
-    pulse.addColorStop(1, "rgba(255,255,255,0)");
-    ctx.fillStyle = pulse;
-    ctx.fillRect(sceneX + sceneW * 0.48, sceneY + sceneH * 0.3, 180, 180);
 
     if (!roomPowered) {
       ctx.fillStyle = "rgba(8, 15, 35, 0.08)";
@@ -213,7 +293,7 @@ export function Computer({
     }
 
     if (screenMatRef.current) {
-      const intensity = powered ? 1.15 + Math.sin(t * 2.8) * 0.16 : 0.18;
+      const intensity = powered ? (screenFocused ? 1.42 : 1.15 + Math.sin(t * 2.8) * 0.16) : 0.18;
       screenMatRef.current.emissiveIntensity = intensity;
     }
 
@@ -228,7 +308,21 @@ export function Computer({
   });
 
   return (
-    <group position={position} onClick={onClick}>
+    <group
+      position={position}
+      onClick={onClick}
+      onPointerOver={(event) => {
+        event.stopPropagation();
+        setIsHovered(true);
+      }}
+      onPointerOut={(event) => {
+        event.stopPropagation();
+        setIsHovered(false);
+      }}
+      onPointerDown={(event) => {
+        event.stopPropagation();
+      }}
+    >
       {/* Monitor frame */}
       <mesh castShadow receiveShadow position={[0, 0.5, 0]}>
         <boxGeometry args={[1.92, 1.05, 0.12]} />

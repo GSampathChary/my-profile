@@ -58,8 +58,8 @@ const MOBILE_CAMERA_PRESETS: Record<SceneFocus, { position: [number, number, num
     target: [-0.1, 1.16, -3.25]
   },
   projects: {
-    position: [-0.2, 2.2, 0.3],
-    target: [4.15, 2.0, 0.0]
+    position: [-0.2, 2.28, -0.4],
+    target: [4.42, 2.28, -0.4]
   },
   phone: {
     position: [0.5, 2.15, 2.1],

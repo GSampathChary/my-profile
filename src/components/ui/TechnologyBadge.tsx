@@ -17,12 +17,18 @@ export function TechnologyBadge({ technology, className, size = "md", iconOnly =
     <>
       <span
         className={cn(
-          "inline-flex items-center justify-center rounded-full border font-mono font-bold uppercase tracking-[0.16em]",
-          size === "sm" ? "h-6 w-6 text-[9px]" : "h-7 w-7 text-[10px]"
+          "inline-flex items-center justify-center overflow-hidden rounded-full border shadow-sm",
+          size === "sm" ? "h-6 w-6" : "h-7 w-7"
         )}
-        style={{ backgroundColor: meta.accent.bg, color: meta.accent.fg, borderColor: meta.accent.border }}
+        style={{ backgroundColor: meta.accent.bg, borderColor: meta.accent.border }}
       >
-        {meta.initials}
+        {meta.logo ? (
+          <img src={meta.logo} alt="" aria-hidden="true" className="h-[72%] w-[72%] object-contain" loading="lazy" />
+        ) : (
+          <span className={cn("font-mono font-bold uppercase tracking-[0.16em]", size === "sm" ? "text-[9px]" : "text-[10px]")} style={{ color: meta.accent.fg }}>
+            {meta.initials}
+          </span>
+        )}
       </span>
       {!iconOnly ? <span className={cn(size === "sm" ? "text-[11px]" : "text-xs", "font-medium")}>{meta.label}</span> : null}
     </>

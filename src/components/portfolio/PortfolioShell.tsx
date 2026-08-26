@@ -376,44 +376,123 @@ function ProjectsOverlay({
   );
 }
 
-function TechnologiesOverlay({ onClose, onBookSelect, mobile }: { onClose: () => void; onBookSelect: (book: BookId) => void; mobile: boolean }) {
+function TechnologiesOverlay({
+  onClose,
+  onBookSelect,
+  selectedBook,
+  totalTech,
+  mobile
+}: {
+  onClose: () => void;
+  onBookSelect: (book: BookId) => void;
+  selectedBook: { title: string; points: string[]; projects: string[] } | null;
+  totalTech: number;
+  mobile: boolean;
+}) {
   const books: BookId[] = ["python", "fastapi", "tensorflow", "flutter", "springboot", "postgres"];
+  const sections = [
+    { key: "languages", title: "Languages", description: "Core programming and query languages." },
+    { key: "aiMl", title: "AI / ML", description: "Modeling, inference, and agent tooling." },
+    { key: "backend", title: "Backend", description: "API services and production deployment." },
+    { key: "frontend", title: "Frontend", description: "Client-side web and UI technologies." },
+    { key: "database", title: "Databases", description: "Storage engines and persistence layers." },
+    { key: "tools", title: "Tools", description: "Developer workflows and shipping tools." }
+  ] as const;
+
   return (
-    <FullscreenFrame title="Known Technologies" eyebrow="Bookshelf zoom" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
+    <FullscreenFrame title="Known Technologies" eyebrow="Official stack browser" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
       <div className={`grid h-full gap-4 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
-        <div className="rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-          <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Select a book</div>
-          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
+          <div>
+            <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Focus tracks</div>
+            <p className="mt-2 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
+              These study tracks mirror the bookshelf in the room and spotlight the stack behind your featured projects.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {books.map((book) => (
               <button
                 key={book}
                 type="button"
                 onClick={() => onBookSelect(book)}
-                className="rounded-2xl border border-white/10 bg-slate-950/75 px-4 py-4 text-left text-sm text-slate-100 transition hover:bg-white/10 sm:py-5"
+                className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 text-left text-sm text-slate-100 transition hover:bg-white/10"
               >
-                {bookInfo[book].title}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
-          <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Brief view</div>
-          <p className="text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
-            This shelf is focused on the stack you actually want to show for an AI Engineer / Python role. Pick a book to highlight a skill area and related projects.
-          </p>
-          <div className="grid gap-3">
-            {books.map((book) => (
-              <div key={book} className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 sm:p-4">
-                <div className="text-sm font-medium text-white">{bookInfo[book].title}</div>
+                <div className="text-base font-semibold">{bookInfo[book].title}</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {bookInfo[book].points.slice(0, 3).map((point) => (
-                    <span key={point} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200">
+                    <span key={point} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-200">
                       {point}
                     </span>
                   ))}
                 </div>
-              </div>
+              </button>
             ))}
+          </div>
+
+          {selectedBook ? (
+            <div className="rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 p-4">
+              <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/70">Selected track</div>
+              <div className="mt-2 text-lg font-semibold text-white">{selectedBook.title}</div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {selectedBook.points.map((point) => (
+                  <span key={point} className="rounded-full border border-cyan-200/20 bg-white/5 px-3 py-1 text-[11px] text-cyan-50">
+                    {point}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-4 text-xs uppercase tracking-[0.32em] text-cyan-100/60">Projects</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {selectedBook.projects.map((project) => (
+                  <span key={project} className="rounded-full border border-white/10 bg-slate-950/35 px-3 py-1 text-[11px] text-slate-100">
+                    {project}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        <div className="space-y-4 rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Official links</div>
+              <p className="mt-2 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
+                Every named technology opens its official home page and uses a branded logo where one is available.
+              </p>
+            </div>
+            <div className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-xs text-slate-200">
+              {totalTech} technologies
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {sections.map((section) => {
+              const values = portfolio.skills[section.key as keyof typeof portfolio.skills] as string[];
+              return (
+                <section key={section.key} className="rounded-[24px] border border-white/10 bg-slate-950/60 p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-sm font-semibold text-white">{section.title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-slate-400">{section.description}</p>
+                    </div>
+                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300">
+                      {values.length}
+                    </span>
+                  </div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {values.map((technology) => (
+                      <TechnologyBadge
+                        key={technology}
+                        technology={technology}
+                        size="sm"
+                        className="border-white/10 bg-white/[0.04] text-slate-100 hover:border-cyan-300/30 hover:bg-cyan-300/10"
+                      />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -802,6 +881,8 @@ export function PortfolioShell() {
             <TechnologiesOverlay
               onClose={closeView}
               onBookSelect={(book) => setSelectedBookId(book)}
+              selectedBook={selectedBook}
+              totalTech={totalTech}
               mobile={isMobile}
             />
           </div>

@@ -1,0 +1,185 @@
+{
+  "visits": [
+    {
+      "id": "visit_1787220431917_691qv",
+      "timestamp": "2026-08-20T10:07:11.917Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1787220431101_tu1ct",
+      "timestamp": "2026-08-20T10:07:11.101Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1787220415839_g24my",
+      "timestamp": "2026-08-20T10:06:55.839Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1787220414160_szgfm",
+      "timestamp": "2026-08-20T10:06:54.160Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786948676452_rwif6",
+      "timestamp": "2026-08-17T06:37:56.452Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786948676257_usdh4",
+      "timestamp": "2026-08-17T06:37:56.257Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786945002109_cmgrj",
+      "timestamp": "2026-08-17T05:36:42.109Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786945001900_gt4m5",
+      "timestamp": "2026-08-17T05:36:41.900Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786940125080_3a0cs",
+      "timestamp": "2026-08-17T04:15:25.094Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786940124510_gr9d7",
+      "timestamp": "2026-08-17T04:15:24.510Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786940112339_3tmqo",
+      "timestamp": "2026-08-17T04:15:12.339Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786940108861_l8p5e",
+      "timestamp": "2026-08-17T04:15:08.880Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874133114_14svr",
+      "timestamp": "2026-08-16T09:55:33.114Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874133082_jkegu",
+      "timestamp": "2026-08-16T09:55:33.082Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874072932_kzfza",
+      "timestamp": "2026-08-16T09:54:32.932Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874067787_rvqm7",
+      "timestamp": "2026-08-16T09:54:27.787Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874065966_f7lhg",
+      "timestamp": "2026-08-16T09:54:25.966Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    },
+    {
+      "id": "visit_1786874065921_oka37",
+      "timestamp": "2026-08-16T09:54:25.921Z",
+      "path": "/",
+      "referrer": "http://localhost:3000/",
+      "referrerCategory": "localhost",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 Edg/151.0.0.0",
+      "deviceType": "Desktop",
+      "ipHash": "::1"
+    }
+  ],
+  "totalVisitsCount": 18
+}

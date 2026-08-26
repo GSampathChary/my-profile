@@ -48,17 +48,6 @@ experience = {
 
 projects = [
     {
-        "name": "RAISE",
-        "tagline": "Rice AI Stress Evaluator",
-        "ui": "/projects/raise",
-        "live": "https://play.google.com/store/apps/details?id=com.iirr.smart_paddy",
-        "stack": "Flutter | TensorFlow | Spring Boot | Python | PostgreSQL | TFLite | ONNX Runtime",
-        "description": (
-            "Production AI platform for identifying biotic and abiotic rice crop stresses using image-based diagnosis. "
-            "Includes mobile AI inference, scientist/admin portal, expert validation, role-based access, prediction history, multilingual UI, and offline inference."
-        ),
-    },
-    {
         "name": "VistaraAI",
         "tagline": "AI-powered PVC interior design assistant",
         "ui": "/projects/vistara-ai",
@@ -68,6 +57,17 @@ projects = [
         "description": (
             "Production-ready full-stack AI platform for PVC kitchen cupboards, wardrobes, TV units, and custom interiors. "
             "Combines grounded knowledge retrieval, assistant workflows, computer vision insights, geo-targeted SEO, and lead capture support."
+        ),
+    },
+    {
+        "name": "RAISE",
+        "tagline": "Rice AI Stress Evaluator",
+        "ui": "/projects/raise",
+        "live": "https://play.google.com/store/apps/details?id=com.iirr.smart_paddy",
+        "stack": "Flutter | TensorFlow | Spring Boot | Python | PostgreSQL | TFLite | ONNX Runtime",
+        "description": (
+            "Production AI platform for identifying biotic and abiotic rice crop stresses using image-based diagnosis. "
+            "Includes mobile AI inference, scientist/admin portal, expert validation, role-based access, prediction history, multilingual UI, and offline inference."
         ),
     },
     {
