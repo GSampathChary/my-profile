@@ -18,7 +18,7 @@ Interactive 3D portfolio for Gannoju Sampath Chary, built to present an AI engin
 - An AI engineer identity with a strong applied machine learning story
 - Professional work on RAISE, the rice crop stress evaluation application
 - Professional work on VistaraAI, the PVC interior AI assistant and full-stack platform
-- Personal portfolio projects such as RiceGPT AI, ResumeAI Pro, Interview Copilot, DataInsight AI, and AutoML Studio
+- Personal portfolio projects such as BharatEye, RiceGPT AI, ResumeAI Pro, Interview Copilot, DataInsight AI, and AutoML Studio
 - A recruiter-friendly way to view experience, projects, and contact details
 - Structured content that can also power a GitHub profile README
 
@@ -39,6 +39,16 @@ Technologies: Next.js, TypeScript, React, FastAPI, Python, LangChain, LangGraph,
 Frontend: https://vistara-ai-pvc-interior-studio-xi.vercel.app/
 
 Backend: https://vistaraai-pvc-interior-studio.onrender.com
+
+### BharatEye
+
+India-focused GeoAI and Earth Observation platform built for satellite intelligence, disaster monitoring, AOI analysis, maritime surveillance, crop stress, and infrastructure risk visualization.
+
+Technologies: React, Vite, FastAPI, Deck.gl, Mapbox GL JS, Zustand, ECharts, WebSocket
+
+Frontend: https://bharat-eye.vercel.app/
+
+Backend: https://bharateye.onrender.com
 
 ### RiceGPT AI
 

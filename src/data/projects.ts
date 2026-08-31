@@ -39,6 +39,33 @@ export const projects: Project[] = [
     }
   },
   {
+    id: "bharateye",
+    name: "BharatEye",
+    category: "personal",
+    uiPath: "/projects/bharateye",
+    tagline: "India-focused GeoAI and Earth Observation platform",
+    description:
+      "An India-focused GeoAI and Earth Observation platform built with React, Vite, FastAPI, Deck.gl, Mapbox GL JS, Zustand, and ECharts. It visualizes simulated satellite intelligence, disaster monitoring, AOI analysis, maritime surveillance, crop stress, and infrastructure risk through interactive geospatial dashboards, live event feeds, and WebSocket-powered updates.",
+    problem:
+      "Decision-makers need a clear, real-time geospatial view of environmental and infrastructure risk, but raw satellite and event data is difficult to interpret quickly.",
+    solution:
+      "A full-stack GeoAI dashboard that combines interactive maps, analytical charts, live feed updates, and deployment-ready frontend and backend services for exploration and monitoring.",
+    technologies: ["React", "Vite", "FastAPI", "Deck.gl", "Mapbox GL JS", "Zustand", "ECharts", "WebSocket", "Render", "Vercel"],
+    features: [
+      "Interactive geospatial dashboards",
+      "Simulated satellite intelligence",
+      "Disaster and AOI analysis",
+      "Maritime surveillance views",
+      "Crop stress monitoring",
+      "Infrastructure risk tracking"
+    ],
+    links: {
+      ...placeholderLinks,
+      live: "https://bharat-eye.vercel.app/",
+      backend: "https://bharateye.onrender.com"
+    }
+  },
+  {
     id: "raise",
     name: "RAISE",
     category: "professional",

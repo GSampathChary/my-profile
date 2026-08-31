@@ -60,6 +60,18 @@ projects = [
         ),
     },
     {
+        "name": "BharatEye",
+        "tagline": "India-focused GeoAI and Earth Observation platform",
+        "ui": "/projects/bharateye",
+        "live": "https://bharat-eye.vercel.app/",
+        "backend": "https://bharateye.onrender.com",
+        "stack": "React | Vite | FastAPI | Deck.gl | Mapbox GL JS | Zustand | ECharts",
+        "description": (
+            "India-focused GeoAI and Earth Observation platform that visualizes simulated satellite intelligence, disaster monitoring, AOI analysis, "
+            "maritime surveillance, crop stress, and infrastructure risk through interactive geospatial dashboards and live WebSocket-powered updates."
+        ),
+    },
+    {
         "name": "RAISE",
         "tagline": "Rice AI Stress Evaluator",
         "ui": "/projects/raise",
