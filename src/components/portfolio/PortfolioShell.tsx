@@ -33,6 +33,7 @@ import {
 import { normalizeScreenshot } from "@/lib/projectScreenshots";
 import { socialLinks } from "@/lib/projectLinks";
 import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
+import { ResumeRoom } from "@/components/sections/ResumeRoom";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import type { SceneFocus } from "@/components/3d/Camera";
 import type { Project } from "@/types/project";
@@ -215,6 +216,7 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
 }
 
 function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void; lightsOn?: boolean }) {
+  const mobile = useIsMobile();
   const shellBorder = lightsOn ? "border-cyan-400/20" : "border-amber-500/25";
   const shellBg = lightsOn ? "bg-slate-950/95" : "bg-[#0b0f19]/95";
   const headerBg = lightsOn ? "bg-slate-950/90" : "bg-[#111827]/90";
@@ -229,7 +231,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.985 }}
       transition={{ duration: 1.0, ease: "easeOut" }}
-      className={`fixed inset-0 z-[80] px-3 py-3 backdrop-blur-md ${lightsOn ? "bg-black/75" : "bg-black/82"}`}
+      className={`fixed inset-0 z-[80] px-2 py-2 sm:px-3 sm:py-3 ${lightsOn ? "bg-black/75" : "bg-black/82"}`}
     >
       <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.75)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
         <div className={`flex flex-col items-start justify-between gap-3 border-b px-4 py-4 sm:flex-row sm:items-center sm:px-5 ${headerBg} ${shellBorder}`}>
@@ -260,12 +262,20 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
             </button>
           </div>
         </div>
-        <div className={`flex-1 p-3 ${frameBg}`}>
-          <div className={`h-full overflow-hidden rounded-[18px] border bg-white shadow-2xl sm:rounded-[22px] ${pdfBorder}`}>
-            <object data="/resume/resume.pdf#view=Fit" type="application/pdf" className="h-full w-full">
-              <iframe src="/resume/resume.pdf#view=Fit" title="Resume PDF" className="h-full w-full" />
-            </object>
-          </div>
+        <div className={`min-h-0 flex-1 p-3 ${frameBg}`}>
+          {mobile ? (
+            <div className="h-full overflow-y-auto rounded-[18px] border border-white/10 bg-slate-950 p-3 sm:rounded-[22px] sm:p-4">
+              <ResumeRoom resumeAvailable />
+            </div>
+          ) : (
+            <div className={`h-full overflow-hidden rounded-[18px] border bg-white shadow-2xl sm:rounded-[22px] ${pdfBorder}`}>
+              <iframe
+                src="/resume/resume.pdf#view=FitH"
+                title="Gannoju Sampath Chary resume"
+                className="h-full w-full border-0"
+              />
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
