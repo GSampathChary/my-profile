@@ -12,10 +12,11 @@ export const skills = {
     "Gemini",
     "OpenAI",
     "ONNX Runtime",
-    "Computer Vision"
+    "Computer Vision",
+    "Scikit-learn"
   ],
   backend: ["FastAPI", "Spring Boot", "REST APIs", "Microservices", "Docker"],
   frontend: ["Flutter", "Next.js", "React", "Tailwind CSS", "HTML5", "CSS3"],
-  database: ["PostgreSQL", "SQLite", "MySQL", "Firebase"],
+  database: ["PostgreSQL", "SQLite", "MySQL", "Firebase", "Power BI", "DAX", "Power Query"],
   tools: ["Git", "GitHub", "Postman", "Google Colab", "Google Play Console", "Docker Compose"]
 };

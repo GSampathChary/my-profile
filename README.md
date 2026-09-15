@@ -18,7 +18,7 @@ Interactive 3D portfolio for Gannoju Sampath Chary, built to present an AI engin
 - An AI engineer identity with a strong applied machine learning story
 - Professional work on RAISE, the rice crop stress evaluation application
 - Professional work on VistaraAI, the PVC interior AI assistant and full-stack platform
-- Personal portfolio projects such as BharatEye, RiceGPT AI, ResumeAI Pro, Interview Copilot, DataInsight AI, and AutoML Studio
+- Personal portfolio projects such as InsightBI AI, BharatEye, RiceGPT AI, ResumeAI Pro, Interview Copilot, DataInsight AI, and AutoML Studio
 - A recruiter-friendly way to view experience, projects, and contact details
 - Structured content that can also power a GitHub profile README
 
@@ -49,6 +49,14 @@ Technologies: React, Vite, FastAPI, Deck.gl, Mapbox GL JS, Zustand, ECharts, Web
 Frontend: https://bharat-eye.vercel.app/
 
 Backend: https://bharateye.onrender.com
+
+### InsightBI AI
+
+India-focused business intelligence platform that transforms sales data into Power BI-ready analytics, executive dashboards, customer insights, forecasting, anomaly detection, and AI-assisted analysis.
+
+Technologies: Power BI, DAX, Power Query, PostgreSQL, Python, FastAPI, Pandas, Scikit-learn, Next.js, React, TypeScript, Tailwind CSS, Recharts, Docker
+
+Live demo: https://insight-bi-ai-beta.vercel.app/
 
 ### RiceGPT AI
 
@@ -96,7 +104,7 @@ Technologies: Python, FastAPI, scikit-learn, machine learning
 - Frontend: Next.js, React, Flutter, Tailwind CSS, HTML5, CSS3
 - Backend: FastAPI, Spring Boot, REST APIs, Microservices
 - AI / ML: TensorFlow, TensorFlow Lite, Keras, PyTorch, Scikit-learn, OpenCV, LangChain, LangGraph, Gemini, OpenAI, ONNX Runtime, Computer Vision
-- Data: PostgreSQL, SQLite, MySQL, Firebase
+- Data & BI: PostgreSQL, SQLite, MySQL, Firebase, Power BI, DAX, Power Query
 - Tools: Docker, Git, GitHub, Postman, Google Colab, Google Play Console, Docker Compose
 
 ## Technology Browser

@@ -6,8 +6,8 @@ import { TechnologyBadge } from "@/components/ui/TechnologyBadge";
 
 export function ProfessionalRoom() {
   return (
-    <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-      <div className="space-y-6">
+    <section className="grid min-w-0 gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="min-w-0 space-y-6">
         <div className="rounded-[22px] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur-xl sm:rounded-3xl sm:p-6">
           <div className="text-xs uppercase tracking-[0.4em] text-cyan-200/60">Professional Mode</div>
           <h1 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">{portfolio.profile.name}</h1>
@@ -28,7 +28,7 @@ export function ProfessionalRoom() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="min-w-0 space-y-6">
         <Card title="Tech Stack">
           <div className="flex flex-wrap gap-2">
             {Object.entries(portfolio.skills)
@@ -40,17 +40,17 @@ export function ProfessionalRoom() {
           </div>
         </Card>
         <Card title="Direct Links">
-          <div className="flex flex-wrap gap-3">
-            <a href={socialLinks.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100">
+          <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+            <a href={socialLinks.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-center text-sm text-slate-100">
               GitHub
             </a>
-            <a href={socialLinks.linkedIn} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100">
+            <a href={socialLinks.linkedIn} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-center text-sm text-slate-100">
               LinkedIn
             </a>
-            <a href={socialLinks.email} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100">
+            <a href={socialLinks.email} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-center text-sm text-slate-100">
               Email
             </a>
-            <Link href="/resume" className="rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950">
+            <Link href="/resume" className="rounded-full bg-cyan-300 px-4 py-2 text-center text-sm font-medium text-slate-950">
               Resume
             </Link>
           </div>

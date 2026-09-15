@@ -4,7 +4,7 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import inch
-from reportlab.platypus import PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,6 +47,17 @@ experience = {
 }
 
 projects = [
+    {
+        "name": "InsightBI AI",
+        "tagline": "India-focused Power BI and AI analytics platform",
+        "ui": "/projects/insightbi-ai",
+        "live": "https://insight-bi-ai-beta.vercel.app/",
+        "stack": "Power BI | DAX | Power Query | PostgreSQL | Python | FastAPI | Pandas | Scikit-learn | Next.js | React",
+        "description": (
+            "End-to-end business intelligence platform that transforms sales data into Power BI-ready analytics, executive dashboards, customer RFM segments, forecasting, anomaly detection, and AI-assisted analysis. "
+            "Built with a Kimball-style PostgreSQL star schema, validated ETL pipelines, FastAPI reporting APIs, and India-ready INR formatting and regional demo data."
+        ),
+    },
     {
         "name": "VistaraAI",
         "tagline": "AI-powered PVC interior design assistant",
@@ -132,7 +143,7 @@ projects = [
 skills = {
     "Languages": "Python, SQL, JavaScript, Java, Dart",
     "AI / ML": "TensorFlow, PyTorch, Scikit-learn, Keras, ONNX Runtime, TensorFlow Lite, OpenCV",
-    "Data Science": "Pandas, NumPy, Exploratory Data Analysis, Feature Engineering, Statistics, Model Evaluation",
+    "Data Science & BI": "Pandas, NumPy, Power BI, DAX, Power Query, Exploratory Data Analysis, Feature Engineering, Model Evaluation",
     "Backend & APIs": "FastAPI, Spring Boot, REST APIs, Microservices",
     "Frontend & Apps": "Flutter, React.js, Next.js, HTML5, CSS3",
     "Database & Delivery": "PostgreSQL, MySQL, Firebase, Docker, Google Colab, Google Play Console",
@@ -414,7 +425,6 @@ def build():
         )
     )
 
-    story.append(PageBreak())
     story.append(section_title("Personal Projects", styles))
     story.append(Spacer(1, 0.08 * inch))
     for project in projects:
@@ -451,13 +461,17 @@ def build():
         story.append(card)
         story.append(Spacer(1, 0.08 * inch))
 
-    story.append(section_title("Additional Project Experience", styles))
-    story.append(Spacer(1, 0.08 * inch))
     story.append(
-        card_table(
-            f'<b>{additional_project["name"]}</b><br/>{additional_project["stack"]}',
-            additional_project["description"],
-            styles=styles,
+        KeepTogether(
+            [
+                section_title("Additional Project Experience", styles),
+                Spacer(1, 0.08 * inch),
+                card_table(
+                    f'<b>{additional_project["name"]}</b><br/>{additional_project["stack"]}',
+                    additional_project["description"],
+                    styles=styles,
+                ),
+            ]
         )
     )
     story.append(Spacer(1, 0.12 * inch))

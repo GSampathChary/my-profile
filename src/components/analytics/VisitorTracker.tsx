@@ -84,7 +84,7 @@ function VisitorTrackerInner() {
 
   return (
     <>
-      <div className="fixed bottom-3 left-3 z-[60]">
+      <div className="fixed bottom-40 left-3 z-[60] sm:bottom-3">
         <button
           type="button"
           onClick={() => {

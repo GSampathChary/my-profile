@@ -3,6 +3,40 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    id: "insightbi-ai",
+    name: "InsightBI AI",
+    category: "personal",
+    uiPath: "/projects/insightbi-ai",
+    tagline: "India-focused Power BI and AI analytics platform",
+    description:
+      "An end-to-end business intelligence platform that turns sales data into Power BI-ready analytics, executive dashboards, customer insights, forecasting, anomaly detection, and AI-assisted business analysis.",
+    problem:
+      "Business teams need reliable, localized reporting and actionable insights, but raw sales data is often not structured for analysis or decision-making.",
+    solution:
+      "A full-stack analytics platform with a Kimball-style PostgreSQL model, ETL validation, FastAPI reporting APIs, interactive Next.js dashboards, Power BI documentation, and machine-learning insight workflows.",
+    technologies: ["Power BI", "DAX", "Power Query", "PostgreSQL", "Python", "FastAPI", "Pandas", "Scikit-learn", "Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts", "Docker"],
+    features: [
+      "Kimball-style sales star schema",
+      "Validated ETL pipelines",
+      "Executive KPI dashboards",
+      "Customer RFM segmentation",
+      "Revenue forecasting and anomaly detection",
+      "India-ready INR and regional data support"
+    ],
+    screenshots: [
+      {
+        src: "/project-screenshots/insightbi-ai/dashboard.png",
+        label: "Executive dashboard",
+        alt: "InsightBI AI executive dashboard showing revenue, profit, order, customer, and trend analytics"
+      }
+    ],
+    highlights: ["Power BI-ready semantic model", "Live deployment on Vercel"],
+    links: {
+      ...placeholderLinks,
+      live: "https://insight-bi-ai-beta.vercel.app/"
+    }
+  },
+  {
     id: "vistara-ai",
     name: "VistaraAI",
     category: "personal",
