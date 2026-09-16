@@ -8,6 +8,9 @@ type WallsProps = {
 export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
   const wallColor = projectsMode ? "#fafafa" : lightsOn ? "#687174" : "#292526";
   const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#596164" : "#211e1e";
+  const backGlow = lightsOn ? "#000000" : "#d9468f";
+  const sideGlow = lightsOn ? "#000000" : "#facc15";
+  const glowIntensity = lightsOn ? 0 : 0.5;
 
   return (
     <group>
@@ -17,8 +20,8 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={wallColor}
           roughness={0.76}
-          emissive="#000000"
-          emissiveIntensity={0}
+          emissive={backGlow}
+          emissiveIntensity={glowIntensity}
         />
       </mesh>
 
@@ -28,8 +31,8 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={sideWallColor}
           roughness={0.76}
-          emissive="#000000"
-          emissiveIntensity={0}
+          emissive={sideGlow}
+          emissiveIntensity={glowIntensity}
         />
       </mesh>
 
@@ -39,8 +42,8 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={sideWallColor}
           roughness={0.76}
-          emissive="#000000"
-          emissiveIntensity={0}
+          emissive={sideGlow}
+          emissiveIntensity={glowIntensity}
         />
       </mesh>
 
@@ -54,6 +57,14 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
           <meshStandardMaterial color={lightsOn ? "#8f999b" : "#4b4140"} roughness={0.9} />
         </mesh>
       </group>
+
+      {!lightsOn && !projectsMode ? (
+        <>
+          <pointLight position={[-3.8, 2.7, -3.7]} intensity={2.1} distance={5.5} color="#ec4899" />
+          <pointLight position={[3.8, 2.3, -3.4]} intensity={1.8} distance={5.5} color="#facc15" />
+          <pointLight position={[0, 4.6, -2.7]} intensity={1.1} distance={4.5} color="#f472b6" />
+        </>
+      ) : null}
 
       {!projectsMode ? (
         <group position={[8.78, 3.2, 0]} rotation-y={-Math.PI / 2}>

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
+import { CanvasTexture, LinearFilter, SRGBColorSpace, VideoTexture, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
   onClick?: () => void;
@@ -22,6 +22,7 @@ export function Computer({
   const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const screenTextureRef = useRef<CanvasTexture | null>(null);
   const [screenTexture, setScreenTexture] = useState<CanvasTexture | null>(null);
+  const [videoTexture, setVideoTexture] = useState<VideoTexture | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const fanRefs = useRef<Array<MeshStandardMaterial | null>>([]);
   const lastScreenDrawRef = useRef(0);
@@ -46,6 +47,32 @@ export function Computer({
       texture.dispose();
       screenTextureRef.current = null;
       screenCanvasRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/monitor-demo.mp4";
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = "auto";
+
+    const texture = new VideoTexture(video);
+    texture.colorSpace = SRGBColorSpace;
+    texture.minFilter = LinearFilter;
+    texture.magFilter = LinearFilter;
+    texture.generateMipmaps = false;
+    setVideoTexture(texture);
+    void video.play().catch(() => undefined);
+
+    return () => {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      texture.dispose();
+      setVideoTexture(null);
     };
   }, []);
 
@@ -334,11 +361,11 @@ export function Computer({
       {/* Screen */}
       <mesh castShadow receiveShadow position={[0, 0.62, 0.085]}>
         <planeGeometry args={[1.78, 0.9]} />
-        <meshStandardMaterial
-          ref={screenMatRef}
-          map={screenTexture ?? undefined}
-          emissive="#ffffff"
-          emissiveIntensity={0.8}
+          <meshStandardMaterial
+            ref={screenMatRef}
+            map={videoTexture ?? screenTexture ?? undefined}
+            emissive="#ffffff"
+            emissiveIntensity={videoTexture ? 1.8 : 0.8}
           toneMapped={false}
         />
       </mesh>
@@ -363,7 +390,7 @@ export function Computer({
         </mesh>
         <mesh position={[0, 0, 0.045]}>
           <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
+          <meshStandardMaterial map={videoTexture ?? undefined} color="#ffffff" emissive="#ffffff" emissiveIntensity={videoTexture ? 1.35 : powered ? 0.55 : 0.05} roughness={0.12} toneMapped={false} />
         </mesh>
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
@@ -377,7 +404,7 @@ export function Computer({
         </mesh>
         <mesh position={[0, 0, 0.045]}>
           <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
+          <meshStandardMaterial map={videoTexture ?? undefined} color="#ffffff" emissive="#ffffff" emissiveIntensity={videoTexture ? 1.35 : powered ? 0.55 : 0.05} roughness={0.12} toneMapped={false} />
         </mesh>
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
@@ -396,7 +423,7 @@ export function Computer({
       </mesh>
 
       {/* Tower */}
-      <group position={[1.35, 0.57, -0.1]}>
+      <group position={[2.02, 0.57, -0.1]}>
         <mesh castShadow receiveShadow>
           <boxGeometry args={[0.48, 0.92, 0.82]} />
           <meshStandardMaterial color="#0a0a0a" roughness={0.26} metalness={0.82} />
@@ -485,7 +512,7 @@ export function Computer({
       </group>
 
       {/* Keyboard */}
-      <group position={[-0.15, 0.12, 0.48]} rotation={[0, 0.04, 0]}>
+      <group position={[-0.12, 0.12, 0.58]} rotation={[0, 0.04, 0]}>
         <mesh castShadow receiveShadow>
           <boxGeometry args={[0.92, 0.042, 0.3]} />
           <meshStandardMaterial color="#0b1220" roughness={0.44} metalness={0.1} />
@@ -518,7 +545,7 @@ export function Computer({
       </group>
 
       {/* Mouse */}
-      <group position={[0.55, 0.12, 0.52]} rotation={[0, -0.12, 0]}>
+      <group position={[0.78, 0.12, 0.58]} rotation={[0, -0.12, 0]}>
         <mesh castShadow receiveShadow>
           <boxGeometry args={[0.16, 0.05, 0.26]} />
           <meshStandardMaterial color="#0f172a" roughness={0.4} />
