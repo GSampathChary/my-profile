@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { CanvasTexture, LinearFilter, SRGBColorSpace, VideoTexture, type MeshStandardMaterial } from "three";
+import { Html } from "@react-three/drei";
+import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
   onClick?: () => void;
@@ -10,6 +11,21 @@ type ComputerProps = {
   active?: boolean;
   position?: [number, number, number];
 };
+
+function YouTubeScreen({ videoId, position, width = "480px", height = "270px" }: { videoId: string; position: [number, number, number]; width?: string; height?: string }) {
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+
+  return (
+    <Html transform position={position} distanceFactor={1.35} style={{ width, height, pointerEvents: "none" }}>
+      <iframe
+        src={embedUrl}
+        title="Portfolio monitor video"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        className="h-full w-full rounded-[3px] border-0 bg-black"
+      />
+    </Html>
+  );
+}
 
 export function Computer({
   onClick,
@@ -22,7 +38,6 @@ export function Computer({
   const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const screenTextureRef = useRef<CanvasTexture | null>(null);
   const [screenTexture, setScreenTexture] = useState<CanvasTexture | null>(null);
-  const [videoTexture, setVideoTexture] = useState<VideoTexture | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const fanRefs = useRef<Array<MeshStandardMaterial | null>>([]);
   const lastScreenDrawRef = useRef(0);
@@ -50,31 +65,6 @@ export function Computer({
     };
   }, []);
 
-  useEffect(() => {
-    const video = document.createElement("video");
-    video.src = "/monitor-demo.mp4";
-    video.muted = true;
-    video.loop = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.preload = "auto";
-
-    const texture = new VideoTexture(video);
-    texture.colorSpace = SRGBColorSpace;
-    texture.minFilter = LinearFilter;
-    texture.magFilter = LinearFilter;
-    texture.generateMipmaps = false;
-    setVideoTexture(texture);
-    void video.play().catch(() => undefined);
-
-    return () => {
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-      texture.dispose();
-      setVideoTexture(null);
-    };
-  }, []);
 
   const drawScreen = (ctx: CanvasRenderingContext2D, t: number, roomPowered: boolean) => {
     const width = ctx.canvas.width;
@@ -363,9 +353,9 @@ export function Computer({
         <planeGeometry args={[1.78, 0.9]} />
           <meshStandardMaterial
             ref={screenMatRef}
-            map={videoTexture ?? screenTexture ?? undefined}
+            map={screenTexture ?? undefined}
             emissive="#ffffff"
-            emissiveIntensity={videoTexture ? 1.8 : 0.8}
+            emissiveIntensity={powered ? 1.15 : 0.8}
           toneMapped={false}
         />
       </mesh>
@@ -390,8 +380,9 @@ export function Computer({
         </mesh>
         <mesh position={[0, 0, 0.045]}>
           <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial map={videoTexture ?? undefined} color="#ffffff" emissive="#ffffff" emissiveIntensity={videoTexture ? 1.35 : powered ? 0.55 : 0.05} roughness={0.12} toneMapped={false} />
+          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
+        <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.06]} width="310px" height="186px" />
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -404,8 +395,9 @@ export function Computer({
         </mesh>
         <mesh position={[0, 0, 0.045]}>
           <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial map={videoTexture ?? undefined} color="#ffffff" emissive="#ffffff" emissiveIntensity={videoTexture ? 1.35 : powered ? 0.55 : 0.05} roughness={0.12} toneMapped={false} />
+          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
+        <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.06]} width="310px" height="186px" />
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -510,6 +502,8 @@ export function Computer({
           })
         )}
       </group>
+
+      <YouTubeScreen videoId="c1rBk7XAlj0" position={[0, 0.62, 0.105]} />
 
       {/* Keyboard */}
       <group position={[-0.12, 0.12, 0.58]} rotation={[0, 0.04, 0]}>
