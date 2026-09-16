@@ -108,6 +108,7 @@ export function Room({
                   position={[-0.1, 1.14, -3.43]}
                   powered={lightsOn}
                   active={focus === "computer"}
+                  showVideos={focus === "overview"}
                   onClick={onOpenComputer}
                 />
                 <Bookshelf

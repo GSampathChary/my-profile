@@ -9,6 +9,7 @@ type ComputerProps = {
   onClick?: () => void;
   powered?: boolean;
   active?: boolean;
+  showVideos?: boolean;
   position?: [number, number, number];
 };
 
@@ -31,6 +32,7 @@ export function Computer({
   onClick,
   powered = true,
   active = false,
+  showVideos = true,
   position = [-0.2, 1.28, 0.05]
 }: ComputerProps) {
   const { gl } = useThree();
@@ -382,7 +384,7 @@ export function Computer({
           <planeGeometry args={[0.84, 0.59]} />
           <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
-        <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.075]} width="230px" height="162px" />
+        {showVideos ? <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.075]} width="230px" height="162px" /> : null}
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -397,7 +399,7 @@ export function Computer({
           <planeGeometry args={[0.84, 0.59]} />
           <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
-        <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.075]} width="230px" height="162px" />
+        {showVideos ? <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.075]} width="230px" height="162px" /> : null}
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -503,7 +505,7 @@ export function Computer({
         )}
       </group>
 
-      <YouTubeScreen videoId="c1rBk7XAlj0" position={[0, 0.62, 0.105]} />
+      {showVideos ? <YouTubeScreen videoId="c1rBk7XAlj0" position={[0, 0.62, 0.105]} /> : null}
 
       {/* Keyboard */}
       <group position={[-0.12, 0.12, 0.58]} rotation={[0, 0.04, 0]}>
