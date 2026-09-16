@@ -142,7 +142,7 @@ export function Desk({ position = [0, 1.22, 0.42] }: DeskProps) {
       </group>
 
       {/* Potted Plant Beside Desk on the floor */}
-      <group position={[-2.82, -1.22, 0.82]} scale={[0.52, 0.52, 0.52]}>
+      <group position={[-3.25, -1.22, 0.82]} scale={[0.48, 0.48, 0.48]}>
         <mesh castShadow receiveShadow position={[0, 0.35, 0]}>
           <cylinderGeometry args={[0.38, 0.28, 0.55, 20]} />
           <meshStandardMaterial color="#d97706" roughness={0.7} />

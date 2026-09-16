@@ -113,7 +113,7 @@ export function Room({
                 <Bookshelf
                   active={focus === "technologies"}
                   onBookSelect={onBookSelect}
-                  position={[-3.55, 1.52, -3.05]}
+                  position={[-4.55, 1.52, -3.05]}
                   rotationY={0.08}
                   scale={0.9}
                 />
@@ -123,13 +123,13 @@ export function Room({
                     onClick={onOpenResume}
                     onClose={onCloseProjects}
                     lightsOn={lightsOn}
-                    position={[-1.82, 1.295, -3.63]}
+                    position={[-2.08, 1.295, -3.63]}
                     rotationY={-0.22}
                     scale={1}
                   />
                 ) : null}
-                <Phone active={focus === "phone"} onClick={onOpenPhone} position={[1.18, 1.34, -3.02]} rotationY={-0.18} scale={1.0} />
-                <VisitingCard onClick={onOpenContact} position={[-1.52, 1.27, -3.12]} rotationY={-0.12} scale={0.95} />
+                <Phone active={focus === "phone"} onClick={onOpenPhone} position={[2.15, 1.34, -3.02]} rotationY={-0.18} scale={0.92} />
+                <VisitingCard onClick={onOpenContact} position={[-2.3, 1.27, -3.12]} rotationY={-0.12} scale={0.88} />
               </>
             ) : null}
             <WallProjectsGrid

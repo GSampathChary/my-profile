@@ -22,7 +22,7 @@ const CAMERA_PRESETS: Record<SceneFocus, { position: [number, number, number]; t
     target: [-1.85, 1.34, -3.55]
   },
   computer: {
-    position: [0.15, 2.0, 1.8],
+    position: [0.15, 2.12, 2.35],
     target: [-0.1, 1.18, -3.43]
   },
   projects: {
@@ -54,7 +54,7 @@ const MOBILE_CAMERA_PRESETS: Record<SceneFocus, { position: [number, number, num
     target: [-1.65, 1.32, -3.42]
   },
   computer: {
-    position: [0.05, 2.15, 2.1],
+    position: [0.05, 2.25, 2.65],
     target: [-0.1, 1.16, -3.25]
   },
   projects: {

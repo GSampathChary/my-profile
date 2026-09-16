@@ -8,7 +8,7 @@ export function FloorLamp({ enabled = true }: FloorLampProps) {
   const glow = enabled ? 1.8 : 0.35;
 
   return (
-    <group position={[3.65, 0, -3.65]}>
+    <group position={[4.35, 0, -3.65]}>
       <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
         <cylinderGeometry args={[0.32, 0.38, 0.08, 24]} />
         <meshStandardMaterial color="#17191b" roughness={0.45} metalness={0.7} />
