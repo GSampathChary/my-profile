@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
+import { CanvasTexture, LinearFilter, SRGBColorSpace, VideoTexture, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
   onClick?: () => void;
@@ -22,6 +22,7 @@ export function Computer({
   const screenCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const screenTextureRef = useRef<CanvasTexture | null>(null);
   const [screenTexture, setScreenTexture] = useState<CanvasTexture | null>(null);
+  const [videoTexture, setVideoTexture] = useState<VideoTexture | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const fanRefs = useRef<Array<MeshStandardMaterial | null>>([]);
   const screenFocused = active || isHovered;
@@ -45,6 +46,33 @@ export function Computer({
       texture.dispose();
       screenTextureRef.current = null;
       screenCanvasRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/monitor-demo.mp4";
+    video.muted = true;
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = "auto";
+
+    const texture = new VideoTexture(video);
+    texture.colorSpace = SRGBColorSpace;
+    texture.minFilter = LinearFilter;
+    texture.magFilter = LinearFilter;
+    texture.generateMipmaps = false;
+    setVideoTexture(texture);
+
+    void video.play().catch(() => undefined);
+
+    return () => {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      texture.dispose();
+      setVideoTexture(null);
     };
   }, []);
 
@@ -293,8 +321,8 @@ export function Computer({
     }
 
     if (screenMatRef.current) {
-      const intensity = powered ? (screenFocused ? 1.42 : 1.15 + Math.sin(t * 2.8) * 0.16) : 0.18;
-      screenMatRef.current.emissiveIntensity = intensity;
+        const intensity = videoTexture ? (screenFocused ? 2.2 : 1.8 + Math.sin(t * 2.8) * 0.12) : powered ? (screenFocused ? 1.42 : 1.15 + Math.sin(t * 2.8) * 0.16) : 0.18;
+        screenMatRef.current.emissiveIntensity = intensity;
     }
 
     fanRefs.current.forEach((mat, i) => {
@@ -330,16 +358,18 @@ export function Computer({
       </mesh>
 
       {/* Screen */}
-      <mesh castShadow receiveShadow position={[0, 0.62, 0.085]}>
-        <planeGeometry args={[1.78, 0.9]} />
-        <meshStandardMaterial
-          ref={screenMatRef}
-          map={screenTexture ?? undefined}
+        <mesh castShadow receiveShadow position={[0, 0.62, 0.085]}>
+          <planeGeometry args={[1.78, 0.9]} />
+          <meshStandardMaterial
+            ref={screenMatRef}
+          map={videoTexture ?? screenTexture ?? undefined}
           emissive="#ffffff"
-          emissiveIntensity={0.8}
+          emissiveIntensity={1.8}
           toneMapped={false}
         />
       </mesh>
+
+      <pointLight position={[0, 0.64, 0.3]} intensity={videoTexture ? 1.4 : 0.35} distance={2.8} color="#67e8f9" />
 
       {/* Bezel */}
       <mesh castShadow receiveShadow position={[0, 0.62, 0.074]}>
