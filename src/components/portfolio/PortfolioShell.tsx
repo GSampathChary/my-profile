@@ -244,7 +244,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.985 }}
       transition={{ duration: 1.0, ease: "easeOut" }}
-      className={`fixed inset-0 z-[80] px-2 py-2 sm:px-3 sm:py-3 ${lightsOn ? "bg-black/75" : "bg-black/82"}`}
+      className="fixed inset-0 z-[80] bg-white px-2 py-2 sm:px-3 sm:py-3"
     >
       <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.35)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
         <div className={`flex flex-col items-start justify-between gap-3 border-b px-4 py-4 sm:flex-row sm:items-center sm:px-5 ${headerBg} ${shellBorder}`}>
@@ -920,7 +920,7 @@ export function PortfolioShell() {
         ) : null}
 
         {overlayFocus === "technologies" ? (
-          <div key="technologies" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/45 px-3 py-4">
+          <div key="technologies" className="fixed inset-0 z-[70] flex items-center justify-center bg-white px-0 py-0 sm:px-3 sm:py-4">
             <TechnologiesOverlay
               onClose={closeView}
               onBookSelect={(book) => setSelectedBookId(book)}
@@ -936,7 +936,7 @@ export function PortfolioShell() {
         ) : null}
 
         {overlayFocus === "contact" ? (
-          <div key="contact" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/30 px-3 py-4 backdrop-blur-sm">
+          <div key="contact" className="fixed inset-0 z-[70] flex items-center justify-center bg-white px-0 py-0 sm:px-3 sm:py-4">
             <ContactOverlay onClose={closeView} />
           </div>
         ) : null}
