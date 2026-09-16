@@ -743,7 +743,7 @@ function StatusChip({ label, value }: { label: string; value: string }) {
 
 export function PortfolioShell() {
   const [mounted, setMounted] = useState(false);
-  const [lightsOn, setLightsOn] = useState(true);
+  const [lightsOn, setLightsOn] = useState(false);
   const [cameraFocus, setCameraFocus] = useState<SceneFocus>("overview");
   const [overlayFocus, setOverlayFocus] = useState<SceneFocus | null>(null);
   const [projectsVisible, setProjectsVisible] = useState(false);

@@ -1,7 +1,5 @@
 "use client";
 
-import { useLoader } from "@react-three/fiber";
-import { SRGBColorSpace, TextureLoader } from "three";
 
 type BookId = "python" | "fastapi" | "tensorflow" | "flutter" | "springboot" | "postgres";
 
@@ -29,9 +27,6 @@ export function Bookshelf({
   rotationY = 0.04,
   scale = 1
 }: BookshelfProps) {
-  const portraitTexture = useLoader(TextureLoader, "/images/sampath.png");
-  portraitTexture.colorSpace = SRGBColorSpace;
-
   return (
     <group position={position} rotation-y={rotationY} scale={scale}>
       <mesh castShadow receiveShadow position={[0, 0, 0]}>
@@ -71,25 +66,6 @@ export function Bookshelf({
         <mesh position={[0, 0.2, 0]} castShadow>
           <octahedronGeometry args={[0.15]} />
           <meshStandardMaterial color="#eab308" metalness={0.9} roughness={0.1} emissive="#eab308" emissiveIntensity={0.3} />
-        </mesh>
-      </group>
-
-      <group position={[0, 2.02, 0.19]}>
-        <mesh castShadow receiveShadow position={[0, 0, -0.012]}>
-          <boxGeometry args={[0.92, 1.16, 0.05]} />
-          <meshStandardMaterial color="#231a14" roughness={0.68} metalness={0.05} />
-        </mesh>
-        <mesh castShadow receiveShadow position={[0, 0, 0.015]}>
-          <boxGeometry args={[0.84, 1.08, 0.02]} />
-          <meshStandardMaterial color="#111827" roughness={0.45} />
-        </mesh>
-        <mesh position={[0, 0, 0.03]}>
-          <planeGeometry args={[0.74, 0.96]} />
-          <meshBasicMaterial map={portraitTexture} toneMapped={false} />
-        </mesh>
-        <mesh position={[0, 0.68, -0.015]}>
-          <boxGeometry args={[0.44, 0.06, 0.02]} />
-          <meshStandardMaterial color="#8b5e34" roughness={0.6} />
         </mesh>
       </group>
 
