@@ -121,6 +121,7 @@ function FullscreenFrame({
   children,
   onClose,
   glass = true,
+  fullScreenMobile = false,
   motionDuration = 0.75,
   motionScale = 0.985,
   motionYOffset = 12
@@ -130,6 +131,7 @@ function FullscreenFrame({
   children: ReactNode;
   onClose: () => void;
   glass?: boolean;
+  fullScreenMobile?: boolean;
   motionDuration?: number;
   motionScale?: number;
   motionYOffset?: number;
@@ -140,7 +142,7 @@ function FullscreenFrame({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: motionScale, y: motionYOffset }}
       transition={{ duration: motionDuration, ease: "easeOut" }}
-      className={`relative mx-auto flex h-[calc(100vh-0.75rem)] w-[calc(100vw-0.75rem)] max-w-6xl min-h-0 flex-col rounded-[20px] border border-white/10 bg-slate-950/95 p-3 shadow-[0_30px_120px_rgba(0,0,0,0.5)] ${glass ? "backdrop-blur-xl" : "backdrop-blur-none"} sm:h-[88vh] sm:w-full sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5`}
+      className={`relative mx-auto flex min-h-0 flex-col border border-white/10 bg-slate-950/95 shadow-[0_30px_120px_rgba(0,0,0,0.5)] ${glass ? "backdrop-blur-xl" : "backdrop-blur-none"} ${fullScreenMobile ? "h-[100dvh] w-full rounded-none p-3" : "h-[calc(100vh-0.75rem)] w-[calc(100vw-0.75rem)] rounded-[20px] p-3"} sm:h-[88vh] sm:w-full sm:rounded-[26px] sm:p-4 lg:h-[86vh] lg:rounded-[30px] lg:p-5`}
     >
       <div className="flex items-start justify-between gap-3 sm:gap-4">
         <div>
@@ -299,9 +301,9 @@ function ProjectsOverlay({
   const launchLabel = getProjectExperienceLabel(project);
 
   return (
-    <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose} glass={false}>
-      <div className={`grid h-full gap-3 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[68vh]" : "max-h-[78vh] overflow-hidden"}`}>
-        <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-3 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-4">
+    <FullscreenFrame title="Projects Workspace" eyebrow="Computer Monitor View" onClose={onClose} glass={false} fullScreenMobile={mobile}>
+      <div className={`grid h-full min-h-0 gap-3 pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "grid-rows-[minmax(10rem,0.8fr)_minmax(0,1.2fr)] overflow-hidden" : "max-h-[78vh] overflow-hidden"}`}>
+        <div className="flex min-h-0 flex-col gap-3 overflow-y-auto rounded-[24px] border border-cyan-500/20 bg-slate-950/90 p-3 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:p-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-300">All Projects</div>
           {projects.map((item) => {
             const active = item.id === project.id;
@@ -344,7 +346,7 @@ function ProjectsOverlay({
           })}
         </div>
 
-        <div className="flex flex-col gap-3 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:gap-4 sm:p-6">
+        <div className="flex min-h-0 flex-col gap-3 overflow-y-auto rounded-[24px] border border-white/10 bg-slate-950/80 p-4 shadow-xl scrollbar-thin scrollbar-thumb-cyan-500/30 sm:gap-4 sm:p-6">
           <div className="text-[10px] font-bold uppercase tracking-[0.45em] text-cyan-400">Selected Project Overview</div>
           <a
             href={getProjectPublicHref(project)}
@@ -769,9 +771,9 @@ export function PortfolioShell() {
     if (nextFocus === "projects") {
       setProjectsVisible(false);
       setCameraFocus("projects");
-      projectsTimerRef.current = window.setTimeout(() => {
-        setProjectsVisible(true);
-        projectsTimerRef.current = null;
+      transitionTimerRef.current = window.setTimeout(() => {
+        setOverlayFocus("projects");
+        transitionTimerRef.current = null;
       }, 700);
       return;
     }
@@ -886,6 +888,18 @@ export function PortfolioShell() {
       ) : null}
 
       <AnimatePresence mode="wait">
+        {overlayFocus === "projects" ? (
+          <div key="projects" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/70 px-0 py-0 sm:px-3 sm:py-4">
+            <ProjectsOverlay
+              project={selectedProject}
+              projects={portfolio.projects}
+              mobile={isMobile}
+              onClose={closeView}
+              onSelectProject={setSelectedProjectId}
+            />
+          </div>
+        ) : null}
+
         {overlayFocus === "technologies" ? (
           <div key="technologies" className="fixed inset-0 z-[70] flex items-center justify-center bg-black/45 px-3 py-4">
             <TechnologiesOverlay
