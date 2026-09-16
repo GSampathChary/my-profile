@@ -355,6 +355,36 @@ export function Computer({
         />
       </mesh>
 
+      {/* Side monitors for a realistic multi-screen workstation */}
+      <group position={[-1.28, 0.48, 0.02]} rotation-y={0.1}>
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[0.72, 0.58, 0.08]} />
+          <meshStandardMaterial color="#202427" roughness={0.38} metalness={0.52} />
+        </mesh>
+        <mesh position={[0, 0, 0.045]}>
+          <planeGeometry args={[0.61, 0.45]} />
+          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
+        </mesh>
+        <mesh castShadow receiveShadow position={[0, -0.42, 0]}>
+          <boxGeometry args={[0.08, 0.42, 0.08]} />
+          <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
+        </mesh>
+      </group>
+      <group position={[1.18, 0.48, 0.02]} rotation-y={-0.1}>
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[0.72, 0.58, 0.08]} />
+          <meshStandardMaterial color="#202427" roughness={0.38} metalness={0.52} />
+        </mesh>
+        <mesh position={[0, 0, 0.045]}>
+          <planeGeometry args={[0.61, 0.45]} />
+          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
+        </mesh>
+        <mesh castShadow receiveShadow position={[0, -0.42, 0]}>
+          <boxGeometry args={[0.08, 0.42, 0.08]} />
+          <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
+        </mesh>
+      </group>
+
       {/* Stand */}
       <mesh castShadow receiveShadow position={[0, 0.18, 0.02]}>
         <boxGeometry args={[0.48, 0.06, 0.38]} />

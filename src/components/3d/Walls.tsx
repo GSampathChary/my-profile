@@ -6,10 +6,8 @@ type WallsProps = {
 };
 
 export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
-  const wallColor = projectsMode ? "#fafafa" : lightsOn ? "#eef2f7" : "#0f172a";
-  const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#e2e8f0" : "#090d19";
-  const borderGlowColor = lightsOn ? "#38bdf8" : "#facc15";
-  const borderGlowIntensity = lightsOn ? 0 : 0.85;
+  const wallColor = projectsMode ? "#fafafa" : lightsOn ? "#687174" : "#292526";
+  const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#596164" : "#211e1e";
 
   return (
     <group>
@@ -19,8 +17,8 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={wallColor}
           roughness={0.76}
-          emissive={lightsOn ? "#000000" : borderGlowColor}
-          emissiveIntensity={borderGlowIntensity}
+          emissive="#000000"
+          emissiveIntensity={0}
         />
       </mesh>
 
@@ -30,8 +28,8 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={sideWallColor}
           roughness={0.76}
-          emissive={lightsOn ? "#000000" : borderGlowColor}
-          emissiveIntensity={borderGlowIntensity}
+          emissive="#000000"
+          emissiveIntensity={0}
         />
       </mesh>
 
@@ -41,31 +39,21 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
         <meshStandardMaterial
           color={sideWallColor}
           roughness={0.76}
-          emissive={lightsOn ? "#000000" : borderGlowColor}
-          emissiveIntensity={borderGlowIntensity}
+          emissive="#000000"
+          emissiveIntensity={0}
         />
       </mesh>
 
-      {!lightsOn ? (
-        <group>
-          <mesh position={[0, 5.55, -4.42]}>
-            <boxGeometry args={[18.15, 0.08, 0.05]} />
-            <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.75} />
-          </mesh>
-          <mesh position={[0, 0.08, -4.42]}>
-            <boxGeometry args={[18.15, 0.08, 0.05]} />
-            <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.55} />
-          </mesh>
-          <mesh position={[-8.82, 2.8, -4.42]} rotation-y={Math.PI / 2}>
-            <boxGeometry args={[5.6, 0.08, 0.05]} />
-            <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.65} />
-          </mesh>
-          <mesh position={[8.82, 2.8, -4.42]} rotation-y={Math.PI / 2}>
-            <boxGeometry args={[5.6, 0.08, 0.05]} />
-            <meshStandardMaterial color="#facc15" emissive="#facc15" emissiveIntensity={0.65} />
-          </mesh>
-        </group>
-      ) : null}
+      <group>
+        <mesh position={[0, 0.12, -4.36]}>
+          <boxGeometry args={[17.8, 0.22, 0.08]} />
+          <meshStandardMaterial color="#3f4547" roughness={0.86} />
+        </mesh>
+        <mesh position={[0, 5.35, -4.36]}>
+          <boxGeometry args={[17.8, 0.08, 0.06]} />
+          <meshStandardMaterial color={lightsOn ? "#8f999b" : "#4b4140"} roughness={0.9} />
+        </mesh>
+      </group>
 
       {!projectsMode ? (
         <group position={[8.78, 3.2, 0]} rotation-y={-Math.PI / 2}>

@@ -12,28 +12,28 @@ export function Chair({ position = [0, 0.08, -1.7], rotationY = Math.PI, scale =
       {/* Seat Cushion */}
       <mesh castShadow receiveShadow position={[0, 0.38, 0]}>
         <boxGeometry args={[0.92, 0.12, 0.88]} />
-        <meshStandardMaterial color="#0f172a" roughness={0.7} />
+        <meshStandardMaterial color="#6b422f" roughness={0.7} />
       </mesh>
       {/* Seat Trim */}
       <mesh castShadow receiveShadow position={[0, 0.38, 0.42]}>
         <boxGeometry args={[0.92, 0.1, 0.04]} />
-        <meshStandardMaterial color="#06b6d4" roughness={0.4} />
+        <meshStandardMaterial color="#8b5a3c" roughness={0.5} />
       </mesh>
 
       {/* Backrest */}
       <mesh castShadow receiveShadow position={[0, 0.95, -0.38]} rotation-x={-0.08}>
         <boxGeometry args={[0.84, 1.05, 0.12]} />
-        <meshStandardMaterial color="#1e293b" roughness={0.7} />
+        <meshStandardMaterial color="#754832" roughness={0.7} />
       </mesh>
       {/* Headrest Cushion */}
       <mesh castShadow receiveShadow position={[0, 1.54, -0.42]} rotation-x={-0.06}>
         <boxGeometry args={[0.62, 0.28, 0.14]} />
-        <meshStandardMaterial color="#06b6d4" roughness={0.5} />
+        <meshStandardMaterial color="#8b5a3c" roughness={0.5} />
       </mesh>
       {/* Lumbar Cushion */}
       <mesh castShadow receiveShadow position={[0, 0.65, -0.32]}>
         <boxGeometry args={[0.68, 0.22, 0.1]} />
-        <meshStandardMaterial color="#0284c7" roughness={0.6} />
+        <meshStandardMaterial color="#5a3527" roughness={0.65} />
       </mesh>
 
       {/* Left Armrest */}

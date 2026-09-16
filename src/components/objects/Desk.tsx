@@ -7,22 +7,22 @@ type DeskProps = {
 export function Desk({ position = [0, 1.22, 0.42] }: DeskProps) {
   return (
     <group position={position}>
-      {/* Bright White Desk Top inspired by the reference room */}
+      {/* Warm wood desk top */}
       <mesh castShadow receiveShadow position={[0, 0, 0]}>
         <boxGeometry args={[4.9, 0.12, 2.1]} />
-        <meshStandardMaterial color="#f8fafc" roughness={0.24} metalness={0.02} />
+        <meshStandardMaterial color="#633d2c" roughness={0.52} metalness={0.02} />
       </mesh>
 
       {/* Left Desk Leg Panel */}
       <mesh castShadow receiveShadow position={[-2.16, -0.64, 0]}>
         <boxGeometry args={[0.16, 1.12, 1.86]} />
-        <meshStandardMaterial color="#9ca3af" roughness={0.65} />
+        <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
       </mesh>
 
       {/* Right Desk Leg Panel */}
       <mesh castShadow receiveShadow position={[2.16, -0.64, 0]}>
         <boxGeometry args={[0.16, 1.12, 1.86]} />
-        <meshStandardMaterial color="#9ca3af" roughness={0.65} />
+        <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
       </mesh>
 
       {/* Closed Book on the desk */}
@@ -142,7 +142,7 @@ export function Desk({ position = [0, 1.22, 0.42] }: DeskProps) {
       </group>
 
       {/* Potted Plant Beside Desk on the floor */}
-      <group position={[2.82, -1.22, 0.82]} scale={[0.52, 0.52, 0.52]}>
+      <group position={[-2.82, -1.22, 0.82]} scale={[0.52, 0.52, 0.52]}>
         <mesh castShadow receiveShadow position={[0, 0.35, 0]}>
           <cylinderGeometry args={[0.38, 0.28, 0.55, 20]} />
           <meshStandardMaterial color="#d97706" roughness={0.7} />
