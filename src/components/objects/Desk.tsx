@@ -9,18 +9,18 @@ export function Desk({ position = [0, 1.22, 0.42] }: DeskProps) {
     <group position={position}>
       {/* Warm wood desk top */}
       <mesh castShadow receiveShadow position={[0, 0, 0]}>
-        <boxGeometry args={[4.9, 0.12, 2.1]} />
+        <boxGeometry args={[6.6, 0.12, 2.35]} />
         <meshStandardMaterial color="#633d2c" roughness={0.52} metalness={0.02} />
       </mesh>
 
       {/* Left Desk Leg Panel */}
-      <mesh castShadow receiveShadow position={[-2.16, -0.64, 0]}>
+      <mesh castShadow receiveShadow position={[-2.95, -0.64, 0]}>
         <boxGeometry args={[0.16, 1.12, 1.86]} />
         <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
       </mesh>
 
       {/* Right Desk Leg Panel */}
-      <mesh castShadow receiveShadow position={[2.16, -0.64, 0]}>
+      <mesh castShadow receiveShadow position={[2.95, -0.64, 0]}>
         <boxGeometry args={[0.16, 1.12, 1.86]} />
         <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
       </mesh>

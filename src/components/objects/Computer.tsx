@@ -14,14 +14,29 @@ type ComputerProps = {
 };
 
 function YouTubeScreen({ videoId, position, width = "440px", height = "222px" }: { videoId: string; position: [number, number, number]; width?: string; height?: string }) {
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+  const [ready, setReady] = useState(false);
+  const revealTimerRef = useRef<number | null>(null);
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
+
+  useEffect(() => {
+    return () => {
+      if (revealTimerRef.current !== null) {
+        window.clearTimeout(revealTimerRef.current);
+      }
+    };
+  }, [videoId]);
 
   return (
-    <Html transform position={position} distanceFactor={1.35} style={{ width, height, pointerEvents: "none" }}>
+    <Html transform position={position} distanceFactor={1.35} style={{ width, height, pointerEvents: "none", opacity: ready ? 1 : 0 }}>
       <iframe
         src={embedUrl}
         title="Portfolio monitor video"
         allow="autoplay; encrypted-media; picture-in-picture"
+        loading="eager"
+        tabIndex={-1}
+        onLoad={() => {
+          revealTimerRef.current = window.setTimeout(() => setReady(true), 1400);
+        }}
         className="h-full w-full rounded-[3px] border-0 bg-black"
       />
     </Html>
