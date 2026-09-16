@@ -12,7 +12,7 @@ type ComputerProps = {
   position?: [number, number, number];
 };
 
-function YouTubeScreen({ videoId, position, width = "480px", height = "270px" }: { videoId: string; position: [number, number, number]; width?: string; height?: string }) {
+function YouTubeScreen({ videoId, position, width = "440px", height = "222px" }: { videoId: string; position: [number, number, number]; width?: string; height?: string }) {
   const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
 
   return (
@@ -382,7 +382,7 @@ export function Computer({
           <planeGeometry args={[0.84, 0.59]} />
           <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
-        <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.06]} width="310px" height="186px" />
+        <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.075]} width="230px" height="162px" />
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -397,7 +397,7 @@ export function Computer({
           <planeGeometry args={[0.84, 0.59]} />
           <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
         </mesh>
-        <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.06]} width="310px" height="186px" />
+        <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.075]} width="230px" height="162px" />
         <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
           <boxGeometry args={[0.08, 0.5, 0.08]} />
           <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
@@ -415,7 +415,7 @@ export function Computer({
       </mesh>
 
       {/* Tower */}
-      <group position={[2.02, 0.57, -0.1]}>
+      <group position={[2.18, 0.57, -0.1]}>
         <mesh castShadow receiveShadow>
           <boxGeometry args={[0.48, 0.92, 0.82]} />
           <meshStandardMaterial color="#0a0a0a" roughness={0.26} metalness={0.82} />
