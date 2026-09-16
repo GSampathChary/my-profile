@@ -9,11 +9,12 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  min-height: 100%;
   overflow-x: hidden;
   background:
     radial-gradient(circle at 20% 15%, rgba(34, 211, 238, 0.16), transparent 28%),
@@ -51,6 +52,14 @@ input {
 button,
 a {
   touch-action: manipulation;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.safe-area-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 }
 
 html,

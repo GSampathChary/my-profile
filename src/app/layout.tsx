@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Viewport } from "next";
 import type { ReactNode } from "react";
 import { VisitorTracker } from "@/components/analytics/VisitorTracker";
 import "./globals.css";
@@ -23,6 +24,13 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg"
   }
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#020617"
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

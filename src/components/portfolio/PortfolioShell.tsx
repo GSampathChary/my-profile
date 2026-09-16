@@ -611,10 +611,10 @@ function PhoneOverlay({ onClose }: { onClose: () => void }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 18, scale: 0.95 }}
       transition={{ duration: 0.9, ease: "easeOut" }}
-      className="relative flex items-center justify-center p-2 sm:p-4"
+      className="relative flex min-h-0 items-center justify-center p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:p-4"
     >
       {/* Realistic Android Smartphone Body */}
-      <div className="relative h-[min(560px,calc(100dvh-1rem))] w-[min(280px,88vw)] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:h-[560px] sm:w-[280px]">
+      <div className="relative h-[min(560px,calc(100dvh-2rem))] w-[min(280px,calc(100vw-2rem))] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:h-[560px] sm:w-[280px]">
         {/* Top Punch-Hole Front Camera */}
         <div className="absolute top-3 left-1/2 z-30 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-slate-700 bg-black shadow-inner" />
 
@@ -720,7 +720,7 @@ function HUDButton({
       type="button"
       onClick={onClick}
       className={[
-        "group flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm shadow-2xl backdrop-blur-xl transition",
+        "group flex min-h-11 items-center justify-center gap-2 rounded-2xl border px-2 py-2.5 text-xs shadow-2xl backdrop-blur-xl transition sm:justify-start sm:gap-3 sm:px-4 sm:py-3 sm:text-sm",
         active
           ? lightsOn ? "border-amber-700/40 bg-amber-900/40 text-amber-100 font-bold" : "border-cyan-300/30 bg-cyan-300/12 text-white font-bold"
           : lightsOn ? "border-amber-900/20 bg-amber-950/60 text-amber-100 hover:bg-amber-900/80" : "border-white/10 bg-slate-950/70 text-slate-100 hover:bg-white/10"
@@ -839,7 +839,7 @@ export function PortfolioShell() {
   if (!mounted) return null;
 
   return (
-    <main className="fixed inset-0 h-screen w-screen overflow-hidden bg-slate-950 text-white">
+    <main className="fixed inset-0 h-[100dvh] min-h-[100dvh] w-screen overflow-hidden bg-slate-950 text-white">
       {/* Full Window 3D Room Canvas */}
       <div className="absolute inset-0 h-full w-full">
         <Room
@@ -878,7 +878,7 @@ export function PortfolioShell() {
       </div>
 
       {/* Minimal Right Sidebar Navigation HUD matching reference video */}
-      <div className={isMobile ? "fixed left-2 right-2 bottom-2 z-40 grid grid-cols-2 gap-2 sm:left-3 sm:right-3 sm:bottom-3" : "fixed bottom-6 right-4 z-40 flex flex-col gap-2"}>
+      <div className={isMobile ? "safe-area-bottom fixed left-2 right-2 bottom-0 z-40 grid grid-cols-2 gap-2 sm:left-3 sm:right-3 sm:bottom-3" : "fixed bottom-6 right-4 z-40 flex flex-col gap-2"}>
         <HUDButton label="About Me" icon={UserRound} active={cameraFocus === "resume"} onClick={() => openView("resume")} lightsOn={lightsOn} />
         <HUDButton label="Projects" icon={Monitor} active={cameraFocus === "projects"} onClick={() => openView("projects")} lightsOn={lightsOn} />
         <HUDButton label="Get In Touch" icon={Mail} active={cameraFocus === "contact"} onClick={() => openView("contact")} lightsOn={lightsOn} />
@@ -890,7 +890,7 @@ export function PortfolioShell() {
 
       {/* Floating Bottom Close View / Back to Room Button */}
       {cameraFocus !== "overview" ? (
-        <div className="fixed bottom-2 left-1/2 z-50 -translate-x-1/2 sm:bottom-6">
+        <div className="safe-area-bottom fixed bottom-0 left-1/2 z-50 -translate-x-1/2 sm:bottom-6">
           <button
             type="button"
             onClick={closeView}
