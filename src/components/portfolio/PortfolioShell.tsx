@@ -230,13 +230,13 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
 
 function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void; lightsOn?: boolean }) {
   const mobile = useIsMobile();
-  const shellBorder = lightsOn ? "border-cyan-400/20" : "border-amber-500/25";
-  const shellBg = lightsOn ? "bg-slate-950/95" : "bg-[#0b0f19]/95";
-  const headerBg = lightsOn ? "bg-slate-950/90" : "bg-[#111827]/90";
-  const frameBg = lightsOn ? "bg-slate-900" : "bg-[#17120b]";
-  const pdfBorder = lightsOn ? "border-white/10" : "border-amber-400/15";
-  const accentText = lightsOn ? "text-cyan-100/60" : "text-amber-100/60";
-  const buttonBase = lightsOn ? "bg-white/10 hover:bg-white/20 text-white" : "bg-amber-400/10 hover:bg-amber-400/20 text-amber-50";
+  const shellBorder = "border-slate-200";
+  const shellBg = "bg-white";
+  const headerBg = "bg-white";
+  const frameBg = "bg-slate-50";
+  const pdfBorder = "border-slate-200";
+  const accentText = "text-slate-500";
+  const buttonBase = "bg-slate-100 hover:bg-slate-200 text-slate-700";
 
   return (
     <motion.div
@@ -246,23 +246,30 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
       transition={{ duration: 1.0, ease: "easeOut" }}
       className={`fixed inset-0 z-[80] px-2 py-2 sm:px-3 sm:py-3 ${lightsOn ? "bg-black/75" : "bg-black/82"}`}
     >
-      <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.75)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
+      <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.35)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
         <div className={`flex flex-col items-start justify-between gap-3 border-b px-4 py-4 sm:flex-row sm:items-center sm:px-5 ${headerBg} ${shellBorder}`}>
-          <div>
+          <div className="flex items-start gap-3">
+            <div className="flex items-center gap-1.5 pt-1.5" aria-hidden="true">
+              <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+            </div>
+            <div>
             <div className={`text-[10px] uppercase tracking-[0.45em] ${accentText}`}>About Me</div>
-            <h2 className="mt-1 text-xl font-semibold text-white sm:text-2xl">Resume Viewer</h2>
+            <h2 className="mt-1 text-xl font-semibold text-slate-900 sm:text-2xl">Resume Viewer</h2>
+            </div>
           </div>
           <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
             <a
               href="/resume/resume.pdf"
               download
-              className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${lightsOn ? "border-cyan-400/20 bg-cyan-400/10 text-cyan-100 hover:bg-cyan-400/20" : "border-amber-400/20 bg-amber-400/10 text-amber-50 hover:bg-amber-400/20"}`}
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
             >
               Download PDF
             </a>
             <Link
               href="/resume"
-              className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${lightsOn ? "border-white/10 bg-white/5 text-slate-100 hover:bg-white/10" : "border-amber-400/15 bg-white/5 text-amber-50 hover:bg-white/10"}`}
+              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
             >
               Open Resume Page
             </Link>
@@ -277,7 +284,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
         </div>
         <div className={`min-h-0 flex-1 p-3 ${frameBg}`}>
           {mobile ? (
-            <div className="h-full overflow-y-auto rounded-[18px] border border-white/10 bg-slate-950 p-3 sm:rounded-[22px] sm:p-4">
+            <div className="h-full overflow-y-auto rounded-[18px] border border-slate-200 bg-white p-3 sm:rounded-[22px] sm:p-4">
               <ResumeRoom resumeAvailable />
             </div>
           ) : (
@@ -423,12 +430,12 @@ function TechnologiesOverlay({
   ] as const;
 
   return (
-    <FullscreenFrame title="Known Technologies" eyebrow="Official stack browser" onClose={onClose} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
-      <div className={`grid h-full gap-4 overflow-y-auto pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "max-h-[72vh]" : "max-h-[78vh] overflow-hidden"}`}>
-        <div className="space-y-4 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5">
+    <FullscreenFrame title="Known Technologies" eyebrow="Official stack browser" onClose={onClose} browserChrome fullScreenMobile={mobile} motionDuration={0.95} motionScale={0.975} motionYOffset={18}>
+      <div className={`grid h-full min-h-0 gap-4 pb-1 lg:grid-cols-[0.85fr_1.15fr] ${mobile ? "grid-rows-[minmax(15rem,0.9fr)_minmax(0,1.1fr)] overflow-hidden" : "max-h-[78vh] overflow-hidden"}`}>
+        <div className="min-h-0 space-y-4 overflow-y-auto rounded-[28px] border border-slate-200 bg-slate-50 p-4 shadow-lg shadow-slate-200/70 sm:p-5">
           <div>
-            <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Focus tracks</div>
-            <p className="mt-2 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
+            <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-700">Focus tracks</div>
+            <p className="mt-2 text-[13px] leading-6 text-slate-600 sm:text-sm sm:leading-7">
               These study tracks mirror the bookshelf in the room and spotlight the stack behind your featured projects.
             </p>
           </div>
@@ -439,12 +446,12 @@ function TechnologiesOverlay({
                 key={book}
                 type="button"
                 onClick={() => onBookSelect(book)}
-                className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 text-left text-sm text-slate-100 transition hover:bg-white/10"
+                className="rounded-2xl border border-slate-200 bg-white px-4 py-4 text-left text-sm text-slate-800 transition hover:border-cyan-300 hover:bg-cyan-50"
               >
                 <div className="text-base font-semibold">{bookInfo[book].title}</div>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {bookInfo[book].points.slice(0, 3).map((point) => (
-                    <span key={point} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-200">
+                    <span key={point} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] text-slate-600">
                       {point}
                     </span>
                   ))}
@@ -454,20 +461,20 @@ function TechnologiesOverlay({
           </div>
 
           {selectedBook ? (
-            <div className="rounded-[24px] border border-cyan-300/20 bg-cyan-300/10 p-4">
-              <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/70">Selected track</div>
-              <div className="mt-2 text-lg font-semibold text-white">{selectedBook.title}</div>
+            <div className="rounded-[24px] border border-cyan-200 bg-cyan-50 p-4">
+              <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-700">Selected track</div>
+              <div className="mt-2 text-lg font-semibold text-slate-900">{selectedBook.title}</div>
               <div className="mt-3 flex flex-wrap gap-2">
                 {selectedBook.points.map((point) => (
-                  <span key={point} className="rounded-full border border-cyan-200/20 bg-white/5 px-3 py-1 text-[11px] text-cyan-50">
+                  <span key={point} className="rounded-full border border-cyan-200 bg-white px-3 py-1 text-[11px] text-cyan-800">
                     {point}
                   </span>
                 ))}
               </div>
-              <div className="mt-4 text-xs uppercase tracking-[0.32em] text-cyan-100/60">Projects</div>
+              <div className="mt-4 text-xs uppercase tracking-[0.32em] text-cyan-700">Projects</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {selectedBook.projects.map((project) => (
-                  <span key={project} className="rounded-full border border-white/10 bg-slate-950/35 px-3 py-1 text-[11px] text-slate-100">
+                  <span key={project} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-700">
                     {project}
                   </span>
                 ))}
@@ -476,15 +483,15 @@ function TechnologiesOverlay({
           ) : null}
         </div>
 
-        <div className="space-y-4 rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+        <div className="min-h-0 space-y-4 overflow-y-auto rounded-[28px] border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/70 sm:p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <div className="text-[10px] uppercase tracking-[0.45em] text-slate-400">Official links</div>
-              <p className="mt-2 text-[13px] leading-6 text-slate-300 sm:text-sm sm:leading-7">
+              <div className="text-[10px] uppercase tracking-[0.45em] text-slate-500">Official links</div>
+              <p className="mt-2 text-[13px] leading-6 text-slate-600 sm:text-sm sm:leading-7">
                 Every named technology opens its official home page and uses a branded logo where one is available.
               </p>
             </div>
-            <div className="rounded-full border border-white/10 bg-slate-950/70 px-4 py-2 text-xs text-slate-200">
+            <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs text-slate-600">
               {totalTech} technologies
             </div>
           </div>
@@ -493,13 +500,13 @@ function TechnologiesOverlay({
             {sections.map((section) => {
               const values = portfolio.skills[section.key as keyof typeof portfolio.skills] as string[];
               return (
-                <section key={section.key} className="rounded-[24px] border border-white/10 bg-slate-950/60 p-4">
+                <section key={section.key} className="rounded-[24px] border border-slate-200 bg-slate-50 p-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-sm font-semibold text-white">{section.title}</h3>
-                      <p className="mt-1 text-xs leading-5 text-slate-400">{section.description}</p>
+                      <h3 className="text-sm font-semibold text-slate-900">{section.title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">{section.description}</p>
                     </div>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-slate-300">
+                    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-600">
                       {values.length}
                     </span>
                   </div>
@@ -509,7 +516,7 @@ function TechnologiesOverlay({
                         key={technology}
                         technology={technology}
                         size="sm"
-                        className="border-white/10 bg-white/[0.04] text-slate-100 hover:border-cyan-300/30 hover:bg-cyan-300/10"
+                        className="border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
                       />
                     ))}
                   </div>
@@ -524,6 +531,7 @@ function TechnologiesOverlay({
 }
 
 function ContactOverlay({ onClose }: { onClose: () => void }) {
+  const mobile = useIsMobile();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -542,49 +550,49 @@ function ContactOverlay({ onClose }: { onClose: () => void }) {
   }, [email, message, name]);
 
   return (
-    <FullscreenFrame title="Get In Touch" eyebrow="Visiting card" onClose={onClose} motionDuration={0.9} motionScale={0.975} motionYOffset={18}>
-      <div className="grid h-full gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+    <FullscreenFrame title="Get In Touch" eyebrow="Visiting card" onClose={onClose} browserChrome fullScreenMobile={mobile} motionDuration={0.9} motionScale={0.975} motionYOffset={18}>
+      <div className={`grid h-full min-h-0 gap-4 overflow-y-auto lg:grid-cols-[0.95fr_1.05fr] ${mobile ? "grid-rows-[auto_auto]" : ""}`}>
         <form
-          className="space-y-3 rounded-[28px] border border-white/10 bg-slate-950/75 p-4 sm:p-5"
+          className="space-y-3 rounded-[28px] border border-slate-200 bg-slate-50 p-4 shadow-lg shadow-slate-200/70 sm:p-5"
           onSubmit={(event) => {
             event.preventDefault();
             window.location.href = mailtoHref;
           }}
         >
-          <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Contact card</div>
-          <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500" />
-          <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Your email" className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500" />
-          <textarea value={message} onChange={(event) => setMessage(event.target.value)} placeholder="How can we work together?" rows={6} className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-500" />
+          <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-700">Contact card</div>
+          <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-400" />
+          <input value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Your email" className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-400" />
+          <textarea value={message} onChange={(event) => setMessage(event.target.value)} placeholder="How can we work together?" rows={6} className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-cyan-400" />
           <div className="flex flex-wrap gap-2">
             <button type="submit" className="rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200">
               Send
             </button>
-            <a href={socialLinks.email} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-100 transition hover:bg-white/10">
+            <a href={socialLinks.email} className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 transition hover:bg-slate-100">
               Mail directly
             </a>
           </div>
         </form>
-        <div className="space-y-3 rounded-[28px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-          <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-100/60">Options</div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
-            <div className="font-semibold text-white">Email</div>
-            <a href={socialLinks.email} className="mt-1 block text-cyan-100">{portfolio.profile.email}</a>
+        <div className="space-y-3 rounded-[28px] border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/70 sm:p-5">
+          <div className="text-[10px] uppercase tracking-[0.45em] text-cyan-700">Options</div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+            <div className="font-semibold text-slate-900">Email</div>
+            <a href={socialLinks.email} className="mt-1 block text-cyan-700">{portfolio.profile.email}</a>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
-            <div className="font-semibold text-white">Location</div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+            <div className="font-semibold text-slate-900">Location</div>
             <div className="mt-1 flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-cyan-200" />
+              <MapPin className="h-4 w-4 text-cyan-600" />
               {portfolio.profile.location}
             </div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
-            <div className="font-semibold text-white">Profiles</div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+            <div className="font-semibold text-slate-900">Profiles</div>
             <div className="mt-3 flex flex-wrap gap-2">
-              <a href={socialLinks.linkedIn} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-100">
+              <a href={socialLinks.linkedIn} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700">
                 <Link2 className="mr-1 inline h-3 w-3" />
                 LinkedIn
               </a>
-              <a href={socialLinks.github} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-100">
+              <a href={socialLinks.github} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs text-slate-700">
                 <GitFork className="mr-1 inline h-3 w-3" />
                 GitHub
               </a>
