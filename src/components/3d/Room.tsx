@@ -91,7 +91,6 @@ export function Room({
             <pointLight position={[-0.95, 4.05, -4.05]} intensity={lightsOn ? 1.1 : 1.8} color="#ef4444" distance={8} />
             <pointLight position={[0.35, 1.25, 0.75]} intensity={lightsOn ? 0.95 : 1.95} color="#38bdf8" distance={8} />
             <pointLight position={[1.5, 1.0, 0.65]} intensity={lightsOn ? 0.4 : 0.85} color="#22c55e" distance={5} />
-            <pointLight position={[-0.1, 1.8, -3.0]} intensity={lightsOn ? 0.75 : 1.25} color="#67e8f9" distance={3.5} />
 
             {focus !== "projects" ? (
               <>

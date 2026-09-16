@@ -10,7 +10,6 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
   const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#e2e8f0" : "#090d19";
   const borderGlowColor = lightsOn ? "#38bdf8" : "#facc15";
   const borderGlowIntensity = lightsOn ? 0 : 0.85;
-  const featureIntensity = lightsOn ? 0.28 : 1.35;
 
   return (
     <group>
@@ -46,36 +45,6 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
           emissiveIntensity={borderGlowIntensity}
         />
       </mesh>
-
-      {/* Neon architectural feature wall */}
-      {!projectsMode ? (
-        <group position={[0, 2.7, -4.34]}>
-          <mesh position={[0, 1.9, 0]}>
-            <boxGeometry args={[7.1, 0.035, 0.035]} />
-            <meshStandardMaterial color={borderGlowColor} emissive={borderGlowColor} emissiveIntensity={featureIntensity} />
-          </mesh>
-          <mesh position={[0, -1.9, 0]}>
-            <boxGeometry args={[7.1, 0.035, 0.035]} />
-            <meshStandardMaterial color={borderGlowColor} emissive={borderGlowColor} emissiveIntensity={featureIntensity} />
-          </mesh>
-          <mesh position={[-3.55, 0, 0]}>
-            <boxGeometry args={[0.035, 3.8, 0.035]} />
-            <meshStandardMaterial color={borderGlowColor} emissive={borderGlowColor} emissiveIntensity={featureIntensity} />
-          </mesh>
-          <mesh position={[3.55, 0, 0]}>
-            <boxGeometry args={[0.035, 3.8, 0.035]} />
-            <meshStandardMaterial color={borderGlowColor} emissive={borderGlowColor} emissiveIntensity={featureIntensity} />
-          </mesh>
-          <mesh position={[0, 0.78, 0.01]} rotation-z={Math.PI / 4}>
-            <torusGeometry args={[0.72, 0.018, 12, 64]} />
-            <meshStandardMaterial color="#22d3ee" emissive="#22d3ee" emissiveIntensity={featureIntensity} />
-          </mesh>
-          <mesh position={[0, 0.78, 0.012]} rotation-z={-Math.PI / 4}>
-            <torusGeometry args={[0.72, 0.018, 12, 64]} />
-            <meshStandardMaterial color="#a78bfa" emissive="#a78bfa" emissiveIntensity={featureIntensity} />
-          </mesh>
-        </group>
-      ) : null}
 
       {!lightsOn ? (
         <group>
