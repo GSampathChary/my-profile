@@ -397,7 +397,7 @@ function ProjectsOverlay({
           </div>
           <div className="flex flex-wrap gap-2 pt-1">
             {project.technologies.slice(0, 8).map((technology) => (
-              <TechnologyBadge key={technology} technology={technology} size="sm" className="border-cyan-200 bg-cyan-50 text-cyan-800" />
+              <TechnologyBadge key={technology} technology={technology} size="sm" className="border-cyan-200 bg-cyan-50 !text-black" />
             ))}
           </div>
         </div>
@@ -516,7 +516,7 @@ function TechnologiesOverlay({
                         key={technology}
                         technology={technology}
                         size="sm"
-                        className="border-slate-200 bg-white text-slate-700 hover:border-cyan-300 hover:bg-cyan-50"
+                        className="border-slate-200 bg-white !text-black hover:border-cyan-300 hover:bg-cyan-50"
                       />
                     ))}
                   </div>
