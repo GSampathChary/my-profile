@@ -25,9 +25,29 @@ export const projects: Project[] = [
     ],
     screenshots: [
       {
-        src: "/project-screenshots/insightbi-ai/dashboard.png",
-        label: "Executive dashboard",
-        alt: "InsightBI AI executive dashboard showing revenue, profit, order, customer, and trend analytics"
+        src: "/project-screenshots/insightbi-ai/insightbi-01.png",
+        label: "InsightBI AI overview",
+        alt: "InsightBI AI analytics platform overview"
+      },
+      {
+        src: "/project-screenshots/insightbi-ai/insightbi-02.png",
+        label: "InsightBI AI dashboard",
+        alt: "InsightBI AI business intelligence dashboard"
+      },
+      {
+        src: "/project-screenshots/insightbi-ai/insightbi-03.png",
+        label: "Revenue analytics",
+        alt: "InsightBI AI revenue and performance analytics"
+      },
+      {
+        src: "/project-screenshots/insightbi-ai/insightbi-04.png",
+        label: "Customer insights",
+        alt: "InsightBI AI customer insights dashboard"
+      },
+      {
+        src: "/project-screenshots/insightbi-ai/insightbi-05.png",
+        label: "Executive reporting",
+        alt: "InsightBI AI executive reporting view"
       }
     ],
     highlights: ["Power BI-ready semantic model", "Live deployment on Vercel"],
@@ -92,6 +112,28 @@ export const projects: Project[] = [
       "Maritime surveillance views",
       "Crop stress monitoring",
       "Infrastructure risk tracking"
+    ],
+    screenshots: [
+      {
+        src: "/project-screenshots/bharateye/bharateye-01.png",
+        label: "BharatEye overview",
+        alt: "BharatEye geospatial intelligence dashboard overview"
+      },
+      {
+        src: "/project-screenshots/bharateye/bharateye-02.png",
+        label: "Satellite intelligence",
+        alt: "BharatEye satellite intelligence map"
+      },
+      {
+        src: "/project-screenshots/bharateye/bharateye-03.png",
+        label: "Disaster monitoring",
+        alt: "BharatEye disaster monitoring dashboard"
+      },
+      {
+        src: "/project-screenshots/bharateye/bharateye-04.png",
+        label: "Risk analytics",
+        alt: "BharatEye infrastructure and environmental risk analytics"
+      }
     ],
     links: {
       ...placeholderLinks,

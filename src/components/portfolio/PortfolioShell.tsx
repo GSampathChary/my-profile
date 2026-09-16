@@ -474,7 +474,7 @@ function TechnologiesOverlay({
               <div className="mt-4 text-xs uppercase tracking-[0.32em] text-cyan-700">Projects</div>
               <div className="mt-2 flex flex-wrap gap-2">
                 {selectedBook.projects.map((project) => (
-                  <span key={project} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-slate-700">
+                  <span key={project} className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] text-black">
                     {project}
                   </span>
                 ))}
