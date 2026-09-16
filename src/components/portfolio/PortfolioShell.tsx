@@ -230,13 +230,13 @@ function ResumeOverlay({ onClose }: { onClose: () => void }) {
 
 function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void; lightsOn?: boolean }) {
   const mobile = useIsMobile();
-  const shellBorder = "border-slate-200";
-  const shellBg = "bg-white";
-  const headerBg = "bg-white";
-  const frameBg = "bg-slate-50";
-  const pdfBorder = "border-slate-200";
-  const accentText = "text-slate-500";
-  const buttonBase = "bg-slate-100 hover:bg-slate-200 text-slate-700";
+  const shellBorder = "border-slate-700";
+  const shellBg = "bg-black";
+  const headerBg = "bg-slate-950";
+  const frameBg = "bg-black";
+  const pdfBorder = "border-slate-700";
+  const accentText = "text-slate-400";
+  const buttonBase = "bg-white hover:bg-slate-200 text-black";
 
   return (
     <motion.div
@@ -244,7 +244,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 20, scale: 0.985 }}
       transition={{ duration: 1.0, ease: "easeOut" }}
-      className="fixed inset-0 z-[80] bg-white px-2 py-2 sm:px-3 sm:py-3"
+      className="fixed inset-0 z-[80] bg-black px-2 py-2 sm:px-3 sm:py-3"
     >
       <div className={`flex h-full w-full flex-col overflow-hidden rounded-[20px] border shadow-[0_30px_120px_rgba(0,0,0,0.35)] sm:rounded-[28px] ${shellBorder} ${shellBg}`}>
         <div className={`flex flex-col items-start justify-between gap-3 border-b px-4 py-4 sm:flex-row sm:items-center sm:px-5 ${headerBg} ${shellBorder}`}>
@@ -256,20 +256,20 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
             </div>
             <div>
             <div className={`text-[10px] uppercase tracking-[0.45em] ${accentText}`}>About Me</div>
-            <h2 className="mt-1 text-xl font-semibold text-slate-900 sm:text-2xl">Resume Viewer</h2>
+            <h2 className="mt-1 text-xl font-semibold text-white sm:text-2xl">Resume Viewer</h2>
             </div>
           </div>
           <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto">
             <a
               href="/resume/resume.pdf"
               download
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+              className="rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-100 transition hover:bg-slate-800"
             >
               Download PDF
             </a>
             <Link
               href="/resume"
-              className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+              className="rounded-full border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-semibold text-slate-100 transition hover:bg-slate-800"
             >
               Open Resume Page
             </Link>
@@ -284,7 +284,7 @@ function ResumeOverlayFull({ onClose, lightsOn = false }: { onClose: () => void;
         </div>
         <div className={`min-h-0 flex-1 p-3 ${frameBg}`}>
           {mobile ? (
-            <div className="h-full overflow-y-auto rounded-[18px] border border-slate-200 bg-white p-3 sm:rounded-[22px] sm:p-4">
+            <div className="h-full overflow-y-auto rounded-[18px] border border-slate-700 bg-black p-3 sm:rounded-[22px] sm:p-4">
               <ResumeRoom resumeAvailable />
             </div>
           ) : (
@@ -614,7 +614,7 @@ function PhoneOverlay({ onClose }: { onClose: () => void }) {
       className="relative flex items-center justify-center p-2 sm:p-4"
     >
       {/* Realistic Android Smartphone Body */}
-      <div className="relative h-[560px] w-[min(280px,88vw)] scale-[0.78] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:w-[280px] sm:scale-100">
+      <div className="relative h-[min(560px,calc(100dvh-1rem))] w-[min(280px,88vw)] overflow-hidden rounded-[42px] border-[8px] border-slate-800 bg-slate-950 shadow-2xl shadow-cyan-500/20 ring-1 ring-white/20 sm:h-[560px] sm:w-[280px]">
         {/* Top Punch-Hole Front Camera */}
         <div className="absolute top-3 left-1/2 z-30 h-3.5 w-3.5 -translate-x-1/2 rounded-full border border-slate-700 bg-black shadow-inner" />
 
