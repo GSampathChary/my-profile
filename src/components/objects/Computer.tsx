@@ -24,6 +24,7 @@ export function Computer({
   const [screenTexture, setScreenTexture] = useState<CanvasTexture | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const fanRefs = useRef<Array<MeshStandardMaterial | null>>([]);
+  const lastScreenDrawRef = useRef(0);
   const screenFocused = active || isHovered;
 
   useEffect(() => {
@@ -283,12 +284,13 @@ export function Computer({
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
-    if (screenTextureRef.current) {
+    if (screenTextureRef.current && t - lastScreenDrawRef.current >= 1 / 30) {
       const canvas = screenCanvasRef.current;
       const ctx = canvas?.getContext("2d");
       if (ctx) {
         drawScreen(ctx, t, powered);
         screenTextureRef.current.needsUpdate = true;
+        lastScreenDrawRef.current = t;
       }
     }
 

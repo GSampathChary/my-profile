@@ -57,7 +57,12 @@ export function Room({
 }: RoomProps) {
   return (
     <div className="absolute inset-0 h-full w-full overflow-hidden bg-slate-950">
-      <Canvas shadows dpr={mobile ? [1, 1.15] : [1, 1.5]}>
+      <Canvas
+        shadows={!mobile}
+        dpr={mobile ? 1 : [1, 1.25]}
+        gl={{ antialias: !mobile, powerPreference: "high-performance", alpha: false }}
+        performance={{ min: 0.6, max: 1, debounce: 200 }}
+      >
         <Suspense fallback={null}>
           <Environment enabled={lightsOn} />
           <Camera mobile={mobile} focus={focus} />

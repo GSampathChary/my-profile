@@ -48,6 +48,22 @@ input {
   font: inherit;
 }
 
+button,
+a {
+  touch-action: manipulation;
+}
+
+html,
+body {
+  overscroll-behavior-x: none;
+}
+
+main,
+[data-scroll-container] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
 .lab-grid {
   background-image:
     radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.12) 1px, transparent 0),

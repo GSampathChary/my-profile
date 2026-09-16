@@ -81,6 +81,8 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
 
   const projectsPhaseRef = useRef<number>(0);
   const phaseTimerRef = useRef<number | null>(null);
+  const targetPositionRef = useRef(new Vector3());
+  const targetLookAtRef = useRef(new Vector3());
 
   useEffect(() => {
     if (focus === "projects") {
@@ -123,8 +125,8 @@ export function Camera({ mobile, focus = "overview" }: CameraProps) {
         targetLook = mobile ? [0, 1.36, -2.15] : [0, 1.4, -2.0];
       }
 
-      const targetPosition = new Vector3(...targetPos);
-      const targetLookAt = new Vector3(...targetLook);
+      const targetPosition = targetPositionRef.current.set(...targetPos);
+      const targetLookAt = targetLookAtRef.current.set(...targetLook);
 
       // Slow, elegant lerp speed for smooth realistic movement (ultra-gentle for resume zoom)
       const speedFactor = focus === "resume" ? 0.045 : focus === "technologies" ? 0.04 : focus === "phone" || focus === "contact" ? 0.05 : 0.0008;
