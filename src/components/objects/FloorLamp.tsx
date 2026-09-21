@@ -5,27 +5,32 @@ type FloorLampProps = {
 };
 
 export function FloorLamp({ enabled = true }: FloorLampProps) {
-  const glow = enabled ? 1.8 : 0.35;
+  const glow = enabled ? 2.4 : 0.2;
 
   return (
-    <group position={[4.35, 0, -3.65]}>
+    <group position={[2.72, 1.33, -3.62]} rotation-y={-0.14}>
+      {/* Articulated task lamp positioned on the desk, like the reference setup. */}
       <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
-        <cylinderGeometry args={[0.32, 0.38, 0.08, 24]} />
+        <cylinderGeometry args={[0.22, 0.25, 0.07, 24]} />
         <meshStandardMaterial color="#17191b" roughness={0.45} metalness={0.7} />
       </mesh>
-      <mesh castShadow receiveShadow position={[0, 1.45, 0]}>
-        <cylinderGeometry args={[0.025, 0.025, 2.8, 12]} />
+      <mesh castShadow receiveShadow position={[-0.12, 0.48, 0]} rotation-z={-0.28}>
+        <cylinderGeometry args={[0.026, 0.026, 0.94, 12]} />
         <meshStandardMaterial color="#252729" roughness={0.35} metalness={0.8} />
       </mesh>
-      <mesh castShadow receiveShadow position={[0, 2.75, 0]} rotation-z={-0.12}>
-        <coneGeometry args={[0.34, 0.58, 24, 1, true]} />
-        <meshStandardMaterial color="#d7a35a" roughness={0.52} side={2} />
+      <mesh castShadow receiveShadow position={[-0.42, 0.9, 0]} rotation-z={1.02}>
+        <cylinderGeometry args={[0.026, 0.026, 0.82, 12]} />
+        <meshStandardMaterial color="#252729" roughness={0.35} metalness={0.8} />
       </mesh>
-      <mesh position={[0, 2.58, 0]}>
-        <sphereGeometry args={[0.1, 16, 12]} />
-        <meshStandardMaterial color="#fff1c2" emissive="#ffb45c" emissiveIntensity={glow} />
+      <mesh castShadow receiveShadow position={[-0.72, 1.22, 0]} rotation-z={-0.9}>
+        <coneGeometry args={[0.26, 0.38, 24, 1, true]} />
+        <meshStandardMaterial color="#101318" roughness={0.34} metalness={0.78} side={2} />
       </mesh>
-      <pointLight position={[0, 2.55, 0]} intensity={glow} distance={4.5} color="#ffb45c" />
+      <mesh position={[-0.78, 1.19, 0]}>
+        <sphereGeometry args={[0.09, 16, 12]} />
+        <meshStandardMaterial color="#fff4c7" emissive="#ffb45c" emissiveIntensity={glow} />
+      </mesh>
+      <pointLight position={[-0.82, 1.12, 0.14]} intensity={glow} distance={3.7} color="#ffb45c" />
     </group>
   );
 }

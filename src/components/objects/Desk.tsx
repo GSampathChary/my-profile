@@ -13,17 +13,19 @@ export function Desk({ position = [0, 1.22, 0.42] }: DeskProps) {
         <meshStandardMaterial color="#633d2c" roughness={0.52} metalness={0.02} />
       </mesh>
 
-      {/* Left Desk Leg Panel */}
-      <mesh castShadow receiveShadow position={[-2.95, -0.64, 0]}>
-        <boxGeometry args={[0.16, 1.12, 1.86]} />
-        <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
-      </mesh>
-
-      {/* Right Desk Leg Panel */}
-      <mesh castShadow receiveShadow position={[2.95, -0.64, 0]}>
-        <boxGeometry args={[0.16, 1.12, 1.86]} />
-        <meshStandardMaterial color="#17191b" roughness={0.62} metalness={0.45} />
-      </mesh>
+      {/* Splayed A-frame legs give the desk the sturdy studio-workbench silhouette. */}
+      {[-2.85, 2.85].flatMap((x) => [-0.72, 0.72].map((z) => (
+        <mesh key={`${x}-${z}`} castShadow receiveShadow position={[x, -0.62, z]} rotation-z={x < 0 ? (z < 0 ? -0.19 : 0.19) : (z < 0 ? 0.19 : -0.19)}>
+          <boxGeometry args={[0.12, 1.22, 0.12]} />
+          <meshStandardMaterial color="#111318" roughness={0.5} metalness={0.8} />
+        </mesh>
+      )))}
+      {[-2.85, 2.85].map((x) => (
+        <mesh key={`brace-${x}`} castShadow receiveShadow position={[x, -0.24, 0]} rotation-x={Math.PI / 2}>
+          <boxGeometry args={[0.16, 1.58, 0.08]} />
+          <meshStandardMaterial color="#111318" roughness={0.5} metalness={0.8} />
+        </mesh>
+      ))}
 
       {/* Closed Book on the desk */}
       <group position={[-1.8, 0.045, -0.12]} rotation={[-0.03, 0.14, 0.04]}>

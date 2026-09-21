@@ -6,8 +6,8 @@ type WallsProps = {
 };
 
 export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
-  const wallColor = projectsMode ? "#fafafa" : lightsOn ? "#687174" : "#292526";
-  const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#596164" : "#211e1e";
+  const wallColor = projectsMode ? "#fafafa" : lightsOn ? "#4a5058" : "#292526";
+  const sideWallColor = projectsMode ? "#ffffff" : lightsOn ? "#444a50" : "#211e1e";
   const backGlow = lightsOn ? "#000000" : "#d9468f";
   const sideGlow = lightsOn ? "#000000" : "#facc15";
   const glowIntensity = lightsOn ? 0 : 0.5;
@@ -24,6 +24,52 @@ export function Walls({ lightsOn = true, projectsMode = false }: WallsProps) {
           emissiveIntensity={glowIntensity}
         />
       </mesh>
+
+      {/* Concrete wall panels and fasteners — a studio backdrop rather than a flat wall. */}
+      {!projectsMode ? (
+        <group position={[0, 0, -4.385]}>
+          {[-3.6, -1.8, 0, 1.8, 3.6].map((x) => (
+            <mesh key={`vertical-seam-${x}`} position={[x, 2.75, 0]}>
+              <boxGeometry args={[0.024, 5.2, 0.012]} />
+              <meshStandardMaterial color="#20242b" roughness={0.9} transparent opacity={0.45} />
+            </mesh>
+          ))}
+          {[1.25, 2.75, 4.25].map((y) => (
+            <mesh key={`horizontal-seam-${y}`} position={[0, y, 0]}>
+              <boxGeometry args={[8.8, 0.02, 0.012]} />
+              <meshStandardMaterial color="#20242b" roughness={0.9} transparent opacity={0.38} />
+            </mesh>
+          ))}
+          {[-3.6, -1.8, 0, 1.8, 3.6].flatMap((x) => [1.25, 2.75, 4.25].map((y) => (
+            <mesh key={`bolt-${x}-${y}`} position={[x + 0.12, y + 0.11, 0.016]}>
+              <sphereGeometry args={[0.035, 12, 10]} />
+              <meshStandardMaterial color="#1c2027" metalness={0.75} roughness={0.3} />
+            </mesh>
+          )))}
+
+          {/* Three small gallery pieces echo the reference workstation wall. */}
+          {[
+            { x: -2.35, y: 3.35, w: 0.78, h: 1.08, accent: "#c4b5fd" },
+            { x: -0.72, y: 2.95, w: 0.64, h: 0.72, accent: "#22d3ee" },
+            { x: 1.48, y: 3.26, w: 1.22, h: 0.72, accent: "#fbbf24" }
+          ].map((art) => (
+            <group key={`art-${art.x}`} position={[art.x, art.y, 0.035]}>
+              <mesh castShadow>
+                <boxGeometry args={[art.w + 0.12, art.h + 0.12, 0.055]} />
+                <meshStandardMaterial color="#080a0f" metalness={0.68} roughness={0.26} />
+              </mesh>
+              <mesh position={[0, 0, 0.034]}>
+                <planeGeometry args={[art.w, art.h]} />
+                <meshStandardMaterial color="#111827" emissive={art.accent} emissiveIntensity={0.18} roughness={0.34} />
+              </mesh>
+              <mesh position={[0, 0, 0.04]}>
+                <circleGeometry args={[Math.min(art.w, art.h) * 0.19, 24]} />
+                <meshStandardMaterial color={art.accent} emissive={art.accent} emissiveIntensity={0.55} />
+              </mesh>
+            </group>
+          ))}
+        </group>
+      ) : null}
 
       {/* Left wall */}
       <mesh position={[-8.9, 2.8, 0]} castShadow receiveShadow rotation-y={Math.PI / 2}>
