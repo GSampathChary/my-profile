@@ -2,35 +2,41 @@
 
 type FloorLampProps = {
   enabled?: boolean;
+  onToggle?: () => void;
 };
 
-export function FloorLamp({ enabled = true }: FloorLampProps) {
-  const glow = enabled ? 2.4 : 0.2;
+export function FloorLamp({ enabled = true, onToggle }: FloorLampProps) {
+  const glow = enabled ? 2.8 : 0.05;
 
   return (
-    <group position={[3.38, 1.33, -3.62]} rotation-y={-0.14}>
-      {/* Lamp stays beyond the tower's right edge so the RGB case is fully visible. */}
-      <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
-        <cylinderGeometry args={[0.22, 0.25, 0.07, 24]} />
+    <group position={[-3.62, 0, -2.06]} rotation-y={0.24} onClick={onToggle}>
+      {/* A freestanding lamp at the front-left desk corner, clearly inside the room composition. */}
+      <mesh castShadow receiveShadow position={[0, 0.06, 0]}>
+        <cylinderGeometry args={[0.3, 0.36, 0.12, 28]} />
         <meshStandardMaterial color="#17191b" roughness={0.45} metalness={0.7} />
       </mesh>
-      <mesh castShadow receiveShadow position={[-0.12, 0.48, 0]} rotation-z={-0.28}>
-        <cylinderGeometry args={[0.026, 0.026, 0.94, 12]} />
+      {/* Clickable illuminated rocker at the base. */}
+      <mesh position={[0, 0.13, 0.27]} castShadow>
+        <boxGeometry args={[0.12, 0.06, 0.025]} />
+        <meshStandardMaterial color={enabled ? "#fef3c7" : "#334155"} emissive={enabled ? "#f59e0b" : "#000000"} emissiveIntensity={enabled ? 1.8 : 0} />
+      </mesh>
+      <mesh castShadow receiveShadow position={[0.05, 0.84, 0]} rotation-z={-0.08}>
+        <cylinderGeometry args={[0.032, 0.032, 1.55, 14]} />
         <meshStandardMaterial color="#252729" roughness={0.35} metalness={0.8} />
       </mesh>
-      <mesh castShadow receiveShadow position={[-0.42, 0.9, 0]} rotation-z={1.02}>
-        <cylinderGeometry args={[0.026, 0.026, 0.82, 12]} />
+      <mesh castShadow receiveShadow position={[-0.2, 1.58, 0]} rotation-z={0.82}>
+        <cylinderGeometry args={[0.028, 0.028, 0.84, 14]} />
         <meshStandardMaterial color="#252729" roughness={0.35} metalness={0.8} />
       </mesh>
-      <mesh castShadow receiveShadow position={[-0.52, 1.22, 0]} rotation-z={-0.9}>
-        <coneGeometry args={[0.26, 0.38, 24, 1, true]} />
+      <mesh castShadow receiveShadow position={[-0.52, 1.88, 0]} rotation-z={-0.82}>
+        <coneGeometry args={[0.31, 0.44, 28, 1, true]} />
         <meshStandardMaterial color="#101318" roughness={0.34} metalness={0.78} side={2} />
       </mesh>
-      <mesh position={[-0.58, 1.19, 0]}>
-        <sphereGeometry args={[0.09, 16, 12]} />
+      <mesh position={[-0.57, 1.84, 0]}>
+        <sphereGeometry args={[0.12, 16, 12]} />
         <meshStandardMaterial color="#fff4c7" emissive="#ffb45c" emissiveIntensity={glow} />
       </mesh>
-      <pointLight position={[-0.62, 1.12, 0.14]} intensity={glow} distance={3.7} color="#ffb45c" />
+      <pointLight position={[-0.62, 1.75, 0.16]} intensity={glow} distance={5} color="#ffb45c" castShadow />
     </group>
   );
 }

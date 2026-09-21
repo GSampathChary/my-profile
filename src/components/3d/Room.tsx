@@ -102,7 +102,7 @@ export function Room({
               <>
                 <Desk position={[0, 1.22, -3.45]} />
                 <Chair position={[0, 0.08, -1.55]} rotationY={Math.PI} scale={1.03} />
-                <FloorLamp enabled={lightsOn} />
+                <FloorLamp enabled={lightsOn} onToggle={onToggleLight} />
                 <Lamp enabled={lightsOn} onToggle={onToggleLight} />
                 <Computer
                   position={[-0.1, 1.14, -3.43]}
