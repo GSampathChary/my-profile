@@ -14,7 +14,6 @@ import { Bookshelf } from "@/components/objects/Bookshelf";
 import { Chair } from "@/components/objects/Chair";
 import { Computer } from "@/components/objects/Computer";
 import { Desk } from "@/components/objects/Desk";
-import { FloorLamp } from "@/components/objects/FloorLamp";
 import { Lamp } from "@/components/objects/Lamp";
 import { Phone } from "@/components/objects/Phone";
 import { ResumeBook } from "@/components/objects/ResumeBook";
@@ -102,7 +101,6 @@ export function Room({
               <>
                 <Desk position={[0, 1.22, -3.45]} />
                 <Chair position={[0, 0.08, -1.55]} rotationY={Math.PI} scale={1.03} />
-                <FloorLamp enabled={lightsOn} onToggle={onToggleLight} />
                 <Lamp enabled={lightsOn} onToggle={onToggleLight} />
                 <Computer
                   position={[-0.1, 1.14, -3.43]}
