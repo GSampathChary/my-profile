@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
@@ -11,6 +12,23 @@ type ComputerProps = {
   showVideos?: boolean;
   position?: [number, number, number];
 };
+
+function VideoScreen() {
+  const videoId = "c1rBk7XAlj0";
+
+  return (
+    <Html transform position={[0, 0, 0.061]} distanceFactor={1.28} style={{ width: "304px", height: "164px", pointerEvents: "none" }}>
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`}
+        title="Portfolio workstation video"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        loading="eager"
+        tabIndex={-1}
+        className="h-full w-full border-0 bg-black"
+      />
+    </Html>
+  );
+}
 
 export function Computer({
   onClick,
@@ -351,6 +369,7 @@ export function Computer({
               toneMapped={false}
             />
           </mesh>
+          {showVideos ? <VideoScreen /> : null}
           <mesh castShadow receiveShadow position={[0, -0.58, -0.025]}>
             <boxGeometry args={[0.07, 0.42, 0.07]} />
             <meshStandardMaterial color="#111827" metalness={0.84} roughness={0.28} />
