@@ -348,9 +348,9 @@ export function Computer({
     >
       {/* Three matching widescreen panels form the reference's uninterrupted monitor wall. */}
       {[
-        { x: -1.27, y: 0.54, rotation: 0.13, central: false },
-        { x: 0, y: 0.57, rotation: 0, central: true },
-        { x: 1.27, y: 0.54, rotation: -0.13, central: false }
+        { x: -1.27, y: 0.78, rotation: 0.13, central: false },
+        { x: 0, y: 0.81, rotation: 0, central: true },
+        { x: 1.27, y: 0.78, rotation: -0.13, central: false }
       ].map((monitor) => (
         <group key={monitor.x} position={[monitor.x, monitor.y, 0]} rotation-y={monitor.rotation}>
           <mesh castShadow receiveShadow>
@@ -370,11 +370,11 @@ export function Computer({
             />
           </mesh>
           {showVideos ? <VideoScreen /> : null}
-          <mesh castShadow receiveShadow position={[0, -0.58, -0.025]}>
-            <boxGeometry args={[0.07, 0.42, 0.07]} />
+          <mesh castShadow receiveShadow position={[0, -0.51, -0.025]}>
+            <boxGeometry args={[0.07, 0.26, 0.07]} />
             <meshStandardMaterial color="#111827" metalness={0.84} roughness={0.28} />
           </mesh>
-          <mesh castShadow receiveShadow position={[0, -0.79, 0.08]}>
+          <mesh castShadow receiveShadow position={[0, -0.66, 0.08]}>
             <boxGeometry args={[0.42, 0.045, 0.3]} />
             <meshStandardMaterial color="#111827" metalness={0.84} roughness={0.28} />
           </mesh>
