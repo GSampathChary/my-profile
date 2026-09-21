@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
 import { CanvasTexture, LinearFilter, SRGBColorSpace, type MeshStandardMaterial } from "three";
 
 type ComputerProps = {
@@ -12,36 +11,6 @@ type ComputerProps = {
   showVideos?: boolean;
   position?: [number, number, number];
 };
-
-function YouTubeScreen({ videoId, position, width = "440px", height = "222px" }: { videoId: string; position: [number, number, number]; width?: string; height?: string }) {
-  const [ready, setReady] = useState(false);
-  const revealTimerRef = useRef<number | null>(null);
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&iv_load_policy=3&loop=1&playlist=${videoId}&playsinline=1&rel=0&modestbranding=1`;
-
-  useEffect(() => {
-    return () => {
-      if (revealTimerRef.current !== null) {
-        window.clearTimeout(revealTimerRef.current);
-      }
-    };
-  }, [videoId]);
-
-  return (
-    <Html transform position={position} distanceFactor={1.35} style={{ width, height, pointerEvents: "none", opacity: ready ? 1 : 0 }}>
-      <iframe
-        src={embedUrl}
-        title="Portfolio monitor video"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        loading="eager"
-        tabIndex={-1}
-        onLoad={() => {
-          revealTimerRef.current = window.setTimeout(() => setReady(true), 1400);
-        }}
-        className="h-full w-full rounded-[3px] border-0 bg-black"
-      />
-    </Html>
-  );
-}
 
 export function Computer({
   onClick,
@@ -359,168 +328,72 @@ export function Computer({
         event.stopPropagation();
       }}
     >
-      {/* Monitor frame */}
-      <mesh castShadow receiveShadow position={[0, 0.5, 0]}>
-        <boxGeometry args={[1.92, 1.05, 0.12]} />
-        <meshStandardMaterial color="#0b1329" roughness={0.34} metalness={0.72} />
-      </mesh>
+      {/* Three matching widescreen panels form the reference's uninterrupted monitor wall. */}
+      {[
+        { x: -1.27, y: 0.54, rotation: 0.13, central: false },
+        { x: 0, y: 0.57, rotation: 0, central: true },
+        { x: 1.27, y: 0.54, rotation: -0.13, central: false }
+      ].map((monitor) => (
+        <group key={monitor.x} position={[monitor.x, monitor.y, 0]} rotation-y={monitor.rotation}>
+          <mesh castShadow receiveShadow>
+            <boxGeometry args={[1.34, 0.76, 0.095]} />
+            <meshStandardMaterial color="#090b10" roughness={0.26} metalness={0.78} />
+          </mesh>
+          <mesh position={[0, 0, 0.053]}>
+            <planeGeometry args={[1.24, 0.67]} />
+            <meshStandardMaterial
+              ref={monitor.central ? screenMatRef : undefined}
+              map={screenTexture ?? undefined}
+              color={powered ? "#ffffff" : "#0b1220"}
+              emissive="#ffffff"
+              emissiveIntensity={powered ? 1.1 : 0.06}
+              roughness={0.12}
+              toneMapped={false}
+            />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0, -0.58, -0.025]}>
+            <boxGeometry args={[0.07, 0.42, 0.07]} />
+            <meshStandardMaterial color="#111827" metalness={0.84} roughness={0.28} />
+          </mesh>
+          <mesh castShadow receiveShadow position={[0, -0.79, 0.08]}>
+            <boxGeometry args={[0.42, 0.045, 0.3]} />
+            <meshStandardMaterial color="#111827" metalness={0.84} roughness={0.28} />
+          </mesh>
+        </group>
+      ))}
 
-      {/* Screen */}
-      <mesh castShadow receiveShadow position={[0, 0.62, 0.085]}>
-        <planeGeometry args={[1.78, 0.9]} />
-          <meshStandardMaterial
-            ref={screenMatRef}
-            map={screenTexture ?? undefined}
-            emissive="#ffffff"
-            emissiveIntensity={powered ? 1.15 : 0.8}
-          toneMapped={false}
-        />
-      </mesh>
-
-      {/* Bezel */}
-      <mesh castShadow receiveShadow position={[0, 0.62, 0.074]}>
-        <boxGeometry args={[1.88, 1.0, 0.018]} />
-        <meshStandardMaterial
-          color="#020617"
-          emissive={powered ? "#0f172a" : "#1f2937"}
-          emissiveIntensity={0.22}
-          roughness={0.3}
-          metalness={0.45}
-        />
-      </mesh>
-
-      {/* Side monitors for a realistic multi-screen workstation */}
-      <group position={[-1.38, 0.5, 0.02]} rotation-y={0.08}>
+      {/* Full-height tempered-glass PC tower with three visible RGB intake fans. */}
+      <group position={[2.48, 0.72, -0.18]}>
         <mesh castShadow receiveShadow>
-          <boxGeometry args={[0.98, 0.74, 0.08]} />
-          <meshStandardMaterial color="#202427" roughness={0.38} metalness={0.52} />
+          <boxGeometry args={[0.7, 1.36, 0.88]} />
+          <meshStandardMaterial color="#08090c" roughness={0.22} metalness={0.82} />
         </mesh>
-        <mesh position={[0, 0, 0.045]}>
-          <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
+        <mesh position={[-0.356, 0, 0]}>
+          <boxGeometry args={[0.018, 1.22, 0.76]} />
+          <meshStandardMaterial color="#29253a" emissive="#7c3aed" emissiveIntensity={0.32} transparent opacity={0.5} roughness={0.08} metalness={0.35} />
         </mesh>
-        {showVideos ? <YouTubeScreen videoId="QsvRms3HJi4" position={[0, 0, 0.075]} width="230px" height="162px" /> : null}
-        <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
-          <boxGeometry args={[0.08, 0.5, 0.08]} />
-          <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
+        <mesh position={[0, 0.7, -0.05]} rotation-x={Math.PI / 2}>
+          <boxGeometry args={[0.56, 0.12, 0.02]} />
+          <meshStandardMaterial color="#151922" metalness={0.85} roughness={0.28} />
         </mesh>
-      </group>
-      <group position={[1.38, 0.5, 0.02]} rotation-y={-0.08}>
-        <mesh castShadow receiveShadow>
-          <boxGeometry args={[0.98, 0.74, 0.08]} />
-          <meshStandardMaterial color="#202427" roughness={0.38} metalness={0.52} />
-        </mesh>
-        <mesh position={[0, 0, 0.045]}>
-          <planeGeometry args={[0.84, 0.59]} />
-          <meshStandardMaterial color={powered ? "#17324a" : "#101722"} emissive={powered ? "#164e63" : "#000000"} emissiveIntensity={powered ? 0.55 : 0.05} roughness={0.12} />
-        </mesh>
-        {showVideos ? <YouTubeScreen videoId="jlPEw71Ly60" position={[0, 0, 0.075]} width="230px" height="162px" /> : null}
-        <mesh castShadow receiveShadow position={[0, -0.5, 0]}>
-          <boxGeometry args={[0.08, 0.5, 0.08]} />
-          <meshStandardMaterial color="#17191b" metalness={0.7} roughness={0.35} />
-        </mesh>
-      </group>
-
-      {/* Stand */}
-      <mesh castShadow receiveShadow position={[0, 0.18, 0.02]}>
-        <boxGeometry args={[0.48, 0.06, 0.38]} />
-        <meshStandardMaterial color="#1e293b" roughness={0.35} metalness={0.85} />
-      </mesh>
-      <mesh castShadow receiveShadow position={[0, 0.34, -0.02]}>
-        <boxGeometry args={[0.12, 0.54, 0.12]} />
-        <meshStandardMaterial color="#0f172a" roughness={0.35} metalness={0.82} />
-      </mesh>
-
-      {/* Tower */}
-      <group position={[2.18, 0.57, -0.1]}>
-        <mesh castShadow receiveShadow>
-          <boxGeometry args={[0.48, 0.92, 0.82]} />
-          <meshStandardMaterial color="#0a0a0a" roughness={0.26} metalness={0.82} />
-        </mesh>
-
-        <mesh position={[0, 0.4, 0.39]} castShadow>
-          <boxGeometry args={[0.16, 0.1, 0.02]} />
-          <meshStandardMaterial color="#111827" roughness={0.4} />
-        </mesh>
-        <mesh position={[0, 0.22, 0.39]} castShadow>
-          <boxGeometry args={[0.16, 0.18, 0.02]} />
-          <meshStandardMaterial color="#111827" roughness={0.4} />
-        </mesh>
-
-        <mesh position={[0, -0.5, 0]} castShadow>
-          <cylinderGeometry args={[0.24, 0.26, 0.08, 32]} />
-          <meshStandardMaterial color="#0f172a" emissive="#22c55e" emissiveIntensity={0.32} roughness={0.45} />
-        </mesh>
-        <pointLight position={[0, -0.52, 0]} intensity={1.4} distance={1.4} color="#22c55e" />
-
-        <mesh position={[-0.24, 0, 0]}>
-          <boxGeometry args={[0.02, 0.84, 0.76]} />
-          <meshStandardMaterial color="#38bdf8" transparent opacity={0.25} roughness={0.1} />
-        </mesh>
-
-        {[-0.15, 0.15].map((yPos, idx) => (
-          <group key={`front-${idx}`} position={[0, yPos, 0.41]} rotation={[Math.PI / 2, 0, 0]}>
+        {[-0.38, 0, 0.38].map((yPos, index) => (
+          <group key={`front-fan-${yPos}`} position={[0, yPos, 0.451]} rotation-x={Math.PI / 2}>
             <mesh>
-              <cylinderGeometry args={[0.085, 0.085, 0.022, 32]} />
-              <meshStandardMaterial
-                ref={(el) => {
-                  fanRefs.current[idx] = el;
-                }}
-                color="#ec4899"
-                emissive="#ec4899"
-                emissiveIntensity={2.2}
-                roughness={0.25}
-              />
+              <torusGeometry args={[0.145, 0.022, 12, 36]} />
+              <meshStandardMaterial ref={(el) => { fanRefs.current[index] = el; }} color="#ec4899" emissive="#ec4899" emissiveIntensity={2.6} roughness={0.22} />
+            </mesh>
+            <mesh position={[0, 0, 0.008]}>
+              <circleGeometry args={[0.11, 28]} />
+              <meshStandardMaterial color="#130d22" emissive="#4c1d95" emissiveIntensity={0.8} />
             </mesh>
           </group>
         ))}
-
-        {[-0.2, 0.2].flatMap((yPos, yI) =>
-          [-0.2, 0.2].map((zPos, zI) => {
-            const idx = 2 + yI * 2 + zI;
-            return (
-              <group key={`right-${idx}`} position={[0.25, yPos, zPos]} rotation={[0, 0, Math.PI / 2]}>
-                <mesh>
-                  <cylinderGeometry args={[0.075, 0.075, 0.02, 32]} />
-                  <meshStandardMaterial
-                    ref={(el) => {
-                      fanRefs.current[idx] = el;
-                    }}
-                    color="#3b82f6"
-                    emissive="#3b82f6"
-                    emissiveIntensity={2.2}
-                    roughness={0.25}
-                  />
-                </mesh>
-              </group>
-            );
-          })
-        )}
-
-        {[-0.2, 0.2].flatMap((yPos, yI) =>
-          [-0.2, 0.2].map((zPos, zI) => {
-            const idx = 6 + yI * 2 + zI;
-            return (
-              <group key={`left-${idx}`} position={[-0.25, yPos, zPos]} rotation={[0, 0, Math.PI / 2]}>
-                <mesh>
-                  <cylinderGeometry args={[0.075, 0.075, 0.02, 32]} />
-                  <meshStandardMaterial
-                    ref={(el) => {
-                      fanRefs.current[idx] = el;
-                    }}
-                    color="#10b981"
-                    emissive="#10b981"
-                    emissiveIntensity={2.2}
-                    roughness={0.25}
-                  />
-                </mesh>
-              </group>
-            );
-          })
-        )}
+        <mesh position={[0, -0.72, 0]} castShadow>
+          <boxGeometry args={[0.76, 0.09, 0.96]} />
+          <meshStandardMaterial color="#10131a" metalness={0.78} roughness={0.34} />
+        </mesh>
+        <pointLight position={[0, 0, 0.55]} intensity={1.8} distance={2.1} color="#ec4899" />
       </group>
-
-      {showVideos ? <YouTubeScreen videoId="c1rBk7XAlj0" position={[0, 0.62, 0.105]} /> : null}
 
       {/* Keyboard */}
       <group position={[-0.12, 0.12, 0.58]} rotation={[0, 0.04, 0]}>
